@@ -1,101 +1,217 @@
-import Image from "next/image";
+import { Navigation } from "@/components/navigation"
+import { ContactForm } from "@/components/contact-form"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import Link from "next/link"
+import { Brain, Heart, Sparkles } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Navigation />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section className="min-h-screen bg-gradient-to-r from-primary/30 to-accent/30 pt-20">
+        <div className="container mx-auto px-4 pt-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h1 className="text-5xl font-bold text-foreground leading-tight">
+                Terapias
+                <br />
+                Alternativas
+                <br />
+                Marbella
+              </h1>
+              <h2 className="text-xl text-muted-foreground">Coach, inteligencia emocional, Kinesiología holística</h2>
+              <p className="text-muted-foreground max-w-lg">
+                Soy Ines Uria, llevo más de 30 años trabajando junta a personas como tú para ayudarles en su progresión
+                laboral.
+              </p>
+              <Button asChild size="lg">
+                <Link href="#contact">Comenzar Tu Viaje</Link>
+              </Button>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-accent rounded-full transform scale-90 translate-x-4 translate-y-4" />
+              <Image
+                src=""
+                alt="Ines Uria"
+                width={600}
+                height={600}
+                className="relative z-10"
+                priority
+              />
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Nuestros Servicios</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-6 rounded-lg bg-card">
+              <Brain className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2 text-card-foreground">Kinesiología Holística</h3>
+              <p className="text-muted-foreground">
+                Terapia que integra el cuerpo y la mente para lograr un equilibrio completo.
+              </p>
+            </div>
+            <div className="p-6 rounded-lg bg-card">
+              <Heart className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2 text-card-foreground">Inteligencia Emocional</h3>
+              <p className="text-muted-foreground">
+                Desarrollo de habilidades emocionales para mejorar relaciones y bienestar.
+              </p>
+            </div>
+            <div className="p-6 rounded-lg bg-card">
+              <Sparkles className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2 text-card-foreground">Coaching Personal</h3>
+              <p className="text-muted-foreground">
+                Acompañamiento personalizado para alcanzar tus metas y desarrollo personal.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-muted">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-foreground">Sobre Nosotros</h2>
+              <p className="text-muted-foreground mb-4">
+                Con más de tres décadas de experiencia, nos dedicamos a ayudar a las personas a alcanzar su máximo
+                potencial a través de terapias alternativas y coaching personalizado.
+              </p>
+              <p className="text-muted-foreground mb-6">
+                Nuestro enfoque holístico integra diferentes técnicas y metodologías para proporcionar un servicio
+                completo y adaptado a las necesidades de cada individuo.
+              </p>
+              <Button variant="outline" asChild>
+                <Link href="#contact">Conoce Más</Link>
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-card p-6 rounded-lg">
+                <h3 className="text-2xl font-bold text-primary mb-2">30+</h3>
+                <p className="text-muted-foreground">Años de Experiencia</p>
+              </div>
+              <div className="bg-card p-6 rounded-lg">
+                <h3 className="text-2xl font-bold text-primary mb-2">1000+</h3>
+                <p className="text-muted-foreground">Clientes Satisfechos</p>
+              </div>
+              <div className="bg-card p-6 rounded-lg">
+                <h3 className="text-2xl font-bold text-primary mb-2">100%</h3>
+                <p className="text-muted-foreground">Compromiso</p>
+              </div>
+              <div className="bg-card p-6 rounded-lg">
+                <h3 className="text-2xl font-bold text-primary mb-2">5⭐</h3>
+                <p className="text-muted-foreground">Valoración Media</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section id="benefits" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Beneficios</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Mejora del Bienestar",
+                description: "Alcanza un estado de equilibrio físico y mental.",
+              },
+              {
+                title: "Desarrollo Personal",
+                description: "Potencia tus habilidades y alcanza tus metas.",
+              },
+              {
+                title: "Gestión Emocional",
+                description: "Aprende a manejar tus emociones de manera efectiva.",
+              },
+              {
+                title: "Mayor Productividad",
+                description: "Optimiza tu rendimiento personal y profesional.",
+              },
+              {
+                title: "Relaciones Saludables",
+                description: "Mejora tus relaciones interpersonales.",
+              },
+              {
+                title: "Equilibrio Vital",
+                description: "Encuentra el balance entre trabajo y vida personal.",
+              },
+            ].map((benefit, index) => (
+              <div key={index} className="p-6 border rounded-lg hover:shadow-lg transition-shadow bg-card">
+                <h3 className="text-xl font-semibold mb-2 text-card-foreground">{benefit.title}</h3>
+                <p className="text-muted-foreground">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Contacta con Nosotros</h2>
+          <ContactForm />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-background text-foreground py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Terapias Alternativas Marbella</h3>
+              <p className="text-muted-foreground">
+                Transformando vidas a través de terapias holísticas y coaching personalizado.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Contacto</h3>
+              <p className="text-muted-foreground">Email: example@mail.com</p>
+              <p className="text-muted-foreground">Tel: +34 123 456 789</p>
+              <p className="text-muted-foreground">Marbella, España</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-4">Enlaces Rápidos</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#services" className="text-muted-foreground hover:text-foreground">
+                    Servicios
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#about" className="text-muted-foreground hover:text-foreground">
+                    Sobre Nosotros
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#benefits" className="text-muted-foreground hover:text-foreground">
+                    Beneficios
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#contact" className="text-muted-foreground hover:text-foreground">
+                    Contacto
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
+            <p>&copy; {new Date().getFullYear()} Terapias Alternativas Marbella. Todos los derechos reservados.</p>
+          </div>
+        </div>
       </footer>
-    </div>
-  );
+    </>
+  )
 }
+
