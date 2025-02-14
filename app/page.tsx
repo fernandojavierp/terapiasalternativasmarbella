@@ -1,9 +1,9 @@
-import { Navigation } from "@/components/navigation"
-import { ContactForm } from "@/components/contact-form"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import Link from "next/link"
-import { Brain, Heart, Sparkles } from "lucide-react"
+import { Navigation } from "@/components/navigation";
+import { ContactForm } from "@/components/contact-form";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { Brain, Heart, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="min-h-screen bg-gradient-to-r from-primary/30 to-accent/30 pt-20">
+      <section className="min-h-screen bg-gradient-to-r from-primary/30 to-accent/30 pt-15">
         <div className="container mx-auto px-4 pt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -34,8 +34,8 @@ export default function Home() {
             <div className="relative">
               <div className="absolute inset-0 bg-accent rounded-full transform scale-90 translate-x-4 translate-y-4" />
               <Image
-                src=""
-                alt="Ines Uria"
+                src="/coaching_Programacion_neurolinguistica_marbella.webp"
+                alt="Ines Uria - Terapias Alternativas Marbella"
                 width={600}
                 height={600}
                 className="relative z-10"
@@ -73,6 +73,68 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Additional Service Sections */}
+      <section id="anatheoresis" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8 text-foreground">ANATHEÓRESIS</h2>
+          <p className="text-left text-muted-foreground">
+            En esta terapia descubriras cosas que se hallaban ocultas en el inconsciente. El acceder un estado de
+            relajación, nos permite vivir una nueva realidad. De esta manera vamos sanando y cerrando ciclos de nuestra
+            vida, es decir, vivir más libres.
+          </p>
+        </div>
+      </section>
+
+      <section id="kinesiologia-holistica" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8 text-foreground">KINESIOLOGÍA HOLÍSTICA</h2>
+          <p className="text-left text-muted-foreground">
+            Descripción detallada del servicio de Kinesiología Holística.
+          </p>
+        </div>
+      </section>
+
+      <section id="coach-life" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8 text-foreground">Coach life y PNL</h2>
+          <p className="text-left text-muted-foreground">
+            El coaching es una herramienta que te ayuda a descrubrir tus habilidades a través de respuesas propias y
+            alcanzar tus metas. Es un proceso que te empodera y respeta tu propio ritmo. La PNL te ayuda a reprogramas
+            patrones mentales positivo s a través de una practica vivencial y transformadora. La combinación de ambas
+            metodologías no solo te harán sentirte mejor si no , que verás resultados tangibles en tu vida como mejores
+            relaciones; una mayor confianza y productividad.
+          </p>
+        </div>
+      </section>
+
+      <section id="coaching-creativo" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8 text-foreground">Coaching creativo</h2>
+          <p className="text-left text-muted-foreground">
+            Descripción detallada del servicio de Coaching Creativo.
+          </p>
+        </div>
+      </section>
+
+      <section id="coach-grupal" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8 text-foreground">Coach grupal con caballos</h2>
+          <p className="text-left text-muted-foreground">
+            ¿Como funciona? Durante las sesiones; los cabellos actuan como espejos emocionales, generando confinaza y
+            comunicación. Aprendiendo a gestionar las emociones. ¿A quien va dirigido? Personas buscan mejorar su
+            habilidades de liderazgo. Explorar su inteligencia emocial y conectar con la naturaleza y el poder de los
+            caballos.
+          </p>
+        </div>
+      </section>
+
+      <section id="centro-de-terapias" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-8 text-foreground">Centro de terapias</h2>
+          <p className="text-left text-muted-foreground">Descripción detallada del centro de terapias.</p>
         </div>
       </section>
 
@@ -212,6 +274,5 @@ export default function Home() {
         </div>
       </footer>
     </>
-  )
+  );
 }
-

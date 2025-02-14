@@ -12,7 +12,7 @@ export async function sendEmail(data: FormData) {
       },
       body: JSON.stringify({
         from: "onboarding@resend.dev",
-        to: "example@mail.com",
+        to: "fpatetegonzalez@gmail.com",
         subject: "New Contact Form Submission",
         html: `
           <h2>New Contact Form Submission</h2>

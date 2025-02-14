@@ -27,13 +27,13 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto">
       <div>
-        <Input name="name" placeholder="Your Name" required className="w-full bg-background text-foreground" />
+        <Input name="name" placeholder="Tu nombre" required className="w-full bg-background text-foreground" />
       </div>
       <div>
         <Input
           name="email"
           type="email"
-          placeholder="Your Email"
+          placeholder="Tu Correo"
           required
           className="w-full bg-background text-foreground"
         />
@@ -41,16 +41,16 @@ export function ContactForm() {
       <div>
         <Textarea
           name="message"
-          placeholder="Your Message"
+          placeholder="Tu mensaje"
           required
           className="w-full min-h-[150px] bg-background text-foreground"
         />
       </div>
       <Button type="submit" className="w-full" disabled={status === "loading"}>
-        {status === "loading" ? "Sending..." : "Send Message"}
+        {status === "loading" ? "Enviando..." : "Enviar Mensaje"}
       </Button>
-      {status === "success" && <p className="text-green-600 text-center">Message sent successfully!</p>}
-      {status === "error" && <p className="text-red-600 text-center">Failed to send message. Please try again.</p>}
+      {status === "success" && <p className="text-green-600 text-center">Mensaje enviado!</p>}
+      {status === "error" && <p className="text-red-600 text-center">Ha habido algun error. Por favor intentelo de nuevo.</p>}
     </form>
   )
 }
