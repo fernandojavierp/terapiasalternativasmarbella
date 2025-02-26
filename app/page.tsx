@@ -3,7 +3,8 @@ import { ContactForm } from "@/components/contact-form"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
-import { Brain, Clock, Sparkles, Smile, Target, HeartPulse, Briefcase, Users, Scale,  } from "lucide-react"
+import { Brain, Clock, Sparkles, Smile, Target, HeartPulse, Briefcase, Users, Scale, Facebook, Instagram  } from "lucide-react"
+import { WhatsAppToggle } from "@/components/WhatsAppToggle" // Importa el componente
 
 
 
@@ -328,53 +329,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-background text-foreground py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">Terapias Alternativas Marbella</h3>
-              <p className="text-muted-foreground">
-                Transformando vidas a través de terapias holísticas y coaching personalizado.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Contacto</h3>
-              <p className="text-muted-foreground">Email: example@mail.com</p>
-              <p className="text-muted-foreground">Tel: +34 628595929</p>
-              <p className="text-muted-foreground">Marbella, España</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4">Enlaces Rápidos</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#services" className="text-muted-foreground hover:text-foreground">
-                    Servicios
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#about" className="text-muted-foreground hover:text-foreground">
-                    Sobre Nosotros
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#benefits" className="text-muted-foreground hover:text-foreground">
-                    Beneficios
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#contact" className="text-muted-foreground hover:text-foreground">
-                    Contacto
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Terapias Alternativas Marbella. Todos los derechos reservados.</p>
-          </div>
+       {/* Footer */}
+       <footer className="bg-background text-foreground py-12">
+  <div className="container mx-auto px-4">
+    <div className="grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 className="text-xl font-bold mb-4">Terapias Alternativas Marbella</h3>
+        <p className="text-muted-foreground">
+          Transformando vidas a través de terapias holísticas y coaching personalizado.
+        </p>
+      </div>
+      <div>
+      <h3 className="text-xl font-bold mb-4">Contacto</h3>
+        <p className="text-muted-foreground">
+          Email:{" "}
+          <Link
+            href="mailto:example@mail.com" // Reemplaza con tu correo
+            className="text-primary hover:underline"
+          >
+            ines.tpmarbella@gmail.com
+          </Link>
+        </p>
+        <p className="text-muted-foreground">
+          Tel:{" "}
+          <Link
+            href="https://wa.me/34628595929" // Reemplaza con tu número
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            +34 628-59-59-29
+          </Link>
+        </p>
+        <p className="text-muted-foreground">Marbella, España</p>
+      </div>
+      <div>
+        <h3 className="text-xl font-bold mb-4">Síguenos</h3>
+        <div className="flex space-x-4">
+          <Link
+            href="https://facebook.com/tu-pagina"
+            className="text-muted-foreground hover:text-foreground"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Facebook className="w-6 h-6" />
+          </Link>
+          <Link
+            href="https://instagram.com/tu-pagina"
+            className="text-muted-foreground hover:text-foreground"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Instagram className="w-6 h-6" />
+          </Link>
         </div>
-      </footer>
+      </div>
+    </div>
+    <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
+      <p>&copy; {new Date().getFullYear()} Terapias Alternativas Marbella. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+      {/* Botón flotante de WhatsApp */}
+      <WhatsAppToggle />
     </>
   )
 }
