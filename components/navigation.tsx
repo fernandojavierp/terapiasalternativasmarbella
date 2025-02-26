@@ -79,14 +79,9 @@ export function Navigation() {
             Centro de terapias
           </Link>
           <Button asChild>
-            <Link href="#contact">Pide tu cita!</Link>
+            <Link href="#contact">Reserva tu Sesión</Link>
           </Button>
-          <Link 
-            href="/blog"
-            className="text-muted-foreground hover:text-foreground"
-          >
-            Blog
-          </Link>
+         
         </div>
 
         {/* Mobile Menu Toggle Button */}

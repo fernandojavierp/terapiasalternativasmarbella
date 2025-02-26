@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function Hero() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-sky-300 to-purple-300">
+    <div className="min-h-screen bg-gradient-to-r from-sky-300 to-purple-300 snap scroll-item">
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6 flex justify-end items-center gap-8">
         <Link href="#" className="text-gray-800 hover:text-gray-600">
