@@ -1,399 +1,411 @@
-import { Navigation } from "@/components/navigation"
-import { ContactForm } from "@/components/contact-form"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import Link from "next/link"
-import { Brain, Clock, Sparkles, Smile, Target, HeartPulse, Briefcase, Users, Scale, Facebook, Instagram  } from "lucide-react"
-import { WhatsAppToggle } from "@/components/WhatsAppToggle" // Importa el componente
+// src/app/page.js
+"use client";
 
-
-
-
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  return (
-    <>
-      <Navigation />
+  const [showWhatsApp, setShowWhatsApp] = useState(false);
 
-      {/* Hero Section */}
-      <section className="bg-white">
-        <div className="container mx-auto px-4 flex items-center justify-center h-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 mt-28 lg:mt-0">
-              <h1 className="text-5xl font-bold text-foreground leading-tight">
+  // Configuración del Slider
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 768, // Pantallas pequeñas
+        settings: {
+          arrows: false, // Ocultar flechas en móviles
+        },
+      },
+    ],
+  };
+
+  // Toggle de WhatsApp
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWhatsApp(true);
+    }, 10000); // Mostrar después de 10 segundos
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="bg-background min-h-screen flex flex-col justify-center items-center">
+      {/* Toggle de WhatsApp */}
+      {showWhatsApp && (
+        <div className="fixed bottom-6 right-6 z-50">
+          <a
+            href="https://wa.me/34628595929"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition-colors"
+          >
+            <MessageCircle className="w-8 h-8" />
+          </a>
+        </div>
+      )}
+
+      <div className="container mx-auto px-4 sm:px-6 text-center">
+        {/* Hero Section */}
+        <section className="bg-gray-50 rounded-lg shadow-md py-0">
+          <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center">
+            <div className="text-center lg:text-left space-y-6 lg:mb-28 lg:mr-12">
+              <h1 className="font-playfair text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
                 Terapias
                 <br />
                 Alternativas
                 <br />
                 Marbella
               </h1>
-              <h2 className="text-xl">Coach, inteligencia emocional, Kinesiología holística</h2>
-              <p className="max-w-lg">
-                Soy Ines Uria, llevo más de 30 años trabajando junta a personas como tú para ayudarles en su progresión
-                laboral.
+              <h2 className="text-xl text-muted-foreground">
+                Coach, Inteligencia Emocional, Kinesiología Holística
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-lg">
+                Soy Ines Uria, con más de 30 años de experiencia ayudando a personas como tú a alcanzar su bienestar emocional y físico.
               </p>
               <Button asChild size="lg">
-                <Link href="#services">Comenzar Tu Viaje</Link>
+                <Link href="#servicios">Comenzar Tu Viaje</Link>
               </Button>
             </div>
-            <div className="relative rounded-lg overflow-hidden">
-              <div className="" />
+            <div className="mt-10 lg:mt-0">
               <Image
                 src="/ines-uria-foto.png"
                 alt="Ines Uria - Terapias Alternativas Marbella"
-                width={800}
-                height={800}
+                width={600}
+                height={600}
                 quality={100}
-                className="relative z-10"
+                className="rounded-lg"
                 priority
               />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold mb-6 text-foreground">Sobre Nosotros</h2>
+        {/* Sección "Nuestras Terapias" */}
+        <section className="py-12" id="servicios">
+          <h2 className="text-3xl font-bold text-foreground mb-8">Nuestras Terapias</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Terapia 1: Anatheóresis */}
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold text-foreground mb-4">Anatheóresis</h3>
               <p className="text-muted-foreground mb-4">
-                Con más de tres décadas de experiencia, nos dedicamos a ayudar a las personas a alcanzar su máximo
-                potencial a través de terapias alternativas y coaching personalizado.
+                Terapia que te ayuda a descubrir y sanar heridas emocionales del pasado.
               </p>
-              <p className="text-muted-foreground mb-6">
-                Nuestro enfoque holístico integra diferentes técnicas y metodologías para proporcionar un servicio
-                completo y adaptado a las necesidades de cada individuo.
-              </p>
-              <Button variant="outline" asChild>
-                <Link href="#contact">Conoce Más</Link>
+              <Button asChild size="sm">
+                <Link href="/servicios/anatheoresis" className="text-primary-foreground">
+                  Conocer más
+                </Link>
               </Button>
             </div>
-            <div className="grid grid-cols-2 gap-9 rounded-lg">
-              <div className="rounded-lg">
-                <Image
+
+            {/* Terapia 2: Kinesiología */}
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold text-foreground mb-4">Kinesiología Holística</h3>
+              <p className="text-muted-foreground mb-4">
+                Terapia que integra el cuerpo y la mente para lograr un equilibrio completo.
+              </p>
+              <Button asChild size="sm">
+                <Link href="/servicios/kinesiologia" className="text-primary-foreground">
+                  Conocer más
+                </Link>
+              </Button>
+            </div>
+
+            {/* Terapia 3: Coaching */}
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold text-foreground mb-4">Coaching</h3>
+              <p className="text-muted-foreground mb-4">
+                Acompañamiento personalizado para alcanzar tus metas y desarrollo personal.
+              </p>
+              <Button asChild size="sm">
+                <Link href="/servicios/coaching" className="text-primary-foreground">
+                  Conocer más
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Sección "Beneficios" */}
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Beneficios de Nuestras Terapias</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Beneficio 1 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <div className="flex justify-center mb-4">
+                  <Brain className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-4">Equilibrio Emocional</h3>
+                <p className="text-muted-foreground">
+                  Ayudamos a gestionar tus emociones para alcanzar un estado de armonía interior.
+                </p>
+              </div>
+
+              {/* Beneficio 2 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <div className="flex justify-center mb-4">
+                  <HeartPulse className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-4">Bienestar Físico</h3>
+                <p className="text-muted-foreground">
+                  Mejora tu salud física a través de técnicas holísticas y naturales.
+                </p>
+              </div>
+
+              {/* Beneficio 3 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <div className="flex justify-center mb-4">
+                  <Sparkles className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-4">Crecimiento Personal</h3>
+                <p className="text-muted-foreground">
+                  Descubre tu potencial y alcanza tus metas con nuestro acompañamiento.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sección "Testimonios" */}
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Lo que Dicen Nuestros Clientes</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Testimonio 1 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <p className="text-muted-foreground mb-4">
+                  "Gracias a las terapias, he encontrado un equilibrio en mi vida que nunca pensé posible."
+                </p>
+                <p className="text-sm text-foreground font-semibold">- María G.</p>
+              </div>
+
+              {/* Testimonio 2 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <p className="text-muted-foreground mb-4">
+                  "El coaching me ayudó a clarificar mis metas y a tomar decisiones con confianza."
+                </p>
+                <p className="text-sm text-foreground font-semibold">- Juan P.</p>
+              </div>
+
+              {/* Testimonio 3 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <p className="text-muted-foreground mb-4">
+                  "La kinesiología holística ha sido una experiencia transformadora para mí."
+                </p>
+                <p className="text-sm text-foreground font-semibold">- Ana L.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sección "Nuestro Enfoque" */}
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Nuestro Enfoque</h2>
+            <div className="max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground">
+                En Terapias Alternativas Marbella, creemos en un enfoque holístico que integra mente, cuerpo y espíritu.
+                Nuestras terapias están diseñadas para ayudarte a encontrar equilibrio, sanar heridas emocionales y
+                alcanzar tu máximo potencial.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Sección "Galería" */}
+        <section className="py-12 bg-background">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Galería</h2>
+          <div className="max-w-xl mx-auto">
+            <Slider {...settings}>
+              {/* Imagen 1 */}
+              <div className="px-2">
+                <img
+                  src="/kinesiologia.webp"
+                  alt="Terapia de kinesiología holística"
+                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                />
+              </div>
+
+              {/* Imagen 2 */}
+              <div className="px-2">
+                <img
+                  src="/kinesiologia-3.webp"
+                  alt="Sesión de kinesiología holística"
+                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                />
+              </div>
+
+              {/* Imagen 3 */}
+              <div className="px-2">
+                <img
+                  src="/coaching-caballos.webp"
+                  alt="Coaching Grupal Con Caballos"
+                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                />
+              </div>
+
+              {/* Imagen 4 */}
+              <div className="px-2">
+                <img
+                  src="/coaching-caballos-3.webp"
+                  alt="Coaching Grupal Con Caballos"
+                  className="w-full h-80 md:h-96 object-cover rounded-lg"
+                />
+              </div>
+              {/* Imagen 5 */}
+              <div className="px-2">
+                <img
+                  src="/coaching-grupal.webp"
+                  alt="Coaching Grupal"
+                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                />
+              </div>
+            </Slider>
+          </div>
+        </section>
+
+        {/* Sección "Blog" */}
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Artículos Destacados</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Artículo 1 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold text-foreground mb-4">5 Beneficios de la Meditación</h3>
+                <p className="text-muted-foreground mb-4">
+                  Descubre cómo la meditación puede mejorar tu bienestar emocional y físico.
+                </p>
+                <Button asChild size="sm">
+                  <Link href="blog/5-beneficios-de-la-meditacion" className="text-primary-foreground">
+                    Leer más
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Artículo 2 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold text-foreground mb-4">Cómo Manejar el Estrés</h3>
+                <p className="text-muted-foreground mb-4">
+                  Aprende técnicas efectivas para reducir el estrés en tu vida diaria.
+                </p>
+                <Button asChild size="sm">
+                  <Link href="/blog/como-manejar-el-estres" className="text-primary-foreground">
+                    Leer más
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Artículo 3 */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-bold text-foreground mb-4">La Importancia del Autocuidado</h3>
+                <p className="text-muted-foreground mb-4">
+                  Descubre por qué el autocuidado es esencial para tu bienestar integral.
+                </p>
+                <Button asChild size="sm">
+                  <Link href="/blog/la-importancia-del-autocuidado" className="text-primary-foreground">
+                    Leer más
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sección "Sobre Mí" */}
+        <section id="sobre-nosotros" className="py-12 bg-background">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold text-foreground mb-10 text-center">Sobre Nosotros</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <p className="text-lg text-muted-foreground mb-4">
+                  En Terapias Alternativas Marbella, nos dedicamos a ayudar a las personas a encontrar
+                  equilibrio y bienestar a través de terapias holísticas y personalizadas.
+                </p>
+                <p className="text-lg text-muted-foreground">
+                  Con más de 30 años de experiencia, nuestra misión es guiarte en tu viaje hacia una vida
+                  más plena y saludable.
+                </p>
+              </div>
+              <div className="rounded-lg overflow-hidden">
+                <img
                   src="/sobre-nosotros.jpg"
-                  alt="Ines Uria - Terapias Alternativas Marbella"
-                  width={800}
-                  height={800}
-                />
-              </div>
-              <div className="rounded-lg">
-                <Image
-                  src="/coach-caballos.jpg"
-                  alt="Ines Uria - Terapias Alternativas Marbella"
-                  width={800}
-                  height={800}
-                />
-              </div>
-              <div className="rounded-lg">
-                <Image
-                  src="/ines-uria-sobre-nosotros.png"
-                  alt="Ines Uria - Terapias Alternativas Marbella"
-                  width={800}
-                  height={800}
+                  alt="Sobre Nosotros"
+                  className="w-full h-64 object-cover"
                 />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Nuestras Terapias</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-          <Link href="#anatheoresis" className="hover:shadow-lg transition-shadow">
-              <div className="p-6 rounded-lg bg-card">
-                <Clock className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2 text-card-foreground">Anatheoresis</h3>
+        {/* Sección "Contacto" */}
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Contacto</h2>
+            <p className="text-lg text-muted-foreground mb-12 text-center">
+              ¿Tienes alguna pregunta o deseas programar una cita? ¡Contáctanos!
+            </p>
+
+            {/* Datos de contacto con íconos */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Email */}
+              <div className="bg-card p-6 rounded-lg shadow-md text-center">
+                <div className="flex justify-center mb-4">
+                  <Mail className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Email</h3>
                 <p className="text-muted-foreground">
-                  Terapia que te ayuda a descubrir y sanar heridas emocionales del pasado.
+                  <a
+                    href="mailto:ines.tpmarbella@gmail.com"
+                    className="text-primary hover:underline"
+                  >
+                    ines.tpmarbella@gmail.com
+                  </a>
                 </p>
               </div>
-            </Link>
-            <Link href="#kinesiologia-holistica " className="hover:shadow-lg transition-shadow">
-              <div className="p-6 rounded-lg bg-card">
-                <Brain className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2 text-card-foreground">Kinesiología Holística</h3>
+
+              {/* Teléfono */}
+              <div className="bg-card p-6 rounded-lg shadow-md text-center">
+                <div className="flex justify-center mb-4">
+                  <Phone className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Teléfono</h3>
                 <p className="text-muted-foreground">
-                  Terapia que integra el cuerpo y la mente para lograr un equilibrio completo.
+                  <a
+                    href="https://wa.me/34628595929"
+                    className="text-primary hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    +34 628-59-59-29
+                  </a>
                 </p>
               </div>
-            </Link>
-            <Link href="#coach-life" className="hover:shadow-lg transition-shadow">
-              <div className="p-6 rounded-lg bg-card">
-                <Sparkles className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2 text-card-foreground">Coaching</h3>
-                <p className="text-muted-foreground">
-                  Acompañamiento personalizado para alcanzar tus metas y desarrollo personal.
-                </p>
+
+              {/* Dirección */}
+              <div className="bg-card p-6 rounded-lg shadow-md text-center">
+                <div className="flex justify-center mb-4">
+                  <MapPin className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Dirección</h3>
+                <p className="text-muted-foreground">Marbella, España</p>
               </div>
-            </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-<section id="benefits" className="py-10 bg-background">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Beneficios de la terapia alternativa</h2>
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {[
-        {
-          title: "Mejora del Bienestar",
-          description: "Alcanza un estado de equilibrio físico y mental.",
-          icon: <Smile className="w-12 h-12 text-primary" />,
-        },
-        {
-          title: "Desarrollo Personal",
-          description: "Potencia tus habilidades y alcanza tus metas.",
-          icon: <Target className="w-12 h-12 text-primary" />,
-        },
-        {
-          title: "Gestión Emocional",
-          description: "Aprende a manejar tus emociones de manera efectiva.",
-          icon: <HeartPulse className="w-12 h-12 text-primary" />,
-        },
-        {
-          title: "Mayor Productividad",
-          description: "Optimiza tu rendimiento personal y profesional.",
-          icon: <Briefcase className="w-12 h-12 text-primary" />,
-        },
-        {
-          title: "Relaciones Saludables",
-          description: "Mejora tus relaciones interpersonales.",
-          icon: <Users className="w-12 h-12 text-primary" />,
-        },
-        {
-          title: "Equilibrio Vital",
-          description: "Encuentra el balance entre trabajo y vida personal.",
-          icon: <Scale className="w-12 h-12 text-primary" />,
-        },
-      ].map((benefit, index) => (
-        <div key={index} className="p-6 border rounded-lg hover:shadow-lg transition-shadow bg-card flex flex-col items-center text-center">
-          <div className="mb-4">{benefit.icon}</div>
-          <h3 className="text-xl font-semibold mb-2 text-card-foreground">{benefit.title}</h3>
-          <p className="text-muted-foreground">{benefit.description}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-      {/* Brief description for each service */}
-<section id="anatheoresis" className="py-24 bg-background">
-  <div className="container mx-auto px-6">
-    <h2 className="text-4xl font-bold text-left mb-12 text-foreground">Anatheóresis</h2>
-    <div className="flex flex-col md:flex-row items-center gap-8">
-      <Image
-        src="/conexion_regresion_sanacion.webp"
-        alt="Terapia de Anatheóresis"
-        width={500}
-        height={500}
-        className="rounded-lg shadow-lg  object-cover md:w-1/2"
-      />
-      <p className="text-lg leading-relaxed text-muted-foreground w-full md:w-1/2">
-        En esta terapia descubrirás aspectos ocultos en tu inconsciente. Al acceder a un estado de relajación
-        profunda, es posible experimentar una nueva realidad. Esto permite sanar heridas emocionales y cerrar ciclos
-        de vida, logrando así una mayor libertad y bienestar.
-      </p>
-      <Button asChild size="lg">
-      <Link href="#contact" className="inline-block">Mas información</Link>
-      </Button>
-    </div>
-  </div>
-</section>
-
-<section id="kinesiologia-holistica" className="py-20 bg-background">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-left mb-12 text-foreground">Kinesiología Holística</h2>
-    <div className="flex flex-col md:flex-row items-center gap-8">
-      <Image
-        src="/kinesiologia.jpg"
-        alt="Kinesiología Holística"
-        width={500}
-        height={500}
-        className="rounded-lg shadow-lg w-full md:w-1/2"
-      />
-      <p className="text-lg text-muted-foreground w-full md:w-1/2">
-        La kinesiología holística es una terapia que integra el cuerpo y la mente para lograr un equilibrio completo.
-        A través de la kinesiología, se pueden identificar desequilibrios energéticos y emocionales, y encontrar las
-        herramientas necesarias para restablecer la armonía en todos los niveles.
-      </p>
-      <Button asChild size="lg">
-      <Link href="#contact" className="inline-block">Mas información</Link>
-      </Button>
-    </div>
-  </div>
-</section>
-
-<section id="coach-life" className="py-20 bg-background">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-left mb-12 text-foreground">Coach life y PNL</h2>
-    <div className="flex flex-col md:flex-row items-center gap-8">
-      <Image
-        src="/coach-life.jpg"
-        alt="Coaching de vida"
-        width={500}
-        height={500}
-        className="rounded-lg shadow-lg w-full md:w-1/2"
-      />
-      <p className="text-lg text-muted-foreground w-full md:w-1/2">
-        El coaching es un proceso de acompañamiento personalizado que te ayuda a alcanzar tus metas y desarrollar tu
-        potencial. A través de sesiones individuales, podrás identificar tus objetivos, superar obstáculos y
-        transformar tu vida de manera positiva.
-      </p>
-      <Button asChild size="lg">
-      <Link href="#contact" className="inline-block">Mas información</Link>
-      </Button>
-    </div>
-  </div>
-</section>
-
-<section id="coaching-creativo" className="py-20 bg-background">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-left mb-12 text-foreground">Coaching creativo</h2>
-    <div className="flex flex-col md:flex-row items-center gap-8">
-      <Image
-        src="/coaching-creativo.jpg"
-        alt="Coaching creativo"
-        width={500}
-        height={500}
-        className="rounded-lg shadow-lg w-full md:w-1/2"
-      />
-      <p className="text-lg text-muted-foreground w-full md:w-1/2">
-        El coaching creativo es una herramienta poderosa para estimular la creatividad y la innovación. A través de
-        técnicas y ejercicios creativos, podrás explorar nuevas perspectivas, descubrir soluciones innovadoras y
-        potenciar tu creatividad en todos los ámbitos de tu vida.
-      </p>
-      <Button asChild size="lg">
-      <Link href="#contact" className="inline-block">Mas información</Link>
-      </Button>
-    </div>
-  </div>
-</section>
-
-<section id="coach-grupal" className="py-20 bg-background">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-left mb-12 text-foreground">Coach Grupal con Caballos</h2>
-    <div className="flex flex-col md:flex-row items-center gap-8">
-      <Image
-        src="/coach-caballos.jpg"
-        alt="Coach con caballos"
-        width={500}
-        height={500}
-        className="rounded-lg shadow-lg w-10 md:w-1/2"
-      />
-      <p className="text-lg text-muted-foreground w-full md:w-1/2">
-        El coach grupal con caballos es una experiencia única que combina el coaching con la equinoterapia. A través
-        de la interacción con los caballos, podrás desarrollar habilidades de liderazgo, trabajo en equipo,
-        comunicación y gestión emocional. Esta experiencia te permitirá conectar contigo mismo y con los demás de
-        una manera profunda y significativa.
-      </p>
-      <Button asChild size="lg">
-      <Link href="#contact" className="inline-block">Mas información</Link>
-      </Button>
-    </div>
-  </div>
-</section>
-
-      {/* Centro de terapias */}
-      <section id="centro-de-terapias" className="py-20 bg-background">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Centro de terapias</h2>
-    <div className="flex flex-col md:flex-row items-center gap-8">
-      <Image
-        src="/centro-terapias.jpg"
-        alt="Centro de terapias"
-        width={500}
-        height={500}
-        className="rounded-lg shadow-lg w-full md:w-1/2"
-      />
-      <p className="text-lg text-muted-foreground w-full md:w-1/2">
-        Nuestro centro de terapias ofrece un espacio acogedor y tranquilo donde podrás desconectar del estrés y la
-        rutina diaria. Ven a descubrir un lugar donde cuidarte y transformarte.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Contacta con Nosotros</h2>
-          <ContactForm />
-        </div>
-      </section>
-
-       {/* Footer */}
-       <footer className="bg-background text-foreground py-12">
-  <div className="container mx-auto px-4">
-    <div className="grid md:grid-cols-3 gap-8">
-      <div>
-        <h3 className="text-xl font-bold mb-4">Terapias Alternativas Marbella</h3>
-        <p className="text-muted-foreground">
-          Transformando vidas a través de terapias holísticas y coaching personalizado.
-        </p>
-      </div>
-      <div>
-      <h3 className="text-xl font-bold mb-4">Contacto</h3>
-        <p className="text-muted-foreground">
-          Email:{" "}
-          <Link
-            href="mailto:example@mail.com" // Reemplaza con tu correo
-            className="text-primary hover:underline"
-          >
-            ines.tpmarbella@gmail.com
-          </Link>
-        </p>
-        <p className="text-muted-foreground">
-          Tel:{" "}
-          <Link
-            href="https://wa.me/34628595929" // Reemplaza con tu número
-            className="text-primary hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            +34 628-59-59-29
-          </Link>
-        </p>
-        <p className="text-muted-foreground">Marbella, España</p>
-      </div>
-      <div>
-        <h3 className="text-xl font-bold mb-4">Síguenos</h3>
-        <div className="flex space-x-4">
-          <Link
-            href="https://facebook.com/tu-pagina"
-            className="text-muted-foreground hover:text-foreground"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Facebook className="w-6 h-6" />
-          </Link>
-          <Link
-            href="https://instagram.com/tu-pagina"
-            className="text-muted-foreground hover:text-foreground"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Instagram className="w-6 h-6" />
-          </Link>
-        </div>
+        </section>
       </div>
     </div>
-    <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-      <p>&copy; {new Date().getFullYear()} Terapias Alternativas Marbella. Todos los derechos reservados.</p>
-    </div>
-  </div>
-</footer>
-
-      {/* Botón flotante de WhatsApp */}
-      <WhatsAppToggle />
-    </>
-  )
+  );
 }
-

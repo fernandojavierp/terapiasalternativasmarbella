@@ -1,73 +1,138 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('/app/styles/fonts.css');
 
 :root {
-  --background: 214.3 31.8% 91.4%;
-  --foreground: 222.2 84% 4.9%;
+  --background: 48 100% 95%; /* Crema suave */
+  --foreground: 30 20% 15%; /* Marrón carbón */
 
-  --primary: 262.1 83.3% 57.8%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 45 80% 55%; /* Dorado cálido */
+  --primary-foreground: 0 0% 100%; /* Blanco puro */
 
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 40 50% 80%; /* Beige natural */
+  --secondary-foreground: 30 20% 15%; /* Marrón carbón */
 
-  --accent: 262.1 83.3% 57.8%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 42 90% 50%; /* Ámbar dorado */
+  --accent-foreground: 0 0% 100%; /* Blanco puro */
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 10 70% 45%; /* Rojo terracota */
+  --destructive-foreground: 0 0% 100%; /* Blanco puro */
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 222 40% 46.9%;
+  --muted: 35 30% 70%; /* Marrón claro */
+  --muted-foreground: 30 20% 30%; /* Marrón oscuro */
 
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card: 48 100% 95%; /* Igual al fondo */
+  --card-foreground: 30 20% 15%; /* Marrón carbón */
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --popover: 48 100% 95%;
+  --popover-foreground: 30 20% 15%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --border: 35 30% 70%;
+  --input: 35 30% 70%;
+  --ring: 45 80% 55%; /* Dorado cálido */
 
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
+  --background: 40 30% 8%; /* Negro con un toque cálido */
+  --foreground: 50 90% 95%; /* Amarillo crema */
 
-  --primary: 263.4 70% 50.4%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 45 80% 50%; /* Oro envejecido */
+  --primary-foreground: 50 90% 95%; /* Amarillo crema */
 
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 35 40% 20%; /* Marrón oscuro */
+  --secondary-foreground: 50 90% 95%; /* Amarillo crema */
 
-  --accent: 263.4 70% 50.4%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 42 80% 40%; /* Mostaza profunda */
+  --accent-foreground: 50 90% 95%; /* Amarillo crema */
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 10 70% 45%; /* Rojo terracota */
+  --destructive-foreground: 50 90% 95%; /* Amarillo crema */
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 40 30% 20%; /* Gris oscuro */
+  --muted-foreground: 50 50% 70%; /* Gris claro */
 
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
+  --card: 40 30% 8%;
+  --card-foreground: 50 90% 95%;
 
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 40 30% 8%;
+  --popover-foreground: 50 90% 95%;
 
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 212.7 26.8% 83.9%;
+  --border: 35 40% 20%;
+  --input: 35 40% 20%;
+  --ring: 45 80% 50%; /* Oro envejecido */
 }
 
-.scroll-container {
-  scroll-snap-type: y mandatory;
+/* Definir fuentes locales */
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/app/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
-.scroll-item {
-  scroll-snap-align: start;
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/app/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/app/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/app/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+/* Enlaces */
+.link-primary {
+  color: hsl(var(--primary));
+  transition: color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.link-primary:hover {
+  color: hsl(var(--primary) / 0.9);
+}
+
+/* Bordes */
+.border-primary {
+  border-color: hsl(var(--primary));
+}
+
+/* Texto atenuado */
+.text-muted {
+  color: hsl(var(--muted-foreground));
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Fondo con gradiente */
+.bg-gradient-primary {
+  background: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    hsl(var(--accent))
+  );
 }
