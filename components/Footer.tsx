@@ -1,5 +1,5 @@
 // src/components/Footer.js
-import { Facebook, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export default function Footer() {
   return (

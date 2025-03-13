@@ -232,7 +232,7 @@ export default function Home() {
             <Slider {...settings}>
               {/* Imagen 1 */}
               <div className="px-2">
-                <img
+                <Image
                   src="/kinesiologia.webp"
                   alt="Terapia de kinesiología holística"
                   className="w-full h-64 md:h-96 object-cover rounded-lg"
@@ -241,7 +241,7 @@ export default function Home() {
 
               {/* Imagen 2 */}
               <div className="px-2">
-                <img
+                <Image
                   src="/kinesiologia-3.webp"
                   alt="Sesión de kinesiología holística"
                   className="w-full h-64 md:h-96 object-cover rounded-lg"
@@ -250,7 +250,7 @@ export default function Home() {
 
               {/* Imagen 3 */}
               <div className="px-2">
-                <img
+                <Image
                   src="/coaching-caballos.webp"
                   alt="Coaching Grupal Con Caballos"
                   className="w-full h-64 md:h-96 object-cover rounded-lg"
@@ -259,7 +259,7 @@ export default function Home() {
 
               {/* Imagen 4 */}
               <div className="px-2">
-                <img
+                <Image
                   src="/coaching-caballos-3.webp"
                   alt="Coaching Grupal Con Caballos"
                   className="w-full h-80 md:h-96 object-cover rounded-lg"
@@ -267,7 +267,7 @@ export default function Home() {
               </div>
               {/* Imagen 5 */}
               <div className="px-2">
-                <img
+                <Image
                   src="/coaching-grupal.webp"
                   alt="Coaching Grupal"
                   className="w-full h-64 md:h-96 object-cover rounded-lg"
@@ -340,7 +340,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="rounded-lg overflow-hidden">
-                <img
+                <Image
                   src="/sobre-nosotros.jpg"
                   alt="Sobre Nosotros"
                   className="w-full h-64 object-cover"

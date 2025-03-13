@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Brain, Heart, Clock, User, Smile, Target, BookOpen, Shield } from "lucide-react"; // Íconos para la sección de beneficios
+import { Brain, Heart, Clock, User, Target, BookOpen, Shield } from "lucide-react"; // Íconos para la sección de beneficios
 
 export default function Anatheoresis() {
   return (

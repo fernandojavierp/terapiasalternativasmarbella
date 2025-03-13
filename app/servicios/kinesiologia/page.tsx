@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Heart, Brain, Shield, Leaf, Smile, Clock, Zap, User, Activity } from "lucide-react"; // Íconos para las secciones
+import { Heart, Brain, Shield, Leaf, Smile, Clock } from "lucide-react"; // Íconos para las secciones
 
 export default function Kinesiologia() {
   return (
