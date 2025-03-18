@@ -224,7 +224,7 @@ export default function Coaching() {
         {/* Galería de Imágenes */}
         <section className="py-12">
           <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Galería</h2>
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <Slider {...settings}>
               {/* Imagen 1 */}
               <div className="px-2">
@@ -233,7 +233,7 @@ export default function Coaching() {
                   alt="Coaching Grupal"
                   width={800}
                   height={500}
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-center rounded-lg"
                 />
               </div>
 
@@ -244,7 +244,7 @@ export default function Coaching() {
                   alt="Coaching Creativo"
                   width={800}
                   height={500}
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-center rounded-lg"
                 />
               </div>
 
@@ -255,18 +255,28 @@ export default function Coaching() {
                   alt="Coaching con Caballos"
                   width={800}
                   height={500}
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
                 />
               </div>
 
               {/* Imagen 4 */}
               <div className="px-2">
                 <Image
-                  src="/coaching-caballos-1.webp"
+                  src="/coaching-caballos.webp"
                   alt="Coaching con Caballos"
                   width={800}
                   height={500}
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-center rounded-lg"
+                />
+              </div>
+              {/* Imagen 5 */}
+              <div className="px-2">
+                <Image
+                  src="/coaching-con-caballos.webp"
+                  alt="Taller de Coaching con Caballos"
+                  width={800}
+                  height={500}
+                  className="w-full h-auto md:h-auto object-center rounded-lg"
                 />
               </div>
             </Slider>

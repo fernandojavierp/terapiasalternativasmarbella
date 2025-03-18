@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('/app/styles/fonts.css');
 
 :root {
   --background: 48 100% 95%; /* Crema suave */
@@ -68,28 +67,28 @@
 /* Definir fuentes locales */
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/app/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  src: url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/app/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  src: url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src: url('/app/fonts/Poppins-Regular.ttf') format('truetype');
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src: url('/app/fonts/Poppins-SemiBold.ttf') format('truetype');
+  src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }

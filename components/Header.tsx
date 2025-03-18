@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react"; // Íconos para el menú y cerrar
+import Image from "next/image"; // Componente de Next.js para imágenes
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado del menú
@@ -31,17 +32,18 @@ export default function Header() {
   return (
     <header className="bg-background border-b border-border">
       <div className="container mx-auto px-4">
-        <nav className="flex justify-between items-center py-6">
-          {/* Logo o nombre de la página */}
-          <Link
-            href="/"
-            className="text-2xl font-semibold text-foreground hover:text-primary transition-colors"
-          >
-            Terapias Alternativas Marbella
-          </Link>
-
+        <nav className="flex justify-between items-center">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo-removebg.png" // Ruta de la imagen en la carpeta public
+            alt="Terapias Alternativas Marbella" // Texto alternativo
+            width={200} // Ancho de la imagen
+            height={50} // Alto de la imagen
+            className="hover:opacity-100 transition-opacity" // Estilos personalizados
+          />
+        </Link>
           {/* Menú de navegación para escritorio */}
-          <ul className="hidden md:flex space-x-8">
+          <ul className="hidden md:flex space-x-8 text-xl font-playfair">
             <li>
               <Link
                 href="/servicios/anatheoresis"

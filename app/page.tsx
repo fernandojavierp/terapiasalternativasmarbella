@@ -61,8 +61,8 @@ export default function Home() {
         {/* Hero Section */}
         <section className="bg-gray-50 rounded-lg shadow-md py-0">
           <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center">
-            <div className="text-center lg:text-left space-y-6 lg:mb-28 lg:mr-12">
-              <h1 className="font-playfair text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
+            <div className="text-center ml-4 lg:text-left space-y-6 lg:mb-28 lg:mr-12">
+              <h1 className="font-playfair mt-10  text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
                 Terapias
                 <br />
                 Alternativas
@@ -228,14 +228,16 @@ export default function Home() {
         {/* Sección "Galería" */}
         <section className="py-12 bg-background">
           <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Galería</h2>
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <Slider {...settings}>
               {/* Imagen 1 */}
               <div className="px-2">
                 <Image
                   src="/kinesiologia.webp"
                   alt="Terapia de kinesiología holística"
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500}
+                  height={500}
                 />
               </div>
 
@@ -244,7 +246,9 @@ export default function Home() {
                 <Image
                   src="/kinesiologia-3.webp"
                   alt="Sesión de kinesiología holística"
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500} 
+                  height={500}
                 />
               </div>
 
@@ -253,7 +257,9 @@ export default function Home() {
                 <Image
                   src="/coaching-caballos.webp"
                   alt="Coaching Grupal Con Caballos"
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500}
+                  height={500}
                 />
               </div>
 
@@ -262,7 +268,9 @@ export default function Home() {
                 <Image
                   src="/coaching-caballos-3.webp"
                   alt="Coaching Grupal Con Caballos"
-                  className="w-full h-80 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500}
+                  height={500}
                 />
               </div>
               {/* Imagen 5 */}
@@ -270,7 +278,39 @@ export default function Home() {
                 <Image
                   src="/coaching-grupal.webp"
                   alt="Coaching Grupal"
-                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500}
+                  height={500}
+                />
+              </div>
+              {/* Imagen 6 */}
+              <div className="px-2">
+                <Image
+                  src="/taller-empoderamiento.webp"
+                  alt="Coaching Grupal"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500}
+                  height={500}
+                />
+              </div>
+              {/* Imagen 7 */}
+              <div className="px-2">
+                <Image
+                  src="/terapeuta-en-costa-del-sol.webp"
+                  alt="Coaching Grupal"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500}
+                  height={500}
+                />
+              </div>
+              {/* Imagen 8 */}
+              <div className="px-2">
+                <Image
+                  src="/ines-con-paciente.webp"
+                  alt="Coaching Grupal"
+                  className="w-full h-auto md:h-auto object-cover rounded-lg"
+                  width={500}
+                  height={500}
                 />
               </div>
             </Slider>
@@ -341,9 +381,11 @@ export default function Home() {
               </div>
               <div className="rounded-lg overflow-hidden">
                 <Image
-                  src="/sobre-nosotros.jpg"
+                  src="/sobre-nosotros.webp"
                   alt="Sobre Nosotros"
                   className="w-full h-64 object-cover"
+                  width={500}
+                  height={500}
                 />
               </div>
             </div>

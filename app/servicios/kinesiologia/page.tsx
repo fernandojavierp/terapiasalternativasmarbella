@@ -172,7 +172,7 @@ export default function Kinesiologia() {
               </div>
               <div className="rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/problemas-digestivos-kinesiologia.webp"
+                  src="/kinesiologia-testajes.webp"
                   alt="Problemas Digestivos"
                   width={600}
                   height={400}

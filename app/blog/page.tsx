@@ -11,7 +11,7 @@ const blogPosts = [
     title: "5 Beneficios de la Meditación",
     description:
       "Descubre cómo la meditación puede mejorar tu bienestar emocional y físico.",
-    image: "/meditacion.jpg",
+    image: "/meditacion-abrazo-autoestima.webp",
     author: "Ines Uria",
     date: "2023-10-15",
     readingTime: "5 min",
@@ -22,7 +22,7 @@ const blogPosts = [
     title: "Cómo Manejar el Estrés",
     description:
       "Aprende técnicas efectivas para reducir el estrés en tu vida diaria.",
-    image: "/estres.jpg",
+    image: "/estres.webp",
     author: "Ines Uria",
     date: "2023-10-10",
     readingTime: "7 min",
@@ -33,7 +33,7 @@ const blogPosts = [
     title: "La Importancia del Autocuidado",
     description:
       "Descubre por qué el autocuidado es esencial para tu bienestar integral.",
-    image: "/autocuidado.jpg",
+    image: "/autocuidado.webp",
     author: "Ines Uria",
     date: "2023-10-05",
     readingTime: "6 min",
