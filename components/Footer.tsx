@@ -53,7 +53,7 @@ export default function Footer() {
                 <Instagram className="w-6 h-6" />
               </a>
               <a
-                href="https://facebook.com/terapiasalternativasmarbella"
+                href="https://www.facebook.com/profile.php?id=100089596534661"
                 className="text-muted-foreground hover:text-primary transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
