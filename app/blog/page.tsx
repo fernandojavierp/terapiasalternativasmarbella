@@ -1,7 +1,7 @@
 // src/app/blog/page.tsx
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, User } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import Image from "next/image";
 
 // Datos de ejemplo para los artículos del blog
