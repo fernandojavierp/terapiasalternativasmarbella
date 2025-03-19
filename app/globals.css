@@ -121,11 +121,7 @@
   border-color: hsl(var(--primary));
 }
 
-/* Texto atenuado */
-.text-muted {
-  color: hsl(var(--muted-foreground));
-  font-family: 'Poppins', sans-serif;
-}
+
 
 /* Fondo con gradiente */
 .bg-gradient-primary {
@@ -134,4 +130,35 @@
     hsl(var(--primary)),
     hsl(var(--accent))
   );
+}
+
+/* Titulos h1 */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: hsl(var(--destructive));
+}
+
+/* Subtitulos h2 */
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: hsl(var(--destructive));
+}
+
+/* Subtitulos h3 */
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(var(--destructive));
+}
+
+/* Texto normal */
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: hsl(var(--foreground));
 }

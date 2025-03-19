@@ -46,7 +46,7 @@ export default function BlogPage() {
     <div className="bg-background min-h-screen py-12">
       <div className="container mx-auto px-4">
         {/* Título de la página */}
-        <h1 className="text-4xl font-bold text-foreground text-center mb-8">
+        <h1 className="text-4xl font-bold text-center mb-8">
           Blog
         </h1>
 

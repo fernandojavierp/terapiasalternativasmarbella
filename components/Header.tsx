@@ -45,7 +45,7 @@ export default function Header() {
             />
           </Link>
           {/* Menú de navegación para escritorio */}
-          <ul className="hidden md:flex space-x-8 text-xl font-playfair">
+          <ul className="hidden md:flex space-x-8 text-xl font-poppins">
             <li>
               <Link
                 href="/servicios/anatheoresis"
@@ -113,7 +113,7 @@ export default function Header() {
             ref={menuRef}
             className="md:hidden absolute top-20 left-0 right-0 bg-background border-t border-border z-50"
           >
-            <ul className="flex flex-col text-center space-y-4 p-4">
+            <ul className="flex flex-col text-left text-xl space-y-4 p-4">
               <li>
                 <Link
                   href="/servicios/anatheoresis"

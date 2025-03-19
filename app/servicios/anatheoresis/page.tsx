@@ -10,7 +10,7 @@ export default function Anatheoresis() {
       <div className="container mx-auto px-6">
         {/* Título y Descripción */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-foreground mb-8">Anatheóresis: sanación emocional y autoconocimiento</h1>
+          <h1 className="text-5xl font-bold mb-8">Anatheóresis: sanación emocional y autoconocimiento</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             La Anatheóresis es una terapia holística que te permite acceder a tu inconsciente para sanar heridas emocionales, liberar bloqueos y alcanzar un estado de equilibrio y bienestar integral. Descubre cómo esta técnica puede transformar tu vida.
           </p>
@@ -54,7 +54,7 @@ export default function Anatheoresis() {
                 <div className="flex justify-center mb-4">
                   <Brain className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Liberación emocional</h3>
+                
                 <p className="text-muted-foreground">
                   Ayuda a liberar emociones reprimidas y bloqueos emocionales que afectan tu bienestar.
                 </p>
@@ -65,7 +65,7 @@ export default function Anatheoresis() {
                 <div className="flex justify-center mb-4">
                   <Heart className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Sanación interior</h3>
+                
                 <p className="text-muted-foreground">
                   Facilita la sanación de heridas emocionales y traumas del pasado para una vida más plena.
                 </p>
@@ -76,7 +76,7 @@ export default function Anatheoresis() {
                 <div className="flex justify-center mb-4">
                   <Clock className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Autoconocimiento</h3>
+                
                 <p className="text-muted-foreground">
                   Promueve el autoconocimiento y la comprensión de patrones de comportamiento.
                 </p>
@@ -87,7 +87,7 @@ export default function Anatheoresis() {
                 <div className="flex justify-center mb-4">
                   <User className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Bienestar integral</h3>
+                
                 <p className="text-muted-foreground">
                   Contribuye al equilibrio emocional, mental y espiritual para una vida armoniosa.
                 </p>

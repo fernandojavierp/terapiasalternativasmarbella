@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Columna 1: Información general */}
           <div>
-            <h3 className="text-xl font-bold font-playfair mb-4">Terapias Alternativas Marbella</h3>
+            <h3 className="text-xl font-bold mb-4">Terapias Alternativas Marbella</h3>
             <p className="text-muted-foreground">
               Transformando vidas a través de terapias holísticas y coaching personalizado.
             </p>

@@ -11,8 +11,8 @@ export default function Contacto() {
       <div className="container mx-auto px-6">
         {/* Hero Section */}
         <section className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-foreground mb-6">
-            Contacta con Nosotros
+          <h1 className="text-5xl font-bold mb-6">
+            Contacta con nosotros
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Estamos aquí para ayudarte. Si tienes preguntas, deseas programar una cita o necesitas más información sobre nuestras terapias, no dudes en ponerte en contacto con nosotros.

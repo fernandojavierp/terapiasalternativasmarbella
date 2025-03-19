@@ -26,7 +26,7 @@ export default function Coaching() {
       <div className="container mx-auto px-6">
         {/* Título y Descripción */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-foreground mb-8">Coaching</h1>
+          <h1 className="text-5xl font-bold mb-8">Coaching</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Descubre cómo el coaching puede ayudarte a alcanzar tus metas, superar obstáculos y transformar tu vida.
           </p>
@@ -92,7 +92,7 @@ export default function Coaching() {
                 <div className="flex justify-center mb-4">
                   <Heart className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Autoconocimiento</h3>
+                
                 <p className="text-muted-foreground">
                   Descubre tus fortalezas, debilidades y áreas de mejora para alcanzar tu máximo potencial.
                 </p>
@@ -103,7 +103,7 @@ export default function Coaching() {
                 <div className="flex justify-center mb-4">
                   <Target className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Claridad de objetivos</h3>
+                
                 <p className="text-muted-foreground">
                   Define metas claras y alcanzables con un plan de acción personalizado.
                 </p>
@@ -114,7 +114,7 @@ export default function Coaching() {
                 <div className="flex justify-center mb-4">
                   <Smile className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Bienestar emocional</h3>
+                
                 <p className="text-muted-foreground">
                   Gestiona tus emociones y reduce el estrés para vivir una vida más equilibrada.
                 </p>

@@ -59,10 +59,10 @@ export default function Home() {
 
       <div className="container mx-auto px-4 sm:px-6 text-center">
         {/* Hero Section */}
-        <section className="bg-gray-50 rounded-lg shadow-md py-0">
+        <section className="bg-background py-0">
           <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center">
             <div className="text-center ml-4 lg:text-left space-y-6 lg:mb-28 lg:mr-12">
-              <h1 className="font-playfair mt-10  text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
+              <h1 className="font-playfair mt-10  text-5xl sm:text-6xl lg:text-7xl font-bold  leading-tight">
                 Terapias
                 <br />
                 Alternativas

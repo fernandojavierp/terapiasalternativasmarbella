@@ -10,7 +10,7 @@ export default function Kinesiologia() {
       <div className="container mx-auto px-6">
         {/* Título y Descripción */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-foreground mb-8">Kinesiología Holística</h1>
+          <h1 className="text-5xl font-bold mb-8">Kinesiología Holística</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Conectando cuerpo y energía para un equilibrio integral.
           </p>
@@ -53,7 +53,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Heart className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Reducción del estrés</h3>
+               
                 <p className="text-muted-foreground">
                   Libera bloqueos energéticos y recupera la calma y el bienestar profundo.
                 </p>
@@ -64,7 +64,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Brain className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Equilibrio emocional</h3>
+                
                 <p className="text-muted-foreground">
                   Aborda emociones no resueltas y creencias limitantes para ganar claridad y estabilidad.
                 </p>
@@ -75,7 +75,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Shield className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Mejora de la salud física</h3>
+                
                 <p className="text-muted-foreground">
                   Alivia dolores físicos, corrige la postura y optimiza el funcionamiento del cuerpo.
                 </p>
@@ -86,7 +86,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Leaf className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Aumento de energía</h3>
+                
                 <p className="text-muted-foreground">
                   Libera bloqueos energéticos y recupera la vitalidad y claridad mental.
                 </p>
@@ -97,7 +97,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Smile className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Adaptación natural</h3>
+               
                 <p className="text-muted-foreground">
                   Mejora la resistencia y resiliencia para afrontar cambios y desafíos.
                 </p>
@@ -108,7 +108,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Clock className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Equilibrio digestivo</h3>
+                
                 <p className="text-muted-foreground">
                   Trata problemas digestivos desde la raíz, mejorando el tránsito y reduciendo el estrés.
                 </p>
