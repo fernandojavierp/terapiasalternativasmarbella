@@ -8,7 +8,7 @@ import Image from "next/image";
 const blogPosts = [
   {
     id: 1,
-    title: "5 Beneficios de la Meditación",
+    title: "5 beneficios de la meditación",
     description:
       "Descubre cómo la meditación puede mejorar tu bienestar emocional y físico.",
     image: "/meditacion-abrazo-autoestima.webp",
@@ -19,7 +19,7 @@ const blogPosts = [
   },
   {
     id: 2,
-    title: "Cómo Manejar el Estrés",
+    title: "Cómo manejar el estrés",
     description:
       "Aprende técnicas efectivas para reducir el estrés en tu vida diaria.",
     image: "/estres.webp",
@@ -30,7 +30,7 @@ const blogPosts = [
   },
   {
     id: 3,
-    title: "La Importancia del Autocuidado",
+    title: "La importancia del autocuidado",
     description:
       "Descubre por qué el autocuidado es esencial para tu bienestar integral.",
     image: "/autocuidado.webp",
@@ -47,7 +47,7 @@ export default function BlogPage() {
       <div className="container mx-auto px-4">
         {/* Título de la página */}
         <h1 className="text-4xl font-bold text-foreground text-center mb-8">
-          Blog de Terapias Alternativas
+          Blog
         </h1>
 
         {/* Lista de artículos */}
@@ -76,10 +76,7 @@ export default function BlogPage() {
 
                 {/* Metadatos del artículo */}
                 <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                  <div className="flex items-center">
-                    <User className="w-4 h-4 mr-2" />
-                    <span>{post.author}</span>
-                  </div>
+                  
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-2" />
                     <span>{post.date}</span>

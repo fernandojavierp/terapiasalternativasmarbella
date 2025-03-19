@@ -10,7 +10,7 @@ export default function Anatheoresis() {
       <div className="container mx-auto px-6">
         {/* Título y Descripción */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-foreground mb-8">Anatheóresis: Sanación Emocional y Autoconocimiento</h1>
+          <h1 className="text-5xl font-bold text-foreground mb-8">Anatheóresis: sanación emocional y autoconocimiento</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             La Anatheóresis es una terapia holística que te permite acceder a tu inconsciente para sanar heridas emocionales, liberar bloqueos y alcanzar un estado de equilibrio y bienestar integral. Descubre cómo esta técnica puede transformar tu vida.
           </p>
@@ -54,7 +54,7 @@ export default function Anatheoresis() {
                 <div className="flex justify-center mb-4">
                   <Brain className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Liberación Emocional</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Liberación emocional</h3>
                 <p className="text-muted-foreground">
                   Ayuda a liberar emociones reprimidas y bloqueos emocionales que afectan tu bienestar.
                 </p>
@@ -65,7 +65,7 @@ export default function Anatheoresis() {
                 <div className="flex justify-center mb-4">
                   <Heart className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Sanación Interior</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Sanación interior</h3>
                 <p className="text-muted-foreground">
                   Facilita la sanación de heridas emocionales y traumas del pasado para una vida más plena.
                 </p>
@@ -87,7 +87,7 @@ export default function Anatheoresis() {
                 <div className="flex justify-center mb-4">
                   <User className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Bienestar Integral</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Bienestar integral</h3>
                 <p className="text-muted-foreground">
                   Contribuye al equilibrio emocional, mental y espiritual para una vida armoniosa.
                 </p>
@@ -98,14 +98,14 @@ export default function Anatheoresis() {
 
         {/* ¿Cómo Funciona la Anatheóresis? */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">¿Cómo Funciona la Anatheóresis?</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">¿Cómo funciona la Anatheóresis?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Paso 1 */}
             <div className="bg-card p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-4">
                 <BookOpen className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Exploración del Inconsciente</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Exploración del inconsciente</h3>
               <p className="text-muted-foreground">
                 A través de la relajación profunda, accedes a recuerdos y emociones almacenados en tu inconsciente.
               </p>
@@ -116,7 +116,7 @@ export default function Anatheoresis() {
               <div className="flex justify-center mb-4">
                 <Target className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Identificación de Bloqueos</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Identificación de bloqueos</h3>
               <p className="text-muted-foreground">
                 Identificamos los bloqueos emocionales y patrones que limitan tu crecimiento personal.
               </p>
@@ -127,7 +127,7 @@ export default function Anatheoresis() {
               <div className="flex justify-center mb-4">
                 <Shield className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Sanación y Liberación</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Sanación y liberación</h3>
               <p className="text-muted-foreground">
                 Trabajamos en la liberación de emociones reprimidas y la sanación de heridas emocionales.
               </p>
@@ -137,7 +137,7 @@ export default function Anatheoresis() {
 
         {/* Testimonios */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Testimonios de Nuestros Pacientes</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Testimonios de nuestros pacientes</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Testimonio 1 */}
             <div className="bg-card p-6 rounded-lg shadow-md">

@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation"; // Importa usePathname
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react"; // Íconos para el menú y cerrar
 import Image from "next/image"; // Componente de Next.js para imágenes
@@ -9,6 +10,7 @@ import Image from "next/image"; // Componente de Next.js para imágenes
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado del menú
   const menuRef = useRef<HTMLDivElement>(null); // Referencia para el menú con tipo explícito
+  const pathname = usePathname(); // Obtiene la ruta actual
 
   // Función para alternar el menú
   const toggleMenu = () => {
@@ -33,21 +35,23 @@ export default function Header() {
     <header className="bg-background border-b border-border">
       <div className="container mx-auto px-4">
         <nav className="flex justify-between items-center">
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/logo-removebg.png" // Ruta de la imagen en la carpeta public
-            alt="Terapias Alternativas Marbella" // Texto alternativo
-            width={200} // Ancho de la imagen
-            height={50} // Alto de la imagen
-            className="hover:opacity-100 transition-opacity" // Estilos personalizados
-          />
-        </Link>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo-removebg.png" // Ruta de la imagen en la carpeta public
+              alt="Terapias Alternativas Marbella" // Texto alternativo
+              width={200} // Ancho de la imagen
+              height={50} // Alto de la imagen
+              className="hover:opacity-100 transition-opacity" // Estilos personalizados
+            />
+          </Link>
           {/* Menú de navegación para escritorio */}
           <ul className="hidden md:flex space-x-8 text-xl font-playfair">
             <li>
               <Link
                 href="/servicios/anatheoresis"
-                className="text-foreground hover:text-primary transition-colors"
+                className={`text-foreground hover:text-primary transition-colors ${
+                  pathname === "/servicios/anatheoresis" ? "text-primary" : ""
+                }`}
               >
                 Anatheóresis
               </Link>
@@ -55,7 +59,9 @@ export default function Header() {
             <li>
               <Link
                 href="/servicios/kinesiologia"
-                className="text-foreground hover:text-primary transition-colors"
+                className={`text-foreground hover:text-primary transition-colors ${
+                  pathname === "/servicios/kinesiologia" ? "text-primary" : ""
+                }`}
               >
                 Kinesiología
               </Link>
@@ -63,7 +69,9 @@ export default function Header() {
             <li>
               <Link
                 href="/servicios/coaching"
-                className="text-foreground hover:text-primary transition-colors"
+                className={`text-foreground hover:text-primary transition-colors ${
+                  pathname === "/servicios/coaching" ? "text-primary" : ""
+                }`}
               >
                 Coaching
               </Link>
@@ -71,7 +79,9 @@ export default function Header() {
             <li>
               <Link
                 href="/blog"
-                className="text-foreground hover:text-primary transition-colors"
+                className={`text-foreground hover:text-primary transition-colors ${
+                  pathname === "/blog" ? "text-primary" : ""
+                }`}
               >
                 Blog
               </Link>
@@ -79,7 +89,9 @@ export default function Header() {
             <li>
               <Link
                 href="/contacto"
-                className="text-foreground hover:text-primary transition-colors"
+                className={`text-foreground hover:text-primary transition-colors ${
+                  pathname === "/contacto" ? "text-primary" : ""
+                }`}
               >
                 Contacto
               </Link>
@@ -105,7 +117,9 @@ export default function Header() {
               <li>
                 <Link
                   href="/servicios/anatheoresis"
-                  className="block text-foreground hover:text-primary transition-colors"
+                  className={`block text-foreground hover:text-primary transition-colors ${
+                    pathname === "/servicios/anatheoresis" ? "text-primary" : ""
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Anatheóresis
@@ -114,7 +128,9 @@ export default function Header() {
               <li>
                 <Link
                   href="/servicios/kinesiologia"
-                  className="block text-foreground hover:text-primary transition-colors"
+                  className={`block text-foreground hover:text-primary transition-colors ${
+                    pathname === "/servicios/kinesiologia" ? "text-primary" : ""
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Kinesiología
@@ -123,7 +139,9 @@ export default function Header() {
               <li>
                 <Link
                   href="/servicios/coaching"
-                  className="block text-foreground hover:text-primary transition-colors"
+                  className={`block text-foreground hover:text-primary transition-colors ${
+                    pathname === "/servicios/coaching" ? "text-primary" : ""
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Coaching
@@ -132,7 +150,9 @@ export default function Header() {
               <li>
                 <Link
                   href="/blog"
-                  className="block text-foreground hover:text-primary transition-colors"
+                  className={`block text-foreground hover:text-primary transition-colors ${
+                    pathname === "/blog" ? "text-primary" : ""
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Blog
@@ -141,7 +161,9 @@ export default function Header() {
               <li>
                 <Link
                   href="/contacto"
-                  className="block text-foreground hover:text-primary transition-colors"
+                  className={`block text-foreground hover:text-primary transition-colors ${
+                    pathname === "/contacto" ? "text-primary" : ""
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contacto

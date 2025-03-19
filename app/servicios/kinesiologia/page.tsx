@@ -53,7 +53,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Heart className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Reducción del Estrés</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Reducción del estrés</h3>
                 <p className="text-muted-foreground">
                   Libera bloqueos energéticos y recupera la calma y el bienestar profundo.
                 </p>
@@ -64,7 +64,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Brain className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Equilibrio Emocional</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Equilibrio emocional</h3>
                 <p className="text-muted-foreground">
                   Aborda emociones no resueltas y creencias limitantes para ganar claridad y estabilidad.
                 </p>
@@ -75,7 +75,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Shield className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Mejora de la Salud Física</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Mejora de la salud física</h3>
                 <p className="text-muted-foreground">
                   Alivia dolores físicos, corrige la postura y optimiza el funcionamiento del cuerpo.
                 </p>
@@ -86,7 +86,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Leaf className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Aumento de Energía</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Aumento de energía</h3>
                 <p className="text-muted-foreground">
                   Libera bloqueos energéticos y recupera la vitalidad y claridad mental.
                 </p>
@@ -97,7 +97,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Smile className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Adaptación Natural</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Adaptación natural</h3>
                 <p className="text-muted-foreground">
                   Mejora la resistencia y resiliencia para afrontar cambios y desafíos.
                 </p>
@@ -108,7 +108,7 @@ export default function Kinesiologia() {
                 <div className="flex justify-center mb-4">
                   <Clock className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Equilibrio Digestivo</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Equilibrio digestivo</h3>
                 <p className="text-muted-foreground">
                   Trata problemas digestivos desde la raíz, mejorando el tránsito y reduciendo el estrés.
                 </p>
@@ -119,7 +119,7 @@ export default function Kinesiologia() {
 
         {/* Historia y Filosofía */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-14 text-center">Historia y Filosofía</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-14 text-center">Historia y filosofía</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-lg text-muted-foreground mb-6">
@@ -153,7 +153,7 @@ export default function Kinesiologia() {
         {/* Problemas Digestivos */}
         <section className="py-12 bg-card rounded-lg shadow-md">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-14 text-center">Problemas Digestivos</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-14 text-center">Problemas digestivos</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <p className="text-lg text-muted-foreground mb-6">

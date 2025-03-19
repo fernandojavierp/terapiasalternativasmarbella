@@ -141,10 +141,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
         {/* Metadatos del artículo */}
         <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-8">
-          <div className="flex items-center">
-            <User className="w-4 h-4 mr-2" />
-            <span>{post.author}</span>
-          </div>
+          
           <div className="flex items-center">
             <Calendar className="w-4 h-4 mr-2" />
             <span>{post.date}</span>

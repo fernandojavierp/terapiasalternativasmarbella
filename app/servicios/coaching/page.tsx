@@ -34,14 +34,14 @@ export default function Coaching() {
 
         {/* Tipos de Coaching */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Tipos de Coaching</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Tipos de coaching</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Coaching Grupal */}
             <div className="bg-card p-6 rounded-lg shadow-md text-center">
               <div className="flex justify-center mb-4">
                 <Users className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Coaching Grupal</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Coaching grupal</h3>
               <p className="text-muted-foreground">
                 Sesiones en grupo para fomentar el trabajo en equipo, la comunicación y el liderazgo.
               </p>
@@ -52,7 +52,7 @@ export default function Coaching() {
               <div className="flex justify-center mb-4">
                 <Sparkles className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Coaching Creativo</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Coaching creativo</h3>
               <p className="text-muted-foreground">
                 Estimula tu creatividad e innovación para encontrar soluciones únicas a tus desafíos.
               </p>
@@ -74,7 +74,7 @@ export default function Coaching() {
               <div className="flex justify-center mb-4">
                 <Activity className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Coaching con Caballos</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Coaching con caballos</h3>
               <p className="text-muted-foreground">
                 Usa la conexión con caballos para desarrollar habilidades de liderazgo y autoconocimiento.
               </p>
@@ -85,7 +85,7 @@ export default function Coaching() {
         {/* Beneficios del Coaching */}
         <section className="py-12 bg-card rounded-lg shadow-md">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Beneficios del Coaching</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Beneficios del coaching</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Beneficio 1 */}
               <div className="text-center">
@@ -103,7 +103,7 @@ export default function Coaching() {
                 <div className="flex justify-center mb-4">
                   <Target className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Claridad de Objetivos</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Claridad de objetivos</h3>
                 <p className="text-muted-foreground">
                   Define metas claras y alcanzables con un plan de acción personalizado.
                 </p>
@@ -114,7 +114,7 @@ export default function Coaching() {
                 <div className="flex justify-center mb-4">
                   <Smile className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Bienestar Emocional</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Bienestar emocional</h3>
                 <p className="text-muted-foreground">
                   Gestiona tus emociones y reduce el estrés para vivir una vida más equilibrada.
                 </p>
@@ -126,11 +126,11 @@ export default function Coaching() {
         {/* Talleres de Coaching con Caballos */}
         <section className="py-12">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Talleres de Coaching con Caballos</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Talleres de coaching con caballos</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
               {/* Descripción General */}
               <div className="bg-card p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-foreground mb-4">Un Viaje de Autoconocimiento y Transformación</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Un viaje de autoconocimiento y transformación</h3>
                 <p className="text-muted-foreground mb-4">
                   En nuestros talleres de coaching con caballos, vivirás una experiencia transformadora donde el coaching y la sensibilidad de los caballos te ayudarán a descubrir y superar bloqueos emocionales. No necesitas experiencia previa.
                 </p>
@@ -163,11 +163,11 @@ export default function Coaching() {
 
             {/* Tipos de Talleres */}
             <div className="mt-12">
-              <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Tipos de Talleres Disponibles</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Tipos de talleres disponibles</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {/* Taller de Comunicación Auténtica */}
                 <div className="bg-card p-6 rounded-lg shadow-md">
-                  <h4 className="text-lg font-bold text-foreground mb-2">Taller de Comunicación Auténtica</h4>
+                  <h4 className="text-lg font-bold text-foreground mb-2">Taller de comunicación auténtica</h4>
                   <p className="text-muted-foreground mb-4">
                     Mejora la expresión y comprensión emocional para establecer relaciones más sinceras y efectivas.
                   </p>
@@ -180,7 +180,7 @@ export default function Coaching() {
 
                 {/* Taller para Aumentar la Autoestima */}
                 <div className="bg-card p-6 rounded-lg shadow-md">
-                  <h4 className="text-lg font-bold text-foreground mb-2">Taller para Aumentar la Autoestima</h4>
+                  <h4 className="text-lg font-bold text-foreground mb-2">Taller para aumentar la autoestima</h4>
                   <p className="text-muted-foreground mb-4">
                     Fortalece la confianza en ti mismo y fomenta una autoimagen positiva.
                   </p>
@@ -193,7 +193,7 @@ export default function Coaching() {
 
                 {/* Taller de Liderazgo y Trabajo en Equipo */}
                 <div className="bg-card p-6 rounded-lg shadow-md">
-                  <h4 className="text-lg font-bold text-foreground mb-2">Taller de Liderazgo y Trabajo en Equipo</h4>
+                  <h4 className="text-lg font-bold text-foreground mb-2">Taller de liderazgo y trabajo en equipo</h4>
                   <p className="text-muted-foreground mb-4">
                     Desarrolla habilidades de liderazgo y fomenta la colaboración efectiva.
                   </p>
@@ -206,7 +206,7 @@ export default function Coaching() {
 
                 {/* Taller para Mujeres */}
                 <div className="bg-card p-6 rounded-lg shadow-md">
-                  <h4 className="text-lg font-bold text-foreground mb-2">Taller para Mujeres</h4>
+                  <h4 className="text-lg font-bold text-foreground mb-2">Taller para mujeres</h4>
                   <p className="text-muted-foreground mb-4">
                     Empodera a la mujer a través del autoconocimiento y el desarrollo emocional.
                   </p>

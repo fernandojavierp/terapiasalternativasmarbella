@@ -95,7 +95,7 @@ export default function Home() {
 
         {/* Sección "Nuestras Terapias" */}
         <section className="py-12" id="servicios">
-          <h2 className="text-3xl font-bold text-foreground mb-8">Nuestras Terapias</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-8">Nuestras terapias</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Terapia 1: Anatheóresis */}
             <div className="bg-card p-6 rounded-lg shadow-md">
@@ -141,14 +141,14 @@ export default function Home() {
         {/* Sección "Beneficios" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Beneficios de Nuestras Terapias</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Beneficios de nuestras terapias</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Beneficio 1 */}
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <div className="flex justify-center mb-4">
                   <Brain className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Equilibrio Emocional</h3>
+                
                 <p className="text-muted-foreground">
                   Ayudamos a gestionar tus emociones para alcanzar un estado de armonía interior.
                 </p>
@@ -159,7 +159,7 @@ export default function Home() {
                 <div className="flex justify-center mb-4">
                   <HeartPulse className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Bienestar Físico</h3>
+                
                 <p className="text-muted-foreground">
                   Mejora tu salud física a través de técnicas holísticas y naturales.
                 </p>
@@ -170,7 +170,7 @@ export default function Home() {
                 <div className="flex justify-center mb-4">
                   <Sparkles className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-4">Crecimiento Personal</h3>
+                
                 <p className="text-muted-foreground">
                   Descubre tu potencial y alcanza tus metas con nuestro acompañamiento.
                 </p>
@@ -182,7 +182,7 @@ export default function Home() {
         {/* Sección "Testimonios" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Lo que Dicen Nuestros Clientes</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Lo que dicen nuestros clientes</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Testimonio 1 */}
               <div className="bg-card p-6 rounded-lg shadow-md">
@@ -214,7 +214,7 @@ export default function Home() {
         {/* Sección "Nuestro Enfoque" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Nuestro Enfoque</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Nuestro enfoque</h2>
             <div className="max-w-2xl mx-auto">
               <p className="text-lg text-muted-foreground">
                 En Terapias Alternativas Marbella, creemos en un enfoque holístico que integra mente, cuerpo y espíritu.
@@ -320,11 +320,11 @@ export default function Home() {
         {/* Sección "Blog" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Artículos Destacados</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Artículos destacados</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Artículo 1 */}
               <div className="bg-card p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-foreground mb-4">5 Beneficios de la Meditación</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">5 Beneficios de la meditación</h3>
                 <p className="text-muted-foreground mb-4">
                   Descubre cómo la meditación puede mejorar tu bienestar emocional y físico.
                 </p>
@@ -337,7 +337,7 @@ export default function Home() {
 
               {/* Artículo 2 */}
               <div className="bg-card p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-foreground mb-4">Cómo Manejar el Estrés</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Cómo manejar el estrés</h3>
                 <p className="text-muted-foreground mb-4">
                   Aprende técnicas efectivas para reducir el estrés en tu vida diaria.
                 </p>
@@ -350,7 +350,7 @@ export default function Home() {
 
               {/* Artículo 3 */}
               <div className="bg-card p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-foreground mb-4">La Importancia del Autocuidado</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">La importancia del autocuidado</h3>
                 <p className="text-muted-foreground mb-4">
                   Descubre por qué el autocuidado es esencial para tu bienestar integral.
                 </p>
@@ -367,7 +367,7 @@ export default function Home() {
         {/* Sección "Sobre Mí" */}
         <section id="sobre-nosotros" className="py-12 bg-background">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-10 text-center">Sobre Nosotros</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-10 text-center">Sobre nosotros</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <p className="text-lg text-muted-foreground mb-4">
