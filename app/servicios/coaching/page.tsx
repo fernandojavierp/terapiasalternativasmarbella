@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Users, Sparkles, Target, Heart, Activity, Smile, Brain, BookOpen, Shield, User, ChevronLeft, ChevronRight } from "lucide-react";
+import { Users, Sparkles, Target, Heart, Activity, Smile, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 export default function Coaching() {

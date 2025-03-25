@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Sparkles, Heart, Star, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
 
 export default function FarmasiPage() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const products = [
@@ -28,14 +27,6 @@ export default function FarmasiPage() {
       alt: "Producto Farmasi 4"
     },
   ];
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % products.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
-  };
 
   return (
     <div className="min-h-screen bg-background">

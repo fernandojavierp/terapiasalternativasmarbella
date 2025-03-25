@@ -22,56 +22,7 @@ export default function Home() {
     phone: "",
     message: ""
   });
-
-  // Configuración del Slider con estilos personalizados para las flechas
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
-  // Componente para la flecha siguiente personalizada
-  function SampleNextArrow(props: ArrowProps) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, 
-          display: "block", 
-          color: "black", 
-          fontSize: "24px",
-          top: "40%",
-          right: "25px",
-          zIndex: 1
-        }}
-        onClick={onClick}
-      />
-    );
-  }
-    // Componente para la flecha anterior personalizada
-    function SamplePrevArrow(props: ArrowProps) {
-      const { className, style, onClick } = props;
-      return (
-        <div
-          className={className}
-          style={{ ...style, 
-            display: "block", 
-            color: "black", 
-            fontSize: "24px",
-            top: "40%",
-            left: "25px",
-            zIndex: 1
-          }}
-          onClick={onClick}
-        />
-      );
-    }
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Toggle de WhatsApp
   useEffect(() => {
@@ -81,38 +32,30 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const galleryImages = [
+  const images = [
     {
-      src: "/kinesiologia.webp",
-      alt: "Terapia de kinesiología holística"
-    },
-    {
-      src: "/kinesiologia-3.webp",
-      alt: "Sesión de kinesiología holística"
-    },
-    {
-      src: "/coaching-caballos.webp",
-      alt: "Coaching Grupal Con Caballos"
-    },
-    {
-      src: "/coaching-caballos-3.webp",
-      alt: "Coaching Grupal Con Caballos"
+      src: "/conexion_regresion_sanacion.webp",
+      alt: "Terapia de Anatheóresis - Sanación Emocional"
     },
     {
       src: "/coaching-grupal.webp",
       alt: "Coaching Grupal"
     },
     {
-      src: "/taller-empoderamiento.webp",
-      alt: "Coaching Grupal"
+      src: "/coaching-creativo-ines-uria.webp",
+      alt: "Coaching Creativo"
     },
     {
-      src: "/terapeuta-en-costa-del-sol.webp",
-      alt: "Coaching Grupal"
+      src: "/coaching-caballos-2.webp",
+      alt: "Coaching con Caballos"
     },
     {
-      src: "/ines-con-paciente.webp",
-      alt: "Coaching Grupal"
+      src: "/coaching-caballos.webp",
+      alt: "Coaching con Caballos"
+    },
+    {
+      src: "/coaching-con-caballos.webp",
+      alt: "Taller de Coaching con Caballos"
     }
   ];
 
@@ -295,7 +238,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-16">
           <h2 className="text-4xl font-bold text-center mb-12">Galería</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {galleryImages.map((image, index) => (
+            {images.map((image, index) => (
               <div
                 key={index}
                 className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer"
