@@ -32,7 +32,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-background border-b border-border">
+    <header className="bg-muted/50 border-b border-border">
       <div className="container mx-auto px-4">
         <nav className="flex justify-between items-center">
           <Link href="/" className="flex items-center">
@@ -50,7 +50,7 @@ export default function Header() {
               <Link
                 href="/servicios/anatheoresis"
                 className={`text-foreground hover:text-primary transition-colors ${
-                  pathname === "/servicios/anatheoresis" ? "text-primary" : ""
+                  pathname === "/servicios/anatheoresis" ? "text-destructive" : ""
                 }`}
               >
                 Anatheóresis
@@ -60,7 +60,7 @@ export default function Header() {
               <Link
                 href="/servicios/kinesiologia"
                 className={`text-foreground hover:text-primary transition-colors ${
-                  pathname === "/servicios/kinesiologia" ? "text-primary" : ""
+                  pathname === "/servicios/kinesiologia" ? "text-destructive" : ""
                 }`}
               >
                 Kinesiología
@@ -70,7 +70,7 @@ export default function Header() {
               <Link
                 href="/servicios/coaching"
                 className={`text-foreground hover:text-primary transition-colors ${
-                  pathname === "/servicios/coaching" ? "text-primary" : ""
+                  pathname === "/servicios/coaching" ? "text-destructive" : ""
                 }`}
               >
                 Coaching
@@ -80,7 +80,7 @@ export default function Header() {
               <Link
                 href="/blog"
                 className={`text-foreground hover:text-primary transition-colors ${
-                  pathname === "/blog" ? "text-primary" : ""
+                  pathname === "/blog" ? "text-destructive" : ""
                 }`}
               >
                 Blog
@@ -90,17 +90,17 @@ export default function Header() {
               <Link
                 href="/farmasi"
                 className={`text-foreground hover:text-primary transition-colors ${
-                  pathname === "/farmasi" ? "text-primary" : ""
+                  pathname === "/farmasi" ? "text-destructive" : ""
                 }`}
               >
-                FARMASI
+                FARMASi
               </Link>
             </li>
             <li>
               <Link
                 href="/contacto"
                 className={`text-foreground hover:text-primary transition-colors ${
-                  pathname === "/contacto" ? "text-primary" : ""
+                  pathname === "/contacto" ? "text-destructive" : ""
                 }`}
               >
                 Contacto
@@ -139,7 +139,7 @@ export default function Header() {
                 <Link
                   href="/servicios/anatheoresis"
                   className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/servicios/anatheoresis" ? "text-primary" : ""
+                    pathname === "/servicios/anatheoresis" ? "text-destructive" : ""
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -150,7 +150,7 @@ export default function Header() {
                 <Link
                   href="/servicios/kinesiologia"
                   className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/servicios/kinesiologia" ? "text-primary" : ""
+                    pathname === "/servicios/kinesiologia" ? "text-destructive" : ""
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -161,7 +161,7 @@ export default function Header() {
                 <Link
                   href="/servicios/coaching"
                   className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/servicios/coaching" ? "text-primary" : ""
+                    pathname === "/servicios/coaching" ? "text-destructive" : ""
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -172,7 +172,7 @@ export default function Header() {
                 <Link
                   href="/blog"
                   className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/blog" ? "text-primary" : ""
+                    pathname === "/blog" ? "text-destructive" : ""
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -181,9 +181,20 @@ export default function Header() {
               </li>
               <li>
                 <Link
+                  href="/farmasi"
+                  className={`block text-foreground hover:text-primary transition-colors ${
+                    pathname === "/farmasi" ? "text-destructive" : ""
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  FARMASI
+                </Link>
+              </li> 
+              <li>
+                <Link
                   href="/contacto"
                   className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/contacto" ? "text-primary" : ""
+                    pathname === "/contacto" ? "text-destructive" : ""
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >

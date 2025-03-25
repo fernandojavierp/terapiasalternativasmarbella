@@ -28,7 +28,7 @@ export default function Contacto() {
                 <Mail className="w-8 h-8 text-primary" />
               </div>
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Email</h3>
+            <h3 className="text-xl font-bold mb-2">Email</h3>
             <p className="text-muted-foreground">
               <a
                 href="mailto:ines.tpmarbella@gmail.com"
@@ -46,7 +46,7 @@ export default function Contacto() {
                 <Phone className="w-8 h-8 text-primary" />
               </div>
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Teléfono</h3>
+            <h3 className="text-xl font-bold mb-2">Teléfono</h3>
             <p className="text-muted-foreground">
               <a
                 href="https://wa.me/34628595929"
@@ -66,7 +66,7 @@ export default function Contacto() {
                 <MapPin className="w-8 h-8 text-primary" />
               </div>
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Dirección</h3>
+            <h3 className="text-xl font-bold mb-2">Dirección</h3>
             <p className="text-muted-foreground">Marbella, España</p>
           </div>
 
@@ -77,7 +77,7 @@ export default function Contacto() {
                 <Clock className="w-8 h-8 text-primary" />
               </div>
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Horario</h3>
+            <h3 className="text-xl font-bold mb-2">Horario</h3>
             <p className="text-muted-foreground">
               Lunes a Viernes: 9:00 - 18:00
               <br />
@@ -88,7 +88,7 @@ export default function Contacto() {
 
         {/* Mapa de Ubicación */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-foreground mb-6 text-center">
+          <h2 className="text-3xl font-bold mb-6 text-center">
             Nuestra Ubicación
           </h2>
           <div className="rounded-lg overflow-hidden shadow-lg">
@@ -107,7 +107,7 @@ export default function Contacto() {
 
         {/* Llamada a la Acción */}
         <section className="text-center py-12 bg-card rounded-lg shadow-md">
-          <h2 className="text-3xl font-bold text-foreground mb-6">
+          <h2 className="text-3xl font-bold mb-6">
             ¿Listo para comenzar tu viaje de sanación?
           </h2>
           <p className="text-lg text-muted-foreground mb-8">

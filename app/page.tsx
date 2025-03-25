@@ -3,10 +3,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Send } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -18,6 +15,13 @@ interface ArrowProps {
 }
 export default function Home() {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
 
   // Configuración del Slider con estilos personalizados para las flechas
   const settings = {
@@ -77,8 +81,56 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  const galleryImages = [
+    {
+      src: "/kinesiologia.webp",
+      alt: "Terapia de kinesiología holística"
+    },
+    {
+      src: "/kinesiologia-3.webp",
+      alt: "Sesión de kinesiología holística"
+    },
+    {
+      src: "/coaching-caballos.webp",
+      alt: "Coaching Grupal Con Caballos"
+    },
+    {
+      src: "/coaching-caballos-3.webp",
+      alt: "Coaching Grupal Con Caballos"
+    },
+    {
+      src: "/coaching-grupal.webp",
+      alt: "Coaching Grupal"
+    },
+    {
+      src: "/taller-empoderamiento.webp",
+      alt: "Coaching Grupal"
+    },
+    {
+      src: "/terapeuta-en-costa-del-sol.webp",
+      alt: "Coaching Grupal"
+    },
+    {
+      src: "/ines-con-paciente.webp",
+      alt: "Coaching Grupal"
+    }
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Aquí puedes agregar la lógica para enviar el formulario
+    console.log(formData);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
-    <div className="bg-background min-h-screen flex flex-col justify-center items-center">
+    <div className="bg-background w-full min-h-screen">
       {/* Toggle de WhatsApp */}
       {showWhatsApp && (
         <div className="fixed bottom-6 right-6 z-50">
@@ -93,7 +145,7 @@ export default function Home() {
         </div>
       )}
 
-      <div className="container mx-auto px-4 sm:px-6 text-center">
+      <div className="container mx-auto sm:px-6 text-center">
         {/* Hero Section */}
         <section className="bg-background py-0">
           <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center">
@@ -128,129 +180,170 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </div>
 
-        {/* Sección "Nuestras Terapias" */}
-        <section className="py-12" id="servicios">
-          <h2 className="text-4xl font-bold text-foreground mb-8">Nuestras terapias</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Terapia 1: Anatheóresis */}
-            <div className="bg-card p-6">
-              <h3 className="text-xl font-bold text-foreground mb-4">Anatheóresis</h3>
-              <p className="text-muted-foreground mb-4">
+      {/* Services Section */}
+      <section className="w-full bg-muted/50" id="servicios">
+        <div className="container mx-auto px-4 py-16">
+          <h2 className="text-4xl font-bold text-center mb-12">Nuestras terapias</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl text-center font-bold mb-4">Anatheóresis</h3>
+              <p className="text-muted-foreground text-center mb-4">
                 Terapia que te ayuda a descubrir y sanar heridas emocionales del pasado.
               </p>
-              <Button asChild size="sm">
-                <Link href="/servicios/anatheoresis" className="text-primary-foreground">
-                  Conocer más
-                </Link>
-              </Button>
+              <div className="flex justify-center">
+                <Button asChild variant="outline">
+                  <Link href="/servicios/anatheoresis">Conocer más</Link>
+                </Button>
+              </div>
             </div>
 
-            {/* Terapia 2: Kinesiología */}
-            <div className="bg-card p-6">
-              <h3 className="text-xl font-bold text-foreground mb-4">Kinesiología Holística</h3>
-              <p className="text-muted-foreground mb-4">
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl text-center font-bold mb-4">Kinesiología Holística</h3>
+              <p className="text-muted-foreground text-center mb-4">
                 Terapia que integra el cuerpo y la mente para lograr un equilibrio completo.
               </p>
-              <Button asChild size="sm">
-                <Link href="/servicios/kinesiologia" className="text-primary-foreground">
-                  Conocer más
-                </Link>
-              </Button>
+              <div className="flex justify-center">
+                <Button asChild variant="outline">
+                  <Link href="/servicios/kinesiologia">Conocer más</Link>
+                </Button>
+              </div>
             </div>
 
-            {/* Terapia 3: Coaching */}
-            <div className="bg-card p-6">
-              <h3 className="text-xl font-bold text-foreground mb-4">Coaching</h3>
-              <p className="text-muted-foreground mb-4">
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl text-center font-bold mb-4">Coaching</h3>
+              <p className="text-muted-foreground text-center mb-4">
                 Acompañamiento personalizado para alcanzar tus metas y desarrollo personal.
               </p>
-              <Button asChild size="sm">
-                <Link href="/servicios/coaching" className="text-primary-foreground">
-                  Conocer más
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Sección "Beneficios" */}
-        <section className="py-12 bg-background">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-4xl font-bold text-foreground mb-8">Beneficios de nuestras terapias</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Beneficio 1 */}
-              <div className="bg-card p-6">
-                <div className="flex justify-center mb-4">
-                  <Brain className="w-12 h-12 text-primary" />
-                </div>
-                
-                <p className="text-muted-foreground">
-                  Ayudamos a gestionar tus emociones para alcanzar un estado de armonía interior.
-                </p>
-              </div>
-
-              {/* Beneficio 2 */}
-              <div className="bg-card p-6">
-                <div className="flex justify-center mb-4">
-                  <HeartPulse className="w-12 h-12 text-primary" />
-                </div>
-                
-                <p className="text-muted-foreground">
-                  Mejora tu salud física a través de técnicas holísticas y naturales.
-                </p>
-              </div>
-
-              {/* Beneficio 3 */}
-              <div className="bg-card p-6">
-                <div className="flex justify-center mb-4">
-                  <Sparkles className="w-12 h-12 text-primary" />
-                </div>
-                
-                <p className="text-muted-foreground">
-                  Descubre tu potencial y alcanza tus metas con nuestro acompañamiento.
-                </p>
+              <div className="flex justify-center">
+                <Button asChild variant="outline">
+                  <Link href="/servicios/coaching">Conocer más</Link>
+                </Button>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Sección "Testimonios" */}
-        <section className="py-12 bg-background">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-4xl font-bold text-foreground mb-8">Lo que dicen nuestros clientes</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Testimonio 1 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
-                <p className="text-muted-foreground mb-4">
-                  "Gracias a las terapias, he encontrado un equilibrio en mi vida que nunca pensé posible."
-                </p>
-                <p className="text-sm text-foreground font-semibold">- María G.</p>
+      {/* Benefits Section */}
+      <section className="w-full bg-background">
+        <div className="container mx-auto px-4 py-16">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-card p-6 text-center">
+              <div className="flex justify-center mb-4">
+                <Brain className="w-12 h-12 text-primary" />
               </div>
+              <p className="text-muted-foreground">
+                Ayudamos a gestionar tus emociones para alcanzar un estado de armonía interior.
+              </p>
+            </div>
 
-              {/* Testimonio 2 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
-                <p className="text-muted-foreground mb-4">
-                  "El coaching me ayudó a clarificar mis metas y a tomar decisiones con confianza."
-                </p>
-                <p className="text-sm text-foreground font-semibold">- Juan P.</p>
+            <div className="bg-card p-6 text-center">
+              <div className="flex justify-center mb-4">
+                <HeartPulse className="w-12 h-12 text-primary" />
               </div>
+              <p className="text-muted-foreground">
+                Mejora tu salud física a través de técnicas holísticas y naturales.
+              </p>
+            </div>
 
-              {/* Testimonio 3 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
-                <p className="text-muted-foreground mb-4">
-                  "La kinesiología holística ha sido una experiencia transformadora para mí."
-                </p>
-                <p className="text-sm text-foreground font-semibold">- Ana L.</p>
+            <div className="bg-card p-6 text-center">
+              <div className="flex justify-center mb-4">
+                <Sparkles className="w-12 h-12 text-primary" />
               </div>
+              <p className="text-muted-foreground">
+                Descubre tu potencial y alcanza tus metas con nuestro acompañamiento.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Sección "Nuestro Enfoque" */}
+      {/* Testimonials Section */}
+      <section className="w-full bg-muted/50">
+        <div className="container mx-auto px-4 py-16">
+          <h2 className="text-4xl font-bold text-center mb-12">Lo que dicen nuestros clientes</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <p className="text-muted-foreground mb-4">
+                "Gracias a las terapias, he encontrado un equilibrio en mi vida que nunca pensé posible."
+              </p>
+              <p className="text-sm text-foreground font-semibold">- María G.</p>
+            </div>
+
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <p className="text-muted-foreground mb-4">
+                "El coaching me ayudó a clarificar mis metas y a tomar decisiones con confianza."
+              </p>
+              <p className="text-sm text-foreground font-semibold">- Juan P.</p>
+            </div>
+
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <p className="text-muted-foreground mb-4">
+                "La kinesiología holística ha sido una experiencia transformadora para mí."
+              </p>
+              <p className="text-sm text-foreground font-semibold">- Ana L.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="w-full bg-muted/50">
+        <div className="container mx-auto px-4 py-16">
+          <h2 className="text-4xl font-bold text-center mb-12">Galería</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {galleryImages.map((image, index) => (
+              <div
+                key={index}
+                className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer"
+                onClick={() => setSelectedImage(image.src)}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  width={400}
+                  height={400}
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg font-medium">Ver más</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white hover:text-gray-300"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <div className="relative max-w-5xl w-full">
+            <Image
+              src={selectedImage}
+              alt="Imagen ampliada"
+              className="w-full h-auto rounded-lg"
+              width={1200}
+              height={800}
+              priority
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="container mx-auto sm:px-6 text-center">
+        {/* Philosophy Section */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-4xl font-bold text-foreground mb-8">Nuestra filosofía</h2>
+            <h2 className="text-4xl font-bold mb-8">Nuestra filosofía</h2>
             <div className="max-w-2xl mx-auto">
               <p className="text-lg text-muted-foreground">
                 En Terapias Alternativas Marbella, creemos en un enfoque holístico que integra mente, cuerpo y espíritu.
@@ -260,150 +353,60 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </div>
 
-        {/* Sección "Galería" */}
-        <section className="py-12 bg-background">
-          <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Galería</h2>
-          <div className="max-w-3xl mx-auto">
-            <Slider {...settings}>
-              {/* Imagen 1 */}
-              <div className="px-2">
-                <Image
-                  src="/kinesiologia.webp"
-                  alt="Terapia de kinesiología holística"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500}
-                  height={500}
-                />
-              </div>
+      {/* Blog Section */}
+      <section className="w-full bg-muted/50">
+        <div className="container mx-auto px-4 py-16">
+          <h2 className="text-4xl font-bold mb-8 text-center">Artículos destacados</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Artículo 1 */}
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold mb-4">5 Beneficios de la meditación</h3>
+              <p className="text-muted-foreground mb-4">
+                Descubre cómo la meditación puede mejorar tu bienestar emocional y físico.
+              </p>
+              <Button asChild size="sm">
+                <Link href="blog/5-beneficios-de-la-meditacion" className="text-primary-foreground">
+                  Leer más
+                </Link>
+              </Button>
+            </div>
 
-              {/* Imagen 2 */}
-              <div className="px-2">
-                <Image
-                  src="/kinesiologia-3.webp"
-                  alt="Sesión de kinesiología holística"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500} 
-                  height={500}
-                />
-              </div>
+            {/* Artículo 2 */}
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold mb-4">Cómo manejar el estrés</h3>
+              <p className="text-muted-foreground mb-4">
+                Aprende técnicas efectivas para reducir el estrés en tu vida diaria.
+              </p>
+              <Button asChild size="sm">
+                <Link href="/blog/como-manejar-el-estres" className="text-primary-foreground">
+                  Leer más
+                </Link>
+              </Button>
+            </div>
 
-              {/* Imagen 3 */}
-              <div className="px-2">
-                <Image
-                  src="/coaching-caballos.webp"
-                  alt="Coaching Grupal Con Caballos"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500}
-                  height={500}
-                />
-              </div>
-
-              {/* Imagen 4 */}
-              <div className="px-2">
-                <Image
-                  src="/coaching-caballos-3.webp"
-                  alt="Coaching Grupal Con Caballos"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500}
-                  height={500}
-                />
-              </div>
-              {/* Imagen 5 */}
-              <div className="px-2">
-                <Image
-                  src="/coaching-grupal.webp"
-                  alt="Coaching Grupal"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500}
-                  height={500}
-                />
-              </div>
-              {/* Imagen 6 */}
-              <div className="px-2">
-                <Image
-                  src="/taller-empoderamiento.webp"
-                  alt="Coaching Grupal"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500}
-                  height={500}
-                />
-              </div>
-              {/* Imagen 7 */}
-              <div className="px-2">
-                <Image
-                  src="/terapeuta-en-costa-del-sol.webp"
-                  alt="Coaching Grupal"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500}
-                  height={500}
-                />
-              </div>
-              {/* Imagen 8 */}
-              <div className="px-2">
-                <Image
-                  src="/ines-con-paciente.webp"
-                  alt="Coaching Grupal"
-                  className="w-full h-auto md:h-auto object-cover rounded-lg"
-                  width={500}
-                  height={500}
-                />
-              </div>
-            </Slider>
-          </div>
-        </section>
-
-        {/* Sección "Blog" */}
-        <section className="py-12 bg-background">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Artículos destacados</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Artículo 1 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-foreground mb-4">5 Beneficios de la meditación</h3>
-                <p className="text-muted-foreground mb-4">
-                  Descubre cómo la meditación puede mejorar tu bienestar emocional y físico.
-                </p>
-                <Button asChild size="sm">
-                  <Link href="blog/5-beneficios-de-la-meditacion" className="text-primary-foreground">
-                    Leer más
-                  </Link>
-                </Button>
-              </div>
-
-              {/* Artículo 2 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-foreground mb-4">Cómo manejar el estrés</h3>
-                <p className="text-muted-foreground mb-4">
-                  Aprende técnicas efectivas para reducir el estrés en tu vida diaria.
-                </p>
-                <Button asChild size="sm">
-                  <Link href="/blog/como-manejar-el-estres" className="text-primary-foreground">
-                    Leer más
-                  </Link>
-                </Button>
-              </div>
-
-              {/* Artículo 3 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold text-foreground mb-4">La importancia del autocuidado</h3>
-                <p className="text-muted-foreground mb-4">
-                  Descubre por qué el autocuidado es esencial para tu bienestar integral.
-                </p>
-                <Button asChild size="sm">
-                  <Link href="/blog/la-importancia-del-autocuidado" className="text-primary-foreground">
-                    Leer más
-                  </Link>
-                </Button>
-              </div>
+            {/* Artículo 3 */}
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold mb-4">La importancia del autocuidado</h3>
+              <p className="text-muted-foreground mb-4">
+                Descubre por qué el autocuidado es esencial para tu bienestar integral.
+              </p>
+              <Button asChild size="sm">
+                <Link href="/blog/la-importancia-del-autocuidado" className="text-primary-foreground">
+                  Leer más
+                </Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Sección "Sobre Mí" */}
+      <div className="container mx-auto sm:px-6 text-center">
+        {/* About Section */}
         <section id="sobre-nosotros" className="py-12 bg-background">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-foreground mb-10 text-center">Sobre nosotros</h2>
+            <h2 className="text-4xl font-bold mb-10 text-center">Sobre nosotros</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <p className="text-lg text-muted-foreground mb-4">
@@ -427,63 +430,139 @@ export default function Home() {
             </div>
           </div>
         </section>
+      </div>
 
-        {/* Sección "Contacto" */}
-        <section className="py-12 bg-background">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Contacto</h2>
-            <p className="text-lg text-muted-foreground mb-12 text-center">
-              ¿Tienes alguna pregunta o deseas programar una cita? ¡Contáctanos!
-            </p>
-
-            {/* Datos de contacto con íconos */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Email */}
-              <div className="bg-card p-6 text-center">
-                <div className="flex justify-center mb-4">
-                  <Mail className="w-12 h-12 text-primary" />
+      {/* Contact Section */}
+      <section className="w-full bg-muted/50">
+        <div className="container mx-auto px-4 py-16">
+          <h2 className="text-4xl font-bold text-center mb-8">Contacto</h2>
+          <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
+            ¿Tienes alguna pregunta o deseas programar una cita? ¡Contáctanos! Estamos aquí para ayudarte en tu camino hacia el bienestar.
+          </p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Información de Contacto */}
+            <div className="space-y-8">
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <Mail className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Email</h3>
+                    <a
+                      href="mailto:ines.tpmarbella@gmail.com"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      ines.tpmarbella@gmail.com
+                    </a>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Email</h3>
-                <p className="text-muted-foreground">
-                  <a
-                    href="mailto:ines.tpmarbella@gmail.com"
-                    className="text-primary hover:underline"
-                  >
-                    ines.tpmarbella@gmail.com
-                  </a>
-                </p>
               </div>
 
-              {/* Teléfono */}
-              <div className="bg-card p-6 text-center">
-                <div className="flex justify-center mb-4">
-                  <Phone className="w-12 h-12 text-primary" />
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <Phone className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Teléfono</h3>
+                    <a
+                      href="https://wa.me/34628595929"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      +34 628-59-59-29
+                    </a>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Teléfono</h3>
-                <p className="text-muted-foreground">
-                  <a
-                    href="https://wa.me/34628595929"
-                    className="text-primary hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    +34 628-59-59-29
-                  </a>
-                </p>
               </div>
 
-              {/* Dirección */}
-              <div className="bg-card p-6 text-center">
-                <div className="flex justify-center mb-4">
-                  <MapPin className="w-12 h-12 text-primary" />
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <MapPin className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Ubicación</h3>
+                    <p className="text-muted-foreground">Marbella, España</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Dirección</h3>
-                <p className="text-muted-foreground">Marbella, España</p>
               </div>
             </div>
+
+            {/* Formulario de Contacto */}
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    Nombre
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                    Teléfono
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                    Mensaje
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                    required
+                  />
+                </div>
+
+                <Button type="submit" className="w-full">
+                  <Send className="w-4 h-4 mr-2" />
+                  Enviar mensaje
+                </Button>
+              </form>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
