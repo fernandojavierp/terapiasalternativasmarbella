@@ -3,16 +3,10 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Send } from "lucide-react";
+import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Send, Heart, Clock, User, Target, BookOpen, Shield, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// Definición de tipos para las props de las flechas
-interface ArrowProps {
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-}
 export default function Home() {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -22,7 +16,6 @@ export default function Home() {
     phone: "",
     message: ""
   });
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Toggle de WhatsApp
   useEffect(() => {
