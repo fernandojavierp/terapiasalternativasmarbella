@@ -8,9 +8,17 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// Definición de tipos para las props de las flechas
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
+
 export default function Coaching() {
-  // Configuración del Slider
-  const settings = {
+  
+   // Configuración del Slider con estilos personalizados para las flechas
+   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -19,8 +27,45 @@ export default function Coaching() {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
-
+  // Componente para la flecha siguiente personalizada
+  function SampleNextArrow(props: ArrowProps) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, 
+          display: "block", 
+          color: "black", 
+          fontSize: "24px",
+          top: "40%",
+          right: "25px",
+          zIndex: 1
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+    // Componente para la flecha anterior personalizada
+    function SamplePrevArrow(props: ArrowProps) {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className}
+          style={{ ...style, 
+            display: "block", 
+            color: "black", 
+            fontSize: "24px",
+            top: "40%",
+            left: "25px",
+            zIndex: 1
+          }}
+          onClick={onClick}
+        />
+      );
+    }
   return (
     <div className="bg-background min-h-screen py-12">
       <div className="container mx-auto px-6">
@@ -34,10 +79,10 @@ export default function Coaching() {
 
         {/* Tipos de Coaching */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Tipos de coaching</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Tipos de coaching</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Coaching Grupal */}
-            <div className="bg-card p-6 rounded-lg shadow-md text-center">
+            <div className="bg-card p-6 text-center">
               <div className="flex justify-center mb-4">
                 <Users className="w-12 h-12 text-primary" />
               </div>
@@ -48,7 +93,7 @@ export default function Coaching() {
             </div>
 
             {/* Coaching Creativo */}
-            <div className="bg-card p-6 rounded-lg shadow-md text-center">
+            <div className="bg-card p-6 text-center">
               <div className="flex justify-center mb-4">
                 <Sparkles className="w-12 h-12 text-primary" />
               </div>
@@ -59,7 +104,7 @@ export default function Coaching() {
             </div>
 
             {/* PNL (Programación Neurolingüística) */}
-            <div className="bg-card p-6 rounded-lg shadow-md text-center">
+            <div className="bg-card p-6 text-center">
               <div className="flex justify-center mb-4">
                 <Target className="w-12 h-12 text-primary" />
               </div>
@@ -70,7 +115,7 @@ export default function Coaching() {
             </div>
 
             {/* Coaching con Caballos */}
-            <div className="bg-card p-6 rounded-lg shadow-md text-center">
+            <div className="bg-card p-6 text-center">
               <div className="flex justify-center mb-4">
                 <Activity className="w-12 h-12 text-primary" />
               </div>
@@ -83,9 +128,9 @@ export default function Coaching() {
         </section>
 
         {/* Beneficios del Coaching */}
-        <section className="py-12 bg-card rounded-lg shadow-md">
+        <section className="py-12 bg-card">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Beneficios del coaching</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Beneficios del coaching</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Beneficio 1 */}
               <div className="text-center">
@@ -126,10 +171,10 @@ export default function Coaching() {
         {/* Talleres de Coaching con Caballos */}
         <section className="py-12">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Talleres de coaching con caballos</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Talleres de coaching con caballos</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
               {/* Descripción General */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
+              <div className="bg-card p-6">
                 <h3 className="text-xl font-bold text-foreground mb-4">Un viaje de autoconocimiento y transformación</h3>
                 <p className="text-muted-foreground mb-4">
                   En nuestros talleres de coaching con caballos, vivirás una experiencia transformadora donde el coaching y la sensibilidad de los caballos te ayudarán a descubrir y superar bloqueos emocionales. No necesitas experiencia previa.
@@ -143,7 +188,7 @@ export default function Coaching() {
               </div>
 
               {/* Beneficios */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
+              <div className="bg-card p-6">
                 <h3 className="text-xl font-bold text-foreground mb-4">¿Qué puedes llevarte tras un taller?</h3>
                 <ul className="text-muted-foreground list-disc list-inside">
                   <li>Mayor claridad emocional y autoconfianza.</li>
@@ -163,7 +208,7 @@ export default function Coaching() {
 
             {/* Tipos de Talleres */}
             <div className="mt-12">
-              <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Tipos de talleres disponibles</h3>
+              <h3 className="text-4xl font-bold text-foreground mb-6 text-center">Tipos de talleres disponibles</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {/* Taller de Comunicación Auténtica */}
                 <div className="bg-card p-6 rounded-lg shadow-md">
@@ -222,8 +267,8 @@ export default function Coaching() {
         </section>
 
         {/* Galería de Imágenes */}
-        <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Galería</h2>
+        <section className="py-12 relative">
+          <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Galería</h2>
           <div className="max-w-3xl mx-auto">
             <Slider {...settings}>
               {/* Imagen 1 */}
@@ -285,7 +330,7 @@ export default function Coaching() {
 
         {/* Llamada a la Acción */}
         <section className="py-12 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-6">¿Listo para transformar tu vida?</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-6">¿Listo para transformar tu vida?</h2>
           <p className="text-lg text-muted-foreground mb-8">
             Agenda una sesión de coaching o únete a nuestros talleres de coaching con caballos para vivir una experiencia única de autoconocimiento y crecimiento.
           </p>

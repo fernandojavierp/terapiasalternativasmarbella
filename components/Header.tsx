@@ -88,6 +88,16 @@ export default function Header() {
             </li>
             <li>
               <Link
+                href="/farmasi"
+                className={`text-foreground hover:text-primary transition-colors ${
+                  pathname === "/farmasi" ? "text-primary" : ""
+                }`}
+              >
+                FARMASI
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/contacto"
                 className={`text-foreground hover:text-primary transition-colors ${
                   pathname === "/contacto" ? "text-primary" : ""
@@ -113,7 +123,18 @@ export default function Header() {
             ref={menuRef}
             className="md:hidden absolute top-20 left-0 right-0 bg-background border-t border-border z-50"
           >
-            <ul className="flex flex-col text-left text-xl space-y-4 p-4">
+            <ul className="flex flex-col text-left font-poppins text-xl space-y-4 p-4">
+              <li>
+                <Link
+                  href="/"
+                  className={`block text-foreground hover:text-primary transition-colors ${
+                    pathname === "/" ? "text-primary" : ""
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Inicio
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/servicios/anatheoresis"

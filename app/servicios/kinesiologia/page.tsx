@@ -28,7 +28,7 @@ export default function Kinesiologia() {
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-6">¿Qué es la Kinesiología Holística?</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-6">¿Qué es la Kinesiología Holística?</h2>
             <p className="text-lg text-muted-foreground mb-6">
               La Kinesiología Holística es mucho más que una manipulación física o una técnica alternativa. Es una
               puerta a la sabiduría interior de nuestro propio cuerpo. Con un enfoque integral, esta disciplina busca
@@ -46,7 +46,7 @@ export default function Kinesiologia() {
         {/* Beneficios de la Kinesiología Holística */}
         <section className="py-12 bg-card rounded-lg shadow-md">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Beneficios de la Kinesiología Holística</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Beneficios de la Kinesiología Holística</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Beneficio 1 */}
               <div className="text-center">
@@ -119,7 +119,7 @@ export default function Kinesiologia() {
 
         {/* Historia y Filosofía */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-14 text-center">Historia y filosofía</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-14 text-center">Historia y filosofía</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-lg text-muted-foreground mb-6">
@@ -153,7 +153,7 @@ export default function Kinesiologia() {
         {/* Problemas Digestivos */}
         <section className="py-12 bg-card rounded-lg shadow-md">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-14 text-center">Problemas digestivos</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-14 text-center">Problemas digestivos</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <p className="text-lg text-muted-foreground mb-6">
@@ -185,7 +185,7 @@ export default function Kinesiologia() {
 
         {/* Llamada a la Acción */}
         <section className="py-12 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-6">¿Listo para reconectar con tu bienestar?</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-6">¿Listo para reconectar con tu bienestar?</h2>
           <p className="text-lg text-muted-foreground mb-8">
             Agenda una sesión de Kinesiología Holística y descubre cómo esta terapia puede transformar tu vida.
           </p>

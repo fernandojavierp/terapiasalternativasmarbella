@@ -29,7 +29,7 @@ export default function Anatheoresis() {
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold text-foreground mb-6">¿Qué es la Anatheóresis?</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-6">¿Qué es la Anatheóresis?</h2>
             <p className="text-lg text-muted-foreground mb-6">
               La Anatheóresis es una técnica terapéutica que combina la regresión consciente con la relajación profunda. A través de esta terapia, puedes acceder a recuerdos y emociones almacenados en tu inconsciente, permitiéndote liberar bloqueos emocionales y sanar heridas del pasado.
             </p>
@@ -47,7 +47,7 @@ export default function Anatheoresis() {
         {/* Beneficios de la Anatheóresis */}
         <section className="py-12 bg-card rounded-lg shadow-md">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Beneficios de la Anatheóresis</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Beneficios de la Anatheóresis</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Beneficio 1 */}
               <div className="text-center">
@@ -98,36 +98,36 @@ export default function Anatheoresis() {
 
         {/* ¿Cómo Funciona la Anatheóresis? */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">¿Cómo funciona la Anatheóresis?</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-8 text-center">¿Cómo funciona la Anatheóresis?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Paso 1 */}
-            <div className="bg-card p-6 rounded-lg shadow-md">
+            <div className="bg-card p-6">
               <div className="flex justify-center mb-4">
                 <BookOpen className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Exploración del inconsciente</h3>
+
               <p className="text-muted-foreground">
                 A través de la relajación profunda, accedes a recuerdos y emociones almacenados en tu inconsciente.
               </p>
             </div>
 
             {/* Paso 2 */}
-            <div className="bg-card p-6 rounded-lg shadow-md">
+            <div className="bg-card p-6">
               <div className="flex justify-center mb-4">
                 <Target className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Identificación de bloqueos</h3>
+
               <p className="text-muted-foreground">
                 Identificamos los bloqueos emocionales y patrones que limitan tu crecimiento personal.
               </p>
             </div>
 
             {/* Paso 3 */}
-            <div className="bg-card p-6 rounded-lg shadow-md">
+            <div className="bg-card p-6">
               <div className="flex justify-center mb-4">
                 <Shield className="w-12 h-12 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Sanación y liberación</h3>
+              
               <p className="text-muted-foreground">
                 Trabajamos en la liberación de emociones reprimidas y la sanación de heridas emocionales.
               </p>
@@ -137,7 +137,7 @@ export default function Anatheoresis() {
 
         {/* Testimonios */}
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Testimonios de nuestros pacientes</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Testimonios de nuestros pacientes</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Testimonio 1 */}
             <div className="bg-card p-6 rounded-lg shadow-md">
@@ -167,7 +167,7 @@ export default function Anatheoresis() {
 
         {/* Llamada a la Acción */}
         <section className="py-12 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-6">¿Listo para comenzar tu viaje de sanación?</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-6">¿Listo para comenzar tu viaje de sanación?</h2>
           <p className="text-lg text-muted-foreground mb-8">
             Agenda una sesión de Anatheóresis y descubre cómo esta terapia puede transformar tu vida.
           </p>

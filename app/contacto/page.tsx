@@ -22,7 +22,7 @@ export default function Contacto() {
         {/* Detalles de Contacto */}
         <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {/* Tarjeta de Email */}
-          <div className="bg-card p-6 rounded-lg shadow-md text-center">
+          <div className="bg-card p-6 text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-primary/10 rounded-full">
                 <Mail className="w-8 h-8 text-primary" />
@@ -40,7 +40,7 @@ export default function Contacto() {
           </div>
 
           {/* Tarjeta de Teléfono */}
-          <div className="bg-card p-6 rounded-lg shadow-md text-center">
+          <div className="bg-card p-6 text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-primary/10 rounded-full">
                 <Phone className="w-8 h-8 text-primary" />
@@ -60,7 +60,7 @@ export default function Contacto() {
           </div>
 
           {/* Tarjeta de Dirección */}
-          <div className="bg-card p-6 rounded-lg shadow-md text-center">
+          <div className="bg-card p-6 text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-primary/10 rounded-full">
                 <MapPin className="w-8 h-8 text-primary" />
@@ -71,7 +71,7 @@ export default function Contacto() {
           </div>
 
           {/* Tarjeta de Horario */}
-          <div className="bg-card p-6 rounded-lg shadow-md text-center">
+          <div className="bg-card p-6 text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-primary/10 rounded-full">
                 <Clock className="w-8 h-8 text-primary" />

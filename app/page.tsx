@@ -10,10 +10,16 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+// Definición de tipos para las props de las flechas
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
 export default function Home() {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
 
-  // Configuración del Slider
+  // Configuración del Slider con estilos personalizados para las flechas
   const settings = {
     dots: true,
     infinite: true,
@@ -23,15 +29,45 @@ export default function Home() {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: true,
-    responsive: [
-      {
-        breakpoint: 768, // Pantallas pequeñas
-        settings: {
-          arrows: false, // Ocultar flechas en móviles
-        },
-      },
-    ],
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
+  // Componente para la flecha siguiente personalizada
+  function SampleNextArrow(props: ArrowProps) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, 
+          display: "block", 
+          color: "black", 
+          fontSize: "24px",
+          top: "40%",
+          right: "25px",
+          zIndex: 1
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+    // Componente para la flecha anterior personalizada
+    function SamplePrevArrow(props: ArrowProps) {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className}
+          style={{ ...style, 
+            display: "block", 
+            color: "black", 
+            fontSize: "24px",
+            top: "40%",
+            left: "25px",
+            zIndex: 1
+          }}
+          onClick={onClick}
+        />
+      );
+    }
 
   // Toggle de WhatsApp
   useEffect(() => {
@@ -73,10 +109,10 @@ export default function Home() {
                 Coach, Inteligencia Emocional, Kinesiología Holística
               </h2>
               <p className="text-lg text-muted-foreground max-w-lg">
-                Soy Ines Uria, con más de 30 años de experiencia ayudando a personas como tú a alcanzar su bienestar emocional y físico.
+                Soy Ines Uria, con más de 30 años como terapeuta he ayudado a personas como tú a alcanzar su bienestar emocional y físico.
               </p>
               <Button asChild size="lg">
-                <Link href="#servicios">Comenzar Tu Viaje</Link>
+                <Link href="#servicios">Comenzar tu viaje</Link>
               </Button>
             </div>
             <div className="mt-10 lg:mt-0">
@@ -95,10 +131,10 @@ export default function Home() {
 
         {/* Sección "Nuestras Terapias" */}
         <section className="py-12" id="servicios">
-          <h2 className="text-3xl font-bold text-foreground mb-8">Nuestras terapias</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-8">Nuestras terapias</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Terapia 1: Anatheóresis */}
-            <div className="bg-card p-6 rounded-lg shadow-md">
+            <div className="bg-card p-6">
               <h3 className="text-xl font-bold text-foreground mb-4">Anatheóresis</h3>
               <p className="text-muted-foreground mb-4">
                 Terapia que te ayuda a descubrir y sanar heridas emocionales del pasado.
@@ -111,7 +147,7 @@ export default function Home() {
             </div>
 
             {/* Terapia 2: Kinesiología */}
-            <div className="bg-card p-6 rounded-lg shadow-md">
+            <div className="bg-card p-6">
               <h3 className="text-xl font-bold text-foreground mb-4">Kinesiología Holística</h3>
               <p className="text-muted-foreground mb-4">
                 Terapia que integra el cuerpo y la mente para lograr un equilibrio completo.
@@ -124,7 +160,7 @@ export default function Home() {
             </div>
 
             {/* Terapia 3: Coaching */}
-            <div className="bg-card p-6 rounded-lg shadow-md">
+            <div className="bg-card p-6">
               <h3 className="text-xl font-bold text-foreground mb-4">Coaching</h3>
               <p className="text-muted-foreground mb-4">
                 Acompañamiento personalizado para alcanzar tus metas y desarrollo personal.
@@ -141,10 +177,10 @@ export default function Home() {
         {/* Sección "Beneficios" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Beneficios de nuestras terapias</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8">Beneficios de nuestras terapias</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Beneficio 1 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
+              <div className="bg-card p-6">
                 <div className="flex justify-center mb-4">
                   <Brain className="w-12 h-12 text-primary" />
                 </div>
@@ -155,7 +191,7 @@ export default function Home() {
               </div>
 
               {/* Beneficio 2 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
+              <div className="bg-card p-6">
                 <div className="flex justify-center mb-4">
                   <HeartPulse className="w-12 h-12 text-primary" />
                 </div>
@@ -166,7 +202,7 @@ export default function Home() {
               </div>
 
               {/* Beneficio 3 */}
-              <div className="bg-card p-6 rounded-lg shadow-md">
+              <div className="bg-card p-6">
                 <div className="flex justify-center mb-4">
                   <Sparkles className="w-12 h-12 text-primary" />
                 </div>
@@ -182,7 +218,7 @@ export default function Home() {
         {/* Sección "Testimonios" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Lo que dicen nuestros clientes</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8">Lo que dicen nuestros clientes</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Testimonio 1 */}
               <div className="bg-card p-6 rounded-lg shadow-md">
@@ -214,12 +250,12 @@ export default function Home() {
         {/* Sección "Nuestro Enfoque" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Nuestro enfoque</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8">Nuestra filosofía</h2>
             <div className="max-w-2xl mx-auto">
               <p className="text-lg text-muted-foreground">
                 En Terapias Alternativas Marbella, creemos en un enfoque holístico que integra mente, cuerpo y espíritu.
-                Nuestras terapias están diseñadas para ayudarte a encontrar equilibrio, sanar heridas emocionales y
-                alcanzar tu máximo potencial.
+                A través de la liberacion emocional y mental, comienza el cambio en tu cuerpo y en tu vida.
+                Ofrecemos una variedad de servicios para ayudarte a encontrar el estado de paz que buscas.
               </p>
             </div>
           </div>
@@ -227,7 +263,7 @@ export default function Home() {
 
         {/* Sección "Galería" */}
         <section className="py-12 bg-background">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Galería</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Galería</h2>
           <div className="max-w-3xl mx-auto">
             <Slider {...settings}>
               {/* Imagen 1 */}
@@ -320,7 +356,7 @@ export default function Home() {
         {/* Sección "Blog" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Artículos destacados</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Artículos destacados</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Artículo 1 */}
               <div className="bg-card p-6 rounded-lg shadow-md">
@@ -367,7 +403,7 @@ export default function Home() {
         {/* Sección "Sobre Mí" */}
         <section id="sobre-nosotros" className="py-12 bg-background">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-10 text-center">Sobre nosotros</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-10 text-center">Sobre nosotros</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div>
                 <p className="text-lg text-muted-foreground mb-4">
@@ -395,7 +431,7 @@ export default function Home() {
         {/* Sección "Contacto" */}
         <section className="py-12 bg-background">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Contacto</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-8 text-center">Contacto</h2>
             <p className="text-lg text-muted-foreground mb-12 text-center">
               ¿Tienes alguna pregunta o deseas programar una cita? ¡Contáctanos!
             </p>
@@ -403,7 +439,7 @@ export default function Home() {
             {/* Datos de contacto con íconos */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Email */}
-              <div className="bg-card p-6 rounded-lg shadow-md text-center">
+              <div className="bg-card p-6 text-center">
                 <div className="flex justify-center mb-4">
                   <Mail className="w-12 h-12 text-primary" />
                 </div>
@@ -419,7 +455,7 @@ export default function Home() {
               </div>
 
               {/* Teléfono */}
-              <div className="bg-card p-6 rounded-lg shadow-md text-center">
+              <div className="bg-card p-6 text-center">
                 <div className="flex justify-center mb-4">
                   <Phone className="w-12 h-12 text-primary" />
                 </div>
@@ -437,7 +473,7 @@ export default function Home() {
               </div>
 
               {/* Dirección */}
-              <div className="bg-card p-6 rounded-lg shadow-md text-center">
+              <div className="bg-card p-6 text-center">
                 <div className="flex justify-center mb-4">
                   <MapPin className="w-12 h-12 text-primary" />
                 </div>
