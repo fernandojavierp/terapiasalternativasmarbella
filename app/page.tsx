@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Send, Heart, Clock, User, Target, BookOpen, Shield, ChevronLeft, ChevronRight } from "lucide-react";
+import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Send} from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
