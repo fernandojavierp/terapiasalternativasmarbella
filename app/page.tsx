@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Send} from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import emailjs from '@emailjs/browser';
 
 export default function Home() {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
@@ -16,6 +17,11 @@ export default function Home() {
     phone: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
 
   // Toggle de WhatsApp
   useEffect(() => {
@@ -25,10 +31,15 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Inicializar EmailJS
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
+  }, []);
+
   const images = [
     {
-      src: "/conexion_regresion_sanacion.webp",
-      alt: "Terapia de Anatheóresis - Sanación Emocional"
+      src: "/ines-con-paciente.webp",
+      alt: "Coaching con Ines Uria"
     },
     {
       src: "/coaching-grupal.webp",
@@ -49,13 +60,75 @@ export default function Home() {
     {
       src: "/coaching-con-caballos.webp",
       alt: "Taller de Coaching con Caballos"
-    }
+    },
+    {
+      src: "/taller-empoderamiento.webp",
+      alt: "Taller de Empoderamiento"
+    },
+    {
+      src: "/kinesiologia-3.webp",
+      alt: "Kinesiología"
+    },
+    {
+      src: "/paciente-con-caballo.webp",
+      alt: "Paciente con Caballo"
+    },
+    {
+      src: "/paciente-con-caballo-1.webp",
+      alt: "Paciente con Caballo"
+    },
+    {
+      src: "/paciente-con-caballo-2.webp",
+      alt: "Paciente con Caballo"
+    },
+    {
+      src: "/paciente-con-caballo-3.webp",
+      alt: "Paciente con Caballo"
+    },
+    {
+      src: "/grupo-terapias-alternativas-marbella-con-caballo.webp",
+      alt: "Grupo Terapias Alternativas Marbella con Caballo"
+    },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar el formulario
-    console.log(formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }
+      );
+
+      if (response.status === 200) {
+        setSubmitStatus({
+          success: true,
+          message: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto."
+        });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: ""
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        success: false,
+        message: "Hubo un error al enviar el mensaje. Por favor, intenta nuevamente."
+      });
+      console.error('Error sending email:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -230,7 +303,7 @@ export default function Home() {
       <section className="w-full bg-muted/50">
         <div className="container mx-auto px-4 py-16">
           <h2 className="text-4xl font-bold text-center mb-12">Galería</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {images.map((image, index) => (
               <div
                 key={index}
@@ -303,7 +376,7 @@ export default function Home() {
                 Descubre cómo la meditación puede mejorar tu bienestar emocional y físico.
               </p>
               <Button asChild size="sm">
-                <Link href="blog/5-beneficios-de-la-meditacion" className="text-primary-foreground">
+                <Link href="/blog/5-beneficios-de-la-meditacion" className="text-primary-foreground">
                   Leer más
                 </Link>
               </Button>
@@ -431,6 +504,13 @@ export default function Home() {
             {/* Formulario de Contacto */}
             <div className="bg-card p-6 rounded-lg shadow-md">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {submitStatus && (
+                  <div className={`p-4 rounded-md ${
+                    submitStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                  }`}>
+                    {submitStatus.message}
+                  </div>
+                )}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
                     Nombre
@@ -490,9 +570,9 @@ export default function Home() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full" disabled={isSubmitting}>
                   <Send className="w-4 h-4 mr-2" />
-                  Enviar mensaje
+                  {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
                 </Button>
               </form>
             </div>

@@ -37,7 +37,7 @@ export default function FarmasiPage() {
             <h1 className="font-playfair mt-10 text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
               Descubre la
               <br />
-              Belleza Natural
+              belleza natural
               <br />
               con Farmasi
             </h1>
@@ -50,7 +50,7 @@ export default function FarmasiPage() {
             </p>
             <Button asChild size="lg">
               <a href="https://www.farmasi.es/inesuria" target="_blank" rel="noopener noreferrer">
-                Ver Catálogo Completo
+                Ver catálogo completo
               </a>
             </Button>
           </div>
@@ -71,7 +71,7 @@ export default function FarmasiPage() {
       {/* Products Section */}
       <section className="py-16 bg-muted/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Productos Destacados</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Productos destacados</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {products.map((product, index) => (
               <div
@@ -122,12 +122,12 @@ export default function FarmasiPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">¿Lista para descubrir tu belleza natural?</h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Explora nuestro catálogo completo de productos Farmasi y encuentra los productos perfectos para ti.
+            Explora el catálogo completo de productos Farmasi y encuentra los productos adecuados para ti.
           </p>
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
             <a href="https://www.farmasi.es/inesuria" target="_blank" rel="noopener noreferrer">
               <ShoppingBag className="mr-2 h-5 w-5" />
-              Ver Catálogo Completo
+              Ver catálogo completo
             </a>
           </Button>
         </div>

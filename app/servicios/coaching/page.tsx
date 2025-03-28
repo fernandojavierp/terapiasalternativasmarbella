@@ -28,7 +28,27 @@ export default function Coaching() {
     {
       src: "/coaching-con-caballos.webp",
       alt: "Taller de Coaching con Caballos"
-    }
+    },
+    {
+      src: "/grupo-terapias-alternativas-marbella-con-caballo.webp",
+      alt: "Grupo Terapias Alternativas Marbella con Caballo"
+    },
+    {
+      src: "/paciente-con-caballo.webp",
+      alt: "Paciente con Caballo"
+    },
+    {
+      src: "/paciente-con-caballo-1.webp",
+      alt: "Paciente con Caballo"
+    },
+    {
+      src: "/paciente-con-caballo-2.webp",
+      alt: "Paciente con Caballo"
+    },
+    {
+      src: "/paciente-con-caballo-3.webp",
+      alt: "Paciente con Caballo"
+    },
   ];
 
   const nextSlide = () => {
