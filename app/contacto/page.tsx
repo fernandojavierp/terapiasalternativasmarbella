@@ -23,11 +23,26 @@ export default function ContactPage() {
   useEffect(() => {
     // Inicializar EmailJS con la clave pública
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+    console.log('EmailJS Configuration:', {
+      hasPublicKey: !!publicKey,
+      hasServiceId: !!serviceId,
+      hasTemplateId: !!templateId
+    });
+
     if (!publicKey) {
       console.error('EmailJS Public Key no está configurada');
       return;
     }
-    emailjs.init(publicKey);
+
+    try {
+      emailjs.init(publicKey);
+      console.log('EmailJS inicializado correctamente');
+    } catch (error) {
+      console.error('Error al inicializar EmailJS:', error);
+    }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,7 +55,18 @@ export default function ContactPage() {
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
+    console.log('Enviando email con configuración:', {
+      hasServiceId: !!serviceId,
+      hasTemplateId: !!templateId,
+      hasPublicKey: !!publicKey
+    });
+
     if (!serviceId || !templateId || !publicKey) {
+      console.error('Faltan variables de entorno:', {
+        serviceId: !!serviceId,
+        templateId: !!templateId,
+        publicKey: !!publicKey
+      });
       setSubmitStatus({
         success: false,
         message: "Error de configuración. Por favor, contacta al administrador."
@@ -50,6 +76,7 @@ export default function ContactPage() {
     }
 
     try {
+      console.log('Intentando enviar email...');
       const response = await emailjs.send(
         serviceId,
         templateId,
@@ -60,6 +87,8 @@ export default function ContactPage() {
           message: formData.message,
         }
       );
+
+      console.log('Respuesta de EmailJS:', response);
 
       if (response.status === 200) {
         setSubmitStatus({
@@ -74,7 +103,7 @@ export default function ContactPage() {
         });
       }
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error detallado al enviar email:', error);
       setSubmitStatus({
         success: false,
         message: "Hubo un error al enviar el mensaje. Por favor, intenta nuevamente."

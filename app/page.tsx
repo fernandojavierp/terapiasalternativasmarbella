@@ -277,9 +277,9 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-card p-6 rounded-lg shadow-md">
               <p className="text-muted-foreground mb-4">
-                "Gracias a las terapias, he encontrado un equilibrio en mi vida que nunca pensé posible."
+                "Siempre me ha interesado el mundo de las terapias alternativas, pero me costaba mucho encontrar a la persona o lugar adecuado. Hoy doy las gracias de tener a Inés en mi vida, es a la persona en quién más confío para entregarme a lo que venga. Se sale de su consulta flotando, llena de energía y diferentes perspectivas. Ya se lo recomendé a vari@s amig@s y familiares, por lo que lo recomiendo igual a cualquiera que tenga algo de curiosidad, merece muchísimo probar con ella, además que cada sesión es toda una experiencia en si misma. Muchísimas gracias por todo, una gozada siempre ponerme en tus manos🙏🏼🧡"
               </p>
-              <p className="text-sm text-foreground font-semibold">- María G.</p>
+              <p className="text-sm text-foreground font-semibold">- Yolanda VD.</p>
             </div>
 
             <div className="bg-card p-6 rounded-lg shadow-md">
