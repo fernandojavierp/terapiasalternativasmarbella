@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root color variables */
 :root {
   --background: 48 100% 95%; /* Crema suave */
   --foreground: 30 20% 15%; /* Marrón carbón */
@@ -34,8 +35,9 @@
   --radius: 0.5rem;
 }
 
+/* Dark mode adjustments */
 .dark {
-  --background: 40 30% 8%; /* Negro con un toque cálido */
+  --background: 40 30% 8%; /* Negro cálido */
   --foreground: 50 90% 95%; /* Amarillo crema */
 
   --primary: 45 80% 50%; /* Oro envejecido */
@@ -47,11 +49,11 @@
   --accent: 42 80% 40%; /* Mostaza profunda */
   --accent-foreground: 50 90% 95%; /* Amarillo crema */
 
-  --destructive: 10 70% 45%; /* Rojo terracota */
-  --destructive-foreground: 50 90% 95%; /* Amarillo crema */
+  --destructive: 10 70% 45%;
+  --destructive-foreground: 50 90% 95%;
 
-  --muted: 40 30% 20%; /* Gris oscuro */
-  --muted-foreground: 50 50% 70%; /* Gris claro */
+  --muted: 40 30% 20%;
+  --muted-foreground: 50 50% 70%;
 
   --card: 40 30% 8%;
   --card-foreground: 50 90% 95%;
@@ -61,69 +63,82 @@
 
   --border: 35 40% 20%;
   --input: 35 40% 20%;
-  --ring: 45 80% 50%; /* Oro envejecido */
+  --ring: 45 80% 50%;
 }
 
-/* Definir fuentes locales */
+/* Fonts */
 @font-face {
   font-family: 'Playfair Display';
   src: url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'Playfair Display';
   src: url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
   font-weight: 700;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins-Regular.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
   font-weight: 600;
-  font-style: normal;
 }
 
-/* Botones */
+/* Buttons */
 .btn-primary {
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
   transition: background-color 0.3s ease;
   font-family: 'Poppins', sans-serif;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
 }
 
 .btn-primary:hover {
   background-color: hsl(var(--primary) / 0.9);
 }
 
-/* Enlaces */
+/* Secondary button */
+.btn-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+}
+
+.btn-secondary:hover {
+  background-color: hsl(var(--secondary) / 0.9);
+}
+
+/* Links */
 .link-primary {
   color: hsl(var(--primary));
   transition: color 0.3s ease;
   font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 .link-primary:hover {
   color: hsl(var(--primary) / 0.9);
+  text-decoration: underline;
 }
 
-/* Bordes */
+/* Borders */
 .border-primary {
   border-color: hsl(var(--primary));
 }
 
-
-
-/* Fondo con gradiente */
+/* Background with gradient */
 .bg-gradient-primary {
   background: linear-gradient(
     to right,
@@ -132,42 +147,43 @@
   );
 }
 
-/* Titulos h1 */
-h1 {
+/* Typography */
+h1, h2, h3, h4 {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
   font-weight: 700;
   color: hsl(var(--destructive));
 }
 
-/* Subtitulos h2 */
-h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: hsl(var(--destructive));
-}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
 
-/* Subtitulos h3 */
-h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: hsl(var(--destructive));
-}
-
-/* Subtitulos h4 */
-h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: hsl(var(--destructive));
-}
-
-/* Texto normal */
 p {
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   color: hsl(var(--foreground));
 }
 
+/* Cards */
+.card {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: fadeIn 0.8s ease-in-out;
+}
