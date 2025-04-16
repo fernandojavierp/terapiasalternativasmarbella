@@ -11,7 +11,7 @@ export default function FarmasiPage() {
   const products = [
     {
       src: "/aloe-glow-mandarina.webp",
-      alt: "Producto Farmasi 1",
+      alt: "",
       benefits: [
         "Hidratación intensa",
         "Brillo natural",
@@ -21,7 +21,7 @@ export default function FarmasiPage() {
     },
     {
       src: "/crema-balsam-tea-tree.webp",
-      alt: "Producto Farmasi 2",
+      alt: "",
       benefits: [
         "Propiedades antibacterianas",
         "Calma irritaciones",
@@ -31,7 +31,7 @@ export default function FarmasiPage() {
     },
     {
       src: "/crema-hidratante-2.webp",
-      alt: "Producto Farmasi 3",
+      alt: "",
       benefits: [
         "Hidratación 24 horas",
         "Nutrición profunda",
@@ -41,7 +41,7 @@ export default function FarmasiPage() {
     },
     {
       src: "/vitamin-c.webp",
-      alt: "Producto Farmasi 4",
+      alt: "",
       benefits: [
         "Antioxidante potente",
         "Unifica el tono de piel",
@@ -91,8 +91,8 @@ export default function FarmasiPage() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 bg-white">
+   {/* Benefits Section */}
+   <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Beneficios de los productos Farmasi</h2>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -120,6 +120,44 @@ export default function FarmasiPage() {
           </div>
           </div>
           
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-16 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Productos destacados</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {products.map((product, index) => (
+              <div
+                key={index}
+                className="group relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="aspect-square overflow-hidden cursor-pointer" onClick={() => setSelectedImage(product.src)}>
+                  <Image
+                    src={product.src}
+                    alt={product.alt}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    width={400}
+                    height={400}
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold mb-2">{product.alt}</h3>
+                  <ul className="space-y-2">
+                    {product.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-start">
+                        <svg className="w-4 h-4 mt-1 mr-2 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-sm text-muted-foreground">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
