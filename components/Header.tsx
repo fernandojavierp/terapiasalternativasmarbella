@@ -2,22 +2,20 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Importa usePathname
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X } from "lucide-react"; // Íconos para el menú y cerrar
-import Image from "next/image"; // Componente de Next.js para imágenes
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado del menú
-  const menuRef = useRef<HTMLDivElement>(null); // Referencia para el menú con tipo explícito
-  const pathname = usePathname(); // Obtiene la ruta actual
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
-  // Función para alternar el menú
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Cerrar el menú al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -37,20 +35,21 @@ export default function Header() {
         <nav className="flex justify-between items-center">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo-removebg.png" // Ruta de la imagen en la carpeta public
-              alt="Terapias Alternativas Marbella" // Texto alternativo
-              width={200} // Ancho de la imagen
-              height={50} // Alto de la imagen
-              className="hover:scale-105 transition-all duration-300 ease-in-out" // Estilos personalizados
+              src="/logo-removebg.png"
+              alt="Terapias Alternativas Marbella"
+              width={200}
+              height={50}
+              className="hover:scale-105 transition-all duration-300 ease-in-out"
             />
           </Link>
-          {/* Menú de navegación para escritorio */}
+          
+          {/* Menú de escritorio */}
           <ul className="hidden md:flex space-x-8 text-xl font-poppins">
             <li>
               <Link
                 href="/servicios/anatheoresis"
-                className={`text-foreground hover:text-destructive transition-colors ${
-                  pathname === "/servicios/anatheoresis" ? "text-destructive font-bold" : ""
+                className={`hover:text-destructive transition-colors ${
+                  pathname === "/servicios/anatheoresis" ? "text-destructive" : "text-foreground"
                 }`}
               >
                 Anatheóresis
@@ -59,8 +58,8 @@ export default function Header() {
             <li>
               <Link
                 href="/servicios/kinesiologia"
-                className={`text-foreground hover:text-destructive transition-colors ${
-                  pathname === "/servicios/kinesiologia" ? "text-destructive font-bold" : ""
+                className={`hover:text-destructive transition-colors ${
+                  pathname === "/servicios/kinesiologia" ? "text-destructive" : "text-foreground"
                 }`}
               >
                 Kinesiología
@@ -69,8 +68,8 @@ export default function Header() {
             <li>
               <Link
                 href="/servicios/coaching"
-                className={`text-foreground hover:text-destructive transition-colors ${
-                  pathname === "/servicios/coaching" ? "text-destructive font-bold" : ""
+                className={`hover:text-destructive transition-colors ${
+                  pathname === "/servicios/coaching" ? "text-destructive" : "text-foreground"
                 }`}
               >
                 Coaching
@@ -79,8 +78,8 @@ export default function Header() {
             <li>
               <Link
                 href="/blog"
-                className={`text-foreground hover:text-destructive transition-colors ${
-                  pathname === "/blog" ? "text-destructive font-bold" : ""
+                className={`hover:text-destructive transition-colors ${
+                  pathname === "/blog" ? "text-destructive" : "text-foreground"
                 }`}
               >
                 Blog
@@ -89,8 +88,8 @@ export default function Header() {
             <li>
               <Link
                 href="/farmasi"
-                className={`text-foreground hover:text-destructive transition-colors ${
-                  pathname === "/farmasi" ? "text-destructive font-bold" : ""
+                className={`hover:text-destructive transition-colors ${
+                  pathname === "/farmasi" ? "text-destructive" : "text-foreground"
                 }`}
               >
                 FARMASi
@@ -99,8 +98,8 @@ export default function Header() {
             <li>
               <Link
                 href="/contacto"
-                className={`text-foreground hover:text-destructive transition-colors ${
-                  pathname === "/contacto" ? "text-destructive font-bold" : ""
+                className={`hover:text-destructive transition-colors ${
+                  pathname === "/contacto" ? "text-destructive" : "text-foreground"
                 }`}
               >
                 Contacto
@@ -108,27 +107,27 @@ export default function Header() {
             </li>
           </ul>
 
-          {/* Botón de menú para móviles */}
+          {/* Botón de menú móvil */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-foreground hover:text-primary transition-colors"
+            className="md:hidden text-foreground hover:text-destructive transition-colors"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? <X className="w-10 h-10" /> : <Menu className="w-10 h-10" />}
           </button>
         </nav>
 
-        {/* Menú de navegación para móviles */}
+        {/* Menú móvil */}
         {isMenuOpen && (
           <div
             ref={menuRef}
             className="md:hidden absolute top-20 left-0 right-0 bg-background border-t border-border z-50"
           >
-            <ul className="flex flex-col text-left font-poppins text-xl space-y-4 p-4">
+            <ul className="flex flex-col text-right font-poppins text-xl space-y-4 p-4">
               <li>
                 <Link
                   href="/"
-                  className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/" ? "text-destructive font-bold" : ""
+                  className={`hover:text-destructive transition-colors ${
+                    pathname === "/" ? "text-destructive" : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -138,8 +137,8 @@ export default function Header() {
               <li>
                 <Link
                   href="/servicios/anatheoresis"
-                  className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/servicios/anatheoresis" ? "text-destructive font-bold" : ""
+                  className={`hover:text-destructive transition-colors ${
+                    pathname === "/servicios/anatheoresis" ? "text-destructive" : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -149,8 +148,8 @@ export default function Header() {
               <li>
                 <Link
                   href="/servicios/kinesiologia"
-                  className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/servicios/kinesiologia" ? "text-destructive font-bold" : ""
+                  className={`hover:text-destructive transition-colors ${
+                    pathname === "/servicios/kinesiologia" ? "text-destructive" : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -160,8 +159,8 @@ export default function Header() {
               <li>
                 <Link
                   href="/servicios/coaching"
-                  className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/servicios/coaching" ? "text-destructive font-bold" : ""
+                  className={`hover:text-destructive transition-colors ${
+                    pathname === "/servicios/coaching" ? "text-destructive" : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -171,8 +170,8 @@ export default function Header() {
               <li>
                 <Link
                   href="/blog"
-                  className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/blog" ? "text-destructive font-bold" : ""
+                  className={`hover:text-destructive transition-colors ${
+                    pathname === "/blog" ? "text-destructive" : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -182,19 +181,19 @@ export default function Header() {
               <li>
                 <Link
                   href="/farmasi"
-                  className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/farmasi" ? "text-destructive font-bold" : ""
+                  className={`hover:text-destructive transition-colors ${
+                    pathname === "/farmasi" ? "text-destructive" : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   FARMASI
                 </Link>
-              </li> 
+              </li>
               <li>
                 <Link
                   href="/contacto"
-                  className={`block text-foreground hover:text-primary transition-colors ${
-                    pathname === "/contacto" ? "text-destructive font-bold" : ""
+                  className={`hover:text-destructive transition-colors ${
+                    pathname === "/contacto" ? "text-destructive" : "text-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >

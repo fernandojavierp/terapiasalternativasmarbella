@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
@@ -12,19 +11,43 @@ export default function FarmasiPage() {
   const products = [
     {
       src: "/aloe-glow-mandarina.webp",
-      alt: "Producto Farmasi 1"
+      alt: "Producto Farmasi 1",
+      benefits: [
+        "Hidratación intensa",
+        "Brillo natural",
+        "Con extracto de mandarina",
+        "Textura ligera"
+      ]
     },
     {
       src: "/crema-balsam-tea-tree.webp",
-      alt: "Producto Farmasi 2"
+      alt: "Producto Farmasi 2",
+      benefits: [
+        "Propiedades antibacterianas",
+        "Calma irritaciones",
+        "Ideal para pieles con acné",
+        "Contiene aceite de árbol de té"
+      ]
     },
     {
       src: "/crema-hidratante-2.webp",
-      alt: "Producto Farmasi 3"
+      alt: "Producto Farmasi 3",
+      benefits: [
+        "Hidratación 24 horas",
+        "Nutrición profunda",
+        "Para todo tipo de pieles",
+        "Fórmula no comedogénica"
+      ]
     },
     {
       src: "/vitamin-c.webp",
-      alt: "Producto Farmasi 4"
+      alt: "Producto Farmasi 4",
+      benefits: [
+        "Antioxidante potente",
+        "Unifica el tono de piel",
+        "Reduce signos de edad",
+        "Protege contra radicales libres"
+      ]
     },
   ];
 
@@ -68,30 +91,35 @@ export default function FarmasiPage() {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-16 bg-muted/50">
+      {/* Benefits Section */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Productos destacados</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {products.map((product, index) => (
-              <div
-                key={index}
-                className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer"
-                onClick={() => setSelectedImage(product.src)}
-              >
-                <Image
-                  src={product.src}
-                  alt={product.alt}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  width={400}
-                  height={400}
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white text-lg font-medium">Ver más</span>
-                </div>
-              </div>
-            ))}
+          <h2 className="text-3xl font-bold text-center mb-12">Beneficios de los productos Farmasi</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="mt-10 lg:mt-0">
+            <Image
+              src="/gel-paprika-farmasi.webp"
+              alt="Gel Paprika"
+              width={600}
+              height={600}
+              quality={100}
+              className=""
+              priority
+            />
           </div>
+          <div className="mt-10 lg:mt-0">
+            <Image
+              src="/beneficios-gel-paprika-gel-pferde-castaño-de-indias.webp"
+              alt="Gel Paprika y Gel Pferde Castaño de Indias"
+              width={600}
+              height={600}
+              quality={100}
+              className=""
+              priority
+            />
+          </div>
+          </div>
+          
         </div>
       </section>
 
@@ -134,4 +162,4 @@ export default function FarmasiPage() {
       </section>
     </div>
   );
-} 
+}
