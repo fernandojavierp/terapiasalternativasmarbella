@@ -32,6 +32,11 @@ export default function ContactPage() {
       emailjs.init(publicKey);
     } catch (error) {
       console.error("Error al inicializar EmailJS:", error);
+      setSubmitStatus({
+        success: false,
+        message:
+          "Error de configuración. Por favor, contacta al administrador.",
+      });
     }
     
   }, []);
