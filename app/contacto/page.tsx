@@ -77,6 +77,7 @@ export default function ContactPage() {
         setFormData({ name: "", email: "", phone: "", message: "" });
       }
     } catch (error) {
+      console.error("Error al enviar el mensaje:", error);
       setSubmitStatus({
         success: false,
         message:
