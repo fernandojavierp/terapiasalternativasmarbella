@@ -21,16 +21,9 @@ export default function ContactPage() {
   } | null>(null);
 
   useEffect(() => {
-    // Inicializar EmailJS con la clave pública
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-
-    console.log('EmailJS Configuration:', {
-      hasPublicKey: !!publicKey,
-      hasServiceId: !!serviceId,
-      hasTemplateId: !!templateId
-    });
 
     if (!publicKey) {
       console.error('EmailJS Public Key no está configurada');
@@ -39,7 +32,6 @@ export default function ContactPage() {
 
     try {
       emailjs.init(publicKey);
-      console.log('EmailJS inicializado correctamente');
     } catch (error) {
       console.error('Error al inicializar EmailJS:', error);
     }
@@ -50,23 +42,11 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Verificar que las variables de entorno estén configuradas
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-    console.log('Enviando email con configuración:', {
-      hasServiceId: !!serviceId,
-      hasTemplateId: !!templateId,
-      hasPublicKey: !!publicKey
-    });
-
     if (!serviceId || !templateId || !publicKey) {
-      console.error('Faltan variables de entorno:', {
-        serviceId: !!serviceId,
-        templateId: !!templateId,
-        publicKey: !!publicKey
-      });
       setSubmitStatus({
         success: false,
         message: "Error de configuración. Por favor, contacta al administrador."
@@ -76,7 +56,6 @@ export default function ContactPage() {
     }
 
     try {
-      console.log('Intentando enviar email...');
       const response = await emailjs.send(
         serviceId,
         templateId,
@@ -88,22 +67,14 @@ export default function ContactPage() {
         }
       );
 
-      console.log('Respuesta de EmailJS:', response);
-
       if (response.status === 200) {
         setSubmitStatus({
           success: true,
           message: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto."
         });
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: ""
-        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
       }
     } catch (error) {
-      console.error('Error detallado al enviar email:', error);
       setSubmitStatus({
         success: false,
         message: "Hubo un error al enviar el mensaje. Por favor, intenta nuevamente."
@@ -132,11 +103,10 @@ export default function ContactPage() {
 
         <h1 className="text-4xl font-bold text-center mb-8">Contacto</h1>
         <p className="text-lg text-muted-foreground mb-12 text-center max-w-2xl mx-auto">
-          ¿Tienes alguna pregunta o deseas programar una cita? ¡Contáctanos! Estamos aquí para ayudarte en tu camino hacia el bienestar.
+          ¿Tienes alguna pregunta o deseas programar una cita? ¡Contáctanos!
         </p>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Información de Contacto */}
           <div className="space-y-8">
             <div className="bg-card p-6 rounded-lg shadow-md">
               <div className="flex items-center space-x-4 mb-4">
@@ -145,10 +115,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Email</h3>
-                  <a
-                    href="mailto:ines.tpmarbella@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
+                  <a href="mailto:ines.tpmarbella@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                     ines.tpmarbella@gmail.com
                   </a>
                 </div>
@@ -162,12 +129,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Teléfono</h3>
-                  <a
-                    href="https://wa.me/34628595929"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="https://wa.me/34628595929" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
                     +34 628-59-59-29
                   </a>
                 </div>
@@ -180,27 +142,25 @@ export default function ContactPage() {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
                 <div>
+                  <a href="https://www.google.es/maps/place/C.+Ramiro+Campos+Turmo,+4,+29602+Marbella,+M%C3%A1laga/@36.509164,-4.8932351,17z/data=!3m1!4b1!4m6!3m5!1s0xd7327f8acaaaefb:0x87e4a077a7973c3e!8m2!3d36.5091598!4d-4.8883642!16s%2Fg%2F11c2dz7l_1?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                   <h3 className="text-xl font-bold">Ubicación</h3>
-                  <p className="text-muted-foreground">Marbella, España</p>
+                  <p className="text-muted-foreground hover:text-primary transition-colors">Calle Ramiro Campos Turmo, local 4, Marbella, España</p>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Formulario de Contacto */}
           <div className="bg-card p-6 rounded-lg shadow-md">
             <form onSubmit={handleSubmit} className="space-y-6">
               {submitStatus && (
-                <div className={`p-4 rounded-md ${
-                  submitStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                }`}>
+                <div className={`p-4 rounded-md ${submitStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                   {submitStatus.message}
                 </div>
               )}
+
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Nombre
-                </label>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">Nombre</label>
                 <input
                   type="text"
                   id="name"
@@ -213,9 +173,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
-                </label>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -228,9 +186,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                  Teléfono
-                </label>
+                <label htmlFor="phone" className="block text-sm font-medium mb-2">Teléfono</label>
                 <input
                   type="tel"
                   id="phone"
@@ -242,9 +198,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Mensaje
-                </label>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">Mensaje</label>
                 <textarea
                   id="message"
                   name="message"
@@ -262,6 +216,20 @@ export default function ContactPage() {
               </Button>
             </form>
           </div>
+        </div>
+
+        {/* Google Maps iframe aquí */}
+        <div className="mt-12">
+          <iframe
+            title="Mapa de ubicación"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.391052179172!2d-4.88149632419575!3d36.51043037228766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f74d81fcf5c3%3A0x9b56a477af402e97!2sC.%20Ramiro%20Campos%20Turmo%2C%20local%204%2C%2029602%20Marbella%2C%20M%C3%A1laga%2C%20Spain!5e0!3m2!1sen!2ses!4v1714837020841!5m2!1sen!2ses"
+            width="100%"
+            height="400"
+            allowFullScreen
+            loading="lazy"
+            className="rounded-lg shadow-md w-full border-0"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </div>
