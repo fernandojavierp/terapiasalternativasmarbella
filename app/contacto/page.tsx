@@ -33,6 +33,7 @@ export default function ContactPage() {
     } catch (error) {
       console.error("Error al inicializar EmailJS:", error);
     }
+    
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
