@@ -5,14 +5,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Send, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
@@ -22,18 +22,16 @@ export default function ContactPage() {
 
   useEffect(() => {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 
     if (!publicKey) {
-      console.error('EmailJS Public Key no está configurada');
+      console.error("EmailJS Public Key no está configurada");
       return;
     }
 
     try {
       emailjs.init(publicKey);
     } catch (error) {
-      console.error('Error al inicializar EmailJS:', error);
+      console.error("Error al inicializar EmailJS:", error);
     }
   }, []);
 
@@ -49,50 +47,51 @@ export default function ContactPage() {
     if (!serviceId || !templateId || !publicKey) {
       setSubmitStatus({
         success: false,
-        message: "Error de configuración. Por favor, contacta al administrador."
+        message:
+          "Error de configuración. Por favor, contacta al administrador.",
       });
       setIsSubmitting(false);
       return;
     }
 
     try {
-      const response = await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        }
-      );
+      const response = await emailjs.send(serviceId, templateId, {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      });
 
       if (response.status === 200) {
         setSubmitStatus({
           success: true,
-          message: "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto."
+          message:
+            "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
         });
         setFormData({ name: "", email: "", phone: "", message: "" });
       }
     } catch (error) {
       setSubmitStatus({
         success: false,
-        message: "Hubo un error al enviar el mensaje. Por favor, intenta nuevamente."
+        message:
+          "Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background min-h-screen overflow-x-hidden">
       <div className="container mx-auto px-4 py-16">
         <Button asChild variant="ghost" className="mb-8">
           <Link href="/">
@@ -115,7 +114,10 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Email</h3>
-                  <a href="mailto:ines.tpmarbella@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a
+                    href="mailto:ines.tpmarbella@gmail.com"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
                     ines.tpmarbella@gmail.com
                   </a>
                 </div>
@@ -129,7 +131,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Teléfono</h3>
-                  <a href="https://wa.me/34628595929" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://wa.me/34628595929"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     +34 628-59-59-29
                   </a>
                 </div>
@@ -142,9 +149,16 @@ export default function ContactPage() {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <a href="https://www.google.es/maps/place/C.+Ramiro+Campos+Turmo,+4,+29602+Marbella,+M%C3%A1laga/@36.509164,-4.8932351,17z/data=!3m1!4b1!4m6!3m5!1s0xd7327f8acaaaefb:0x87e4a077a7973c3e!8m2!3d36.5091598!4d-4.8883642!16s%2Fg%2F11c2dz7l_1?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <h3 className="text-xl font-bold">Ubicación</h3>
-                  <p className="text-muted-foreground hover:text-primary transition-colors">Calle Ramiro Campos Turmo, local 4, Marbella, España</p>
+                  <a
+                    href="https://www.google.es/maps/place/C.+Ramiro+Campos+Turmo,+4,+29602+Marbella,+M%C3%A1laga/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <h3 className="text-xl font-bold">Ubicación</h3>
+                    <p className="text-muted-foreground hover:text-primary transition-colors">
+                      Calle Ramiro Campos Turmo, local 4, Marbella, España
+                    </p>
                   </a>
                 </div>
               </div>
@@ -154,13 +168,24 @@ export default function ContactPage() {
           <div className="bg-card p-6 rounded-lg shadow-md">
             <form onSubmit={handleSubmit} className="space-y-6">
               {submitStatus && (
-                <div className={`p-4 rounded-md ${submitStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                <div
+                  className={`p-4 rounded-md ${
+                    submitStatus.success
+                      ? "bg-green-100 text-green-700"
+                      : "bg-red-100 text-red-700"
+                  }`}
+                >
                   {submitStatus.message}
                 </div>
               )}
 
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Nombre</label>
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-2"
+                >
+                  Nombre
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -173,7 +198,12 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -186,7 +216,12 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2">Teléfono</label>
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium mb-2"
+                >
+                  Teléfono
+                </label>
                 <input
                   type="tel"
                   id="phone"
@@ -198,7 +233,12 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Mensaje</label>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
+                  Mensaje
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -212,13 +252,12 @@ export default function ContactPage() {
 
               <Button type="submit" className="w-full" disabled={isSubmitting}>
                 <Send className="w-4 h-4 mr-2" />
-                {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                {isSubmitting ? "Enviando..." : "Enviar mensaje"}
               </Button>
             </form>
           </div>
         </div>
 
-        {/* Google Maps iframe aquí */}
         <div className="mt-12">
           <iframe
             title="Mapa de ubicación"
