@@ -539,7 +539,14 @@ Por si dedicación y buen hacer."
                   </div>
                   <div>
                     <h3 className="text-xl font-bold">Ubicación</h3>
-                    <p className="text-muted-foreground">Marbella, España</p>
+                    <p className="text-muted-foreground">
+              Dirección: <a
+                href="https://www.google.es/maps/place/C.+Ramiro+Campos+Turmo,+4,+29602+Marbella,+M%C3%A1laga/@36.5091598,-4.8883642,17z/data=!3m1!4b1!4m6!3m5!1s0xd7327f8acaaaefb:0x87e4a077a7973c3e!8m2!3d36.5091598!4d-4.8883642!16s%2Fg%2F11c2dz7l_1?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                className="text-primary hover:underline transition-colors"
+                target="_blank"
+                rel="noopener noreferrer" 
+              >Calle Ramiro Campos Turmo, local 4, Marbella</a>
+            </p>
                   </div>
                 </div>
               </div>
