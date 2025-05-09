@@ -7,6 +7,7 @@ import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Sen
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import emailjs from '@emailjs/browser';
+import { TestimonialSlider } from "@/components/TestimonialSlider";
 
 export default function Home() {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
@@ -271,77 +272,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="w-full bg-muted/50">
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-4xl font-bold text-center mb-12">Lo que dicen nuestros clientes</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Siempre me ha interesado el mundo de las terapias alternativas, pero me costaba mucho encontrar a la persona o lugar adecuado. Hoy doy las gracias de tener a Inés en mi vida, es a la persona en quién más confío para entregarme a lo que venga. Se sale de su consulta flotando, llena de energía y diferentes perspectivas. Ya se lo recomendé a vari@s amig@s y familiares, por lo que lo recomiendo igual a cualquiera que tenga algo de curiosidad, merece muchísimo probar con ella, además que cada sesión es toda una experiencia en si misma. Muchísimas gracias por todo, una gozada siempre ponerme en tus manos🙏🏼🧡"
-              </p>
-              <p className="text-sm text-foreground font-semibold">- Yolanda VD.</p>
-            </div>
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Me siento, flotando como en una nube .. la sensación de que todo está bien y todo va a ir bien .. es un despertar y una sensación increíble e indescriptible al 100x100 pero es como si toda preocupación o desestabilización volviera a ponerse todo en donde tiene que estar , sin ninguna duda terapias alternativas es la mejor opción ante cualquier malestar emocional o físico . Sin olvidarnos de que Inés es increíble en todos los aspectos con ella te sientes en paz y en las mejores manos . La quiero tener siempre en mi vida y todas sus terapias♥"
-              </p>
-              <p className="text-sm text-foreground font-semibold">- Victoria Jaramillo Gutiérrez </p>
-            </div>
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Tuve la suerte de conocer a Inés gracias a una amiga. Recuerdo perfectamente la sensación de paz y relajación desde la primera sesión: con solo su presencia, su tacto y su voz, logra llevarte a un estado de calma profunda. Ahora vivo fuera de España y, en un momento de bajón, me atendió online… y aunque no fue presencial, noté una mejora tanto física como emocional. Incluso le regalé una sesión a mi madre, que es bastante escéptica con las terapias naturales, y salió feliz y completamente relajada. Súper encantada contigo, Inés. ¡Qué ganas de volver a España para tener otra consulta presencial contigo! 🙏💫"
-              </p>
-              <p className="text-sm text-foreground font-semibold">- Clarice</p>
-            </div>
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Después de cada sesión con Inés he sentido un cambio espectacular sobretodo en mi forma de sobrellevar las cosas, con más fluidez y comprensión.
-La última especialmente me desbloqueo a nivel tan profundo que hasta mi psicóloga me dio la enhorabuena por el cambio, sintiendo ella no haber podido ayudarme hasta ese nivel tan profundo.
-Estoy muy agradecida a Inés por su ayuda y sobretodo porque es una persona muy cariñosa y atenta , gracias 😘"
-              </p>
-              <p className="text-sm text-foreground font-semibold">- Inma Sánchez</p>
-          </div>
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Hola, quería compartirte que Inés es una terapeuta excelente. Me ha ayudado muchísimo, especialmente con el sueño y la intolerancia. Trabaja con mucho cariño y dedicación, y algo que valoro mucho es que no está pendiente del reloj: si necesita estar un poco más contigo, lo hace sin problema. La recomiendo al 100%, ha sido un verdadero apoyo para mí, gracias Inés."
-              </p>
-              <p className="text-sm text-foreground font-semibold">- Loli Reyes</p>
-            </div>
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Todas las terapias con Inés ,super bien ,me ha ayudado a encontrarme bastante mejor tanto anímicamente como fisica ,si lo recomendaría te ayuda bastante a superar barreras que tienes y no conocías !!!"
-              </p>
-              <p className="text-sm text-foreground font-semibold">- María del Carmen Morales Rodríguez</p>
-            </div>
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Sentí en la sesión confianza para dejar fluir.
-La paz surgía de mi interior.
-La sensación me continuo por varios días.
-Una labor hermosa y encomiable la que realiza la Sra Inés Uría.
-Gracias.
-Volvería a repetir.
-Por si dedicación y buen hacer."
-              </p>
-              <p className="text-sm text-foreground font-semibold">- Raúl Fernández Rodríguez </p>
-              </div>
-
-            <div className="bg-card p-6 rounded-lg shadow-md">
-              <p className="text-muted-foreground mb-4">
-                "Buenos días!!! Aquí va mi opinión:
-                Quiero dar gracias a la vida por poner a Inés en mi camino, es una excelente profesional capaz de captar tus nesidades y aplicar la terapia que mejor te va a cada momento y siempre con resultados maravillosos. Muchas gracias!!! 🙏🙏🙏"
-              </p>
-              <p className="text-sm text-foreground font-semibold">- Claudia Ferrari</p>
-            </div>
-        </div>
-        </div>
-      </section>
+      <TestimonialSlider />
 
       {/* Gallery Section */}
       <section className="w-full bg-muted/50">
