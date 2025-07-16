@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import emailjs from '@emailjs/browser';
 import { TestimonialSlider } from "@/components/TestimonialSlider";
+import { GallerySlider } from "@/components/GallerySlider";
 
 export default function Home() {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
@@ -275,31 +276,12 @@ export default function Home() {
       <TestimonialSlider />
 
       {/* Gallery Section */}
-      <section className="w-full bg-muted/50">
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-4xl font-bold text-center mb-12">Galería</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="group relative aspect-square overflow-hidden rounded-lg cursor-pointer"
-                onClick={() => setSelectedImage(image.src)}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  width={400}
-                  height={400}
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white text-lg font-medium">Ver más</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <GallerySlider 
+        images={images} 
+        onImageClick={setSelectedImage}
+        autoPlay={true}
+        autoPlayInterval={4000}
+      />
 
       {/* Image Modal */}
       {selectedImage && (
