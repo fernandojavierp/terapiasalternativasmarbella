@@ -66,7 +66,12 @@ const testimonials: Testimonial[] = [
     id: 11,
     content: "Tuve la suerte de estar en Terapias con Ines. Es espectacular como profesional y qué decir como persona!!!!!! Su presencia, su voz.....te relajan tanto....que te transporta a otro lugar! Se lo recomiendo a todos y todas. Muchas gracias por todo Ines.",
     author: "Miriam Beldarrain Uria"
-  }
+  },
+  {
+    id: 12,
+    content: "Te agradezco muchísimo Ines por esa terapia!! Me siento liberada, me siento que me quitaste un saco de piedras.  Todo camino de Marbella asta la cala me llore de liberación que sentía. Mil gracias por todo lo que me hisiste ! Te admiro 😘❤",
+    author: "Inga"
+  },
 ];
 
 export function TestimonialSlider() {
