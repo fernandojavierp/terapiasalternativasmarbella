@@ -73,12 +73,7 @@ export function GallerySlider({
     );
   };
 
-  const goToSlide = (index: number) => {
-    const maxIndex = Math.max(0, images.length - imagesPerView);
-    setCurrentIndex(Math.min(index, maxIndex));
-  };
 
-  const totalSlides = Math.ceil(images.length / imagesPerView);
 
   return (
     <section className="w-full bg-muted/50">

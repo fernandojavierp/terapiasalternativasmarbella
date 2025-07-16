@@ -84,7 +84,9 @@ export function TestimonialSlider() {
     let interval: NodeJS.Timeout;
     if (isAutoPlaying) {
       interval = setInterval(() => {
-        goToNext();
+        setCurrentIndex(prev => 
+          prev >= testimonials.length - slidesToShow ? 0 : prev + 1
+        );
       }, 5000);
     }
 
@@ -106,7 +108,7 @@ export function TestimonialSlider() {
       clearInterval(interval);
       window.removeEventListener('resize', handleResize);
     };
-  }, [isAutoPlaying, currentIndex]);
+  }, [isAutoPlaying, currentIndex, testimonials.length, slidesToShow]);
 
   const goToPrev = () => {
     setCurrentIndex(prev => 
