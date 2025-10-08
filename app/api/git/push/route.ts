@@ -97,32 +97,34 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString()
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error realizando push:', error);
 
+    const errorMessage = error instanceof Error ? error.message : String(error);
+
     // Manejar errores específicos
-    if (error.message?.includes('Timeout')) {
+    if (errorMessage?.includes('Timeout')) {
       return NextResponse.json(
         { error: 'Timeout: El push tardó demasiado tiempo' },
         { status: 408 }
       );
     }
 
-    if (error.message?.includes('rejected')) {
+    if (errorMessage?.includes('rejected')) {
       return NextResponse.json(
         { error: 'Push rechazado. Puede que necesites hacer pull primero' },
         { status: 409 }
       );
     }
 
-    if (error.message?.includes('not a git repository')) {
+    if (errorMessage?.includes('not a git repository')) {
       return NextResponse.json(
         { error: 'No es un repositorio Git válido' },
         { status: 400 }
       );
     }
 
-    if (error.message?.includes('No such remote')) {
+    if (errorMessage?.includes('No such remote')) {
       return NextResponse.json(
         { error: 'No se encontró el repositorio remoto' },
         { status: 400 }
@@ -132,7 +134,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { 
         error: 'Error interno del servidor al realizar push',
-        details: error.message 
+        details: errorMessage 
       },
       { status: 500 }
     );

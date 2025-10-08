@@ -94,18 +94,20 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString()
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error realizando commit:', error);
     
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    
     // Manejar errores específicos de Git
-    if (error.message?.includes('nothing to commit')) {
+    if (errorMessage?.includes('nothing to commit')) {
       return NextResponse.json(
         { error: 'No hay cambios para commitear' },
         { status: 400 }
       );
     }
 
-    if (error.message?.includes('not a git repository')) {
+    if (errorMessage?.includes('not a git repository')) {
       return NextResponse.json(
         { error: 'No es un repositorio Git válido' },
         { status: 400 }

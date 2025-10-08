@@ -20,11 +20,6 @@ export default function AdminTestimoniosPage() {
   const [credenciales, setCredenciales] = useState({ username: '', password: '' })
   const [cargandoLogin, setCargandoLogin] = useState(false)
 
-  // Verificar autenticación al cargar la página
-  useEffect(() => {
-    verificarAutenticacion()
-  }, [])
-
   const verificarAutenticacion = async () => {
     try {
       const response = await fetch('/api/auth/verify')
@@ -45,6 +40,11 @@ export default function AdminTestimoniosPage() {
       setCargando(false)
     }
   }
+
+  // Verificar autenticación al cargar la página
+  useEffect(() => {
+    verificarAutenticacion()
+  }, [verificarAutenticacion])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
