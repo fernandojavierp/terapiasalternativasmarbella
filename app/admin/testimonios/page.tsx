@@ -3,24 +3,90 @@
 import { useState, useEffect } from 'react'
 import { Testimonio } from '@/app/types'
 import toast from 'react-hot-toast'
+import GitPanel from '@/components/GitPanel'
+
+interface User {
+  userId: string
+  username: string
+  role: string
+}
 
 export default function AdminTestimoniosPage() {
   const [testimonios, setTestimonios] = useState<Testimonio[]>([])
   const [cargando, setCargando] = useState(true)
   const [filtro, setFiltro] = useState<'todos' | 'pendientes' | 'aprobados'>('todos')
   const [autenticado, setAutenticado] = useState(false)
+  const [usuario, setUsuario] = useState<User | null>(null)
   const [credenciales, setCredenciales] = useState({ username: '', password: '' })
+  const [cargandoLogin, setCargandoLogin] = useState(false)
 
-  // Función simple de autenticación (en producción usar algo más seguro)
-  const handleLogin = (e: React.FormEvent) => {
+  // Verificar autenticación al cargar la página
+  useEffect(() => {
+    verificarAutenticacion()
+  }, [])
+
+  const verificarAutenticacion = async () => {
+    try {
+      const response = await fetch('/api/auth/verify')
+      if (response.ok) {
+        const data = await response.json()
+        if (data.authenticated) {
+          setAutenticado(true)
+          setUsuario(data.user)
+          cargarTestimonios()
+        } else {
+          setCargando(false)
+        }
+      } else {
+        setCargando(false)
+      }
+    } catch (error) {
+      console.error('Error verificando autenticación:', error)
+      setCargando(false)
+    }
+  }
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Credenciales simples (en producción usar hash y JWT)
-    if (credenciales.username === 'ines' && credenciales.password === 'admin2024') {
-      setAutenticado(true)
-      toast.success('Acceso concedido')
-      cargarTestimonios()
-    } else {
-      toast.error('Credenciales incorrectas')
+    setCargandoLogin(true)
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credenciales),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setAutenticado(true)
+        setUsuario(data.user)
+        toast.success('Acceso concedido')
+        cargarTestimonios()
+      } else {
+        toast.error(data.error || 'Credenciales incorrectas')
+      }
+    } catch (error) {
+      console.error('Error en login:', error)
+      toast.error('Error al iniciar sesión')
+    } finally {
+      setCargandoLogin(false)
+    }
+  }
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+      setAutenticado(false)
+      setUsuario(null)
+      setCredenciales({ username: '', password: '' })
+      toast.success('Sesión cerrada')
+    } catch (error) {
+      console.error('Error en logout:', error)
+      toast.error('Error al cerrar sesión')
     }
   }
 
@@ -112,6 +178,7 @@ export default function AdminTestimoniosPage() {
                 onChange={(e) => setCredenciales(prev => ({ ...prev, username: e.target.value }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 required
+                disabled={cargandoLogin}
               />
             </div>
             <div>
@@ -124,13 +191,15 @@ export default function AdminTestimoniosPage() {
                 onChange={(e) => setCredenciales(prev => ({ ...prev, password: e.target.value }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 required
+                disabled={cargandoLogin}
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
+              disabled={cargandoLogin}
+              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Iniciar Sesión
+              {cargandoLogin ? 'Iniciando sesión...' : 'Iniciar Sesión'}
             </button>
           </form>
         </div>
@@ -143,14 +212,29 @@ export default function AdminTestimoniosPage() {
       <div className="max-w-6xl mx-auto">
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-bold">Gestión de Testimonios</h1>
+            <div>
+              <h1 className="text-2xl font-bold">Panel de Administración</h1>
+              {usuario && (
+                <p className="text-sm text-gray-600">Bienvenida, {usuario.username}</p>
+              )}
+            </div>
             <button
-              onClick={() => setAutenticado(false)}
+              onClick={handleLogout}
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
             >
               Cerrar Sesión
             </button>
           </div>
+        </div>
+
+        {/* Panel de Git */}
+        <div className="mb-6">
+          <GitPanel onRefresh={cargarTestimonios} />
+        </div>
+
+        {/* Panel de Testimonios */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold mb-4">Gestión de Testimonios</h2>
           
           <div className="flex space-x-4 mb-6">
             <button
@@ -172,7 +256,6 @@ export default function AdminTestimoniosPage() {
               Aprobados ({testimonios.filter(t => t.aprobado).length})
             </button>
           </div>
-        </div>
 
         {cargando ? (
           <div className="text-center py-8">
@@ -251,6 +334,7 @@ export default function AdminTestimoniosPage() {
             )}
           </div>
         )}
+        </div>
       </div>
     </div>
   )

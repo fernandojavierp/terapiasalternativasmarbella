@@ -7,7 +7,7 @@ import { Brain, Sparkles, HeartPulse, Mail, Phone, MapPin, MessageCircle, X, Sen
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import emailjs from '@emailjs/browser';
-import { TestimonialSlider } from "@/components/TestimonialSlider";
+import TestimonialSlider from "@/components/TestimonialSlider";
 import { GallerySlider } from "@/components/GallerySlider";
 
 export default function Home() {

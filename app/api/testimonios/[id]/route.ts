@@ -9,7 +9,7 @@ async function leerTestimonios(): Promise<Testimonio[]> {
   try {
     const data = await fs.readFile(TESTIMONIOS_FILE, 'utf-8')
     return JSON.parse(data)
-  } catch (error) {
+  } catch {
     return []
   }
 }

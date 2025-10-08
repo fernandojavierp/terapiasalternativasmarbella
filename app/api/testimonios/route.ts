@@ -21,7 +21,7 @@ async function leerTestimonios(): Promise<Testimonio[]> {
     await ensureDataDirectory()
     const data = await fs.readFile(TESTIMONIOS_FILE, 'utf-8')
     return JSON.parse(data)
-  } catch (error) {
+  } catch {
     // Si el archivo no existe, devolver array vacío
     return []
   }
