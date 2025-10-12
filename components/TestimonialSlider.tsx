@@ -1,17 +1,67 @@
 // components/TestimonialSlider.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Testimonial {
   id: number;
   nombre: string;
-  testimonio: string;
+  contenido: string;
   puntuacion: number;
   aprobado: boolean;
   visible: boolean;
+}
+
+// Componente para testimonio individual con truncado
+function TestimonialCard({ 
+  testimonial, 
+  isExpanded, 
+  onToggleExpand 
+}: { 
+  testimonial: Testimonial;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
+}) {
+  const maxLength = 150; // Caracteres máximos antes de truncar
+
+  const shouldTruncate = testimonial.contenido.length > maxLength;
+  const displayText = isExpanded 
+    ? testimonial.contenido  
+    : testimonial.contenido.slice(0, maxLength) + (shouldTruncate ? "..." : "");
+
+  return (
+    <div className="bg-card bg-gray-100 p-6 rounded-lg shadow-md h-full flex flex-col">
+      <div className="flex justify-center mb-4">
+        {[...Array(5)].map((_, i) => (
+          <span
+            key={i}
+            className={`text-xl ${
+              i < testimonial.puntuacion ? 'text-yellow-400' : 'text-gray-300'
+            }`}
+          >
+            ⭐
+          </span>
+        ))}
+      </div>
+      
+      <div className="flex-grow">
+        <p className="text-muted-foreground mb-4 italic">"{displayText}"</p>
+        
+        {shouldTruncate && (
+          <button
+            onClick={onToggleExpand}
+            className="text-primary hover:text-primary/80 text-sm font-medium transition-colors mb-4"
+          >
+            {isExpanded ? "Leer menos" : "Leer más"}
+          </button>
+        )}
+      </div>
+      
+      <p className="text-sm text-foreground font-semibold mt-auto">- {testimonial.nombre}</p>
+    </div>
+  );
 }
 
 export function TestimonialSlider() {
@@ -20,6 +70,9 @@ export function TestimonialSlider() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [slidesToShow, setSlidesToShow] = useState(3);
   const [loading, setLoading] = useState(true);
+  const [expandedTestimonialId, setExpandedTestimonialId] = useState<number | null>(null);
+  
+  const autoPlayRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     loadTestimonials();
@@ -30,6 +83,10 @@ export function TestimonialSlider() {
       const response = await fetch('/api/testimonios');
       if (response.ok) {
         const data = await response.json();
+        console.log('🔍 Primer testimonio recibido:', data[0]);
+        console.log('📝 Tiene propiedad "testimonio"?', 'testimonio' in data[0]);
+        console.log('📝 Valor de "testimonio":', data[0]?.testimonio);
+        console.log('📝 Valor de "contenido":', data[0]?.contenido);
         setTestimonials(data);
       }
     } catch (error) {
@@ -39,17 +96,48 @@ export function TestimonialSlider() {
     }
   };
 
+  // Función para manejar el toggle de expansión
+  const handleToggleExpand = (testimonialId: number) => {
+    if (expandedTestimonialId === testimonialId) {
+      // Si ya está expandido, lo cerramos y reactivamos el auto-play
+      setExpandedTestimonialId(null);
+      setIsAutoPlaying(true);
+    } else {
+      // Si se expande uno nuevo, detenemos el auto-play
+      setExpandedTestimonialId(testimonialId);
+      setIsAutoPlaying(false);
+      
+      // Limpiamos cualquier timeout existente
+      if (autoPlayRef.current) {
+        clearTimeout(autoPlayRef.current);
+      }
+    }
+  };
+
+  // Función para cerrar todos los testimonios expandidos y reactivar auto-play
+  const closeAllExpanded = () => {
+    setExpandedTestimonialId(null);
+    setIsAutoPlaying(true);
+  };
+
   useEffect(() => {
     // Auto-play functionality
-    let interval: NodeJS.Timeout;
-    if (isAutoPlaying && testimonials.length > 0) {
-      interval = setInterval(() => {
+    if (isAutoPlaying && testimonials.length > 0 && expandedTestimonialId === null) {
+      autoPlayRef.current = setInterval(() => {
         setCurrentIndex(prev => 
           prev >= testimonials.length - slidesToShow ? 0 : prev + 1
         );
       }, 5000);
     }
 
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [isAutoPlaying, testimonials.length, slidesToShow, expandedTestimonialId]);
+
+  useEffect(() => {
     // Responsive slides to show
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -65,31 +153,51 @@ export function TestimonialSlider() {
     window.addEventListener('resize', handleResize);
 
     return () => {
-      clearInterval(interval);
       window.removeEventListener('resize', handleResize);
     };
-  }, [isAutoPlaying, testimonials.length, slidesToShow]);
+  }, []);
 
   const goToPrev = () => {
+    closeAllExpanded(); // Cerrar cualquier testimonio expandido al navegar
     setCurrentIndex(prev => 
       prev === 0 ? Math.max(0, testimonials.length - slidesToShow) : prev - 1
     );
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10s
+    
+    // Reactivar auto-play después de 10 segundos
+    setTimeout(() => {
+      if (expandedTestimonialId === null) {
+        setIsAutoPlaying(true);
+      }
+    }, 10000);
   };
 
   const goToNext = () => {
+    closeAllExpanded(); // Cerrar cualquier testimonio expandido al navegar
     setCurrentIndex(prev => 
       prev >= testimonials.length - slidesToShow ? 0 : prev + 1
     );
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10s
+    
+    // Reactivar auto-play después de 10 segundos
+    setTimeout(() => {
+      if (expandedTestimonialId === null) {
+        setIsAutoPlaying(true);
+      }
+    }, 10000);
   };
 
   const goToSlide = (index: number) => {
+    closeAllExpanded(); // Cerrar cualquier testimonio expandido al navegar
     setCurrentIndex(index);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10s
+    
+    // Reactivar auto-play después de 10 segundos
+    setTimeout(() => {
+      if (expandedTestimonialId === null) {
+        setIsAutoPlaying(true);
+      }
+    }, 10000);
   };
 
   // Adjust currentIndex if it's out of bounds when slidesToShow changes
@@ -98,6 +206,20 @@ export function TestimonialSlider() {
       setCurrentIndex(Math.max(0, testimonials.length - slidesToShow));
     }
   }, [slidesToShow, currentIndex, testimonials.length]);
+
+  // Efecto para cerrar testimonio expandido si sale de la vista
+  useEffect(() => {
+    if (expandedTestimonialId) {
+      const isVisible = testimonials
+        .slice(currentIndex, currentIndex + slidesToShow)
+        .some(testimonial => testimonial.id === expandedTestimonialId);
+      
+      if (!isVisible) {
+        setExpandedTestimonialId(null);
+        setIsAutoPlaying(true);
+      }
+    }
+  }, [currentIndex, expandedTestimonialId, testimonials, slidesToShow]);
 
   if (loading) {
     return (
@@ -153,22 +275,11 @@ export function TestimonialSlider() {
                   className="flex-shrink-0 px-4"
                   style={{ width: `${100 / slidesToShow}%` }}
                 >
-                  <div className="bg-card p-6 rounded-lg shadow-md h-full">
-                    <div className="flex justify-center mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <span
-                          key={i}
-                          className={`text-xl ${
-                            i < testimonial.puntuacion ? 'text-yellow-400' : 'text-gray-300'
-                          }`}
-                        >
-                          ⭐
-                        </span>
-                      ))}
-                    </div>
-                    <p className="text-muted-foreground mb-4 italic">"{testimonial.testimonio}"</p>
-                    <p className="text-sm text-foreground font-semibold">- {testimonial.nombre}</p>
-                  </div>
+                  <TestimonialCard 
+                    testimonial={testimonial}
+                    isExpanded={expandedTestimonialId === testimonial.id}
+                    onToggleExpand={() => handleToggleExpand(testimonial.id)}
+                  />
                 </div>
               ))}
             </div>
@@ -210,6 +321,15 @@ export function TestimonialSlider() {
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
+          </div>
+        )}
+
+        {/* Indicador de auto-play pausado */}
+        {!isAutoPlaying && expandedTestimonialId && (
+          <div className="text-center mt-4">
+            <p className="text-sm text-muted-foreground">
+              Auto-pausado - Leyendo testimonio
+            </p>
           </div>
         )}
 

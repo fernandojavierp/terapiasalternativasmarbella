@@ -17,6 +17,16 @@ export default function TestimoniosPage() {
   const [enviando, setEnviando] = useState(false)
   const [exitoso, setExitoso] = useState(false)
 
+  // Función para formatear el nombre con primeras letras en mayúscula
+  const formatearNombre = (nombre: string): string => {
+    return nombre
+      .toLowerCase()
+      .split(' ')
+      .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+      .join(' ')
+      .trim()
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setEnviando(true)
@@ -59,10 +69,19 @@ export default function TestimoniosPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: name === 'calificacion' ? parseInt(value) : value
-    }))
+    
+    if (name === 'nombre') {
+      // Aplicar formato al nombre
+      setFormData(prev => ({
+        ...prev,
+        [name]: formatearNombre(value)
+      }))
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: name === 'calificacion' ? parseInt(value) : value
+      }))
+    }
   }
 
   return (
@@ -166,6 +185,9 @@ export default function TestimoniosPage() {
                     className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Tu nombre completo"
                   />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    El nombre se formateará automáticamente con las primeras letras en mayúscula
+                  </p>
                 </div>
 
                 <div>
@@ -218,13 +240,6 @@ export default function TestimoniosPage() {
                     className="w-full px-4 py-2 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                     placeholder="Comparte tu experiencia con nuestras terapias. ¿Cómo te has sentido? ¿Qué cambios has notado? ¿Recomendarías nuestros servicios?"
                   />
-                </div>
-
-                <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-                  <p className="text-sm text-foreground">
-                    <strong>Nota:</strong> Tu testimonio será revisado por nuestro equipo antes de ser publicado. 
-                    Nos reservamos el derecho de editar o no publicar testimonios que no cumplan con nuestras políticas.
-                  </p>
                 </div>
 
                 <Button

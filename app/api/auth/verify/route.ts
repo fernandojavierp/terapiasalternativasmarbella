@@ -1,31 +1,22 @@
-import { NextResponse } from 'next/server'
-import { isAuthenticated } from '@/lib/auth'
+// app/api/auth/verify/route.ts
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const user = await isAuthenticated()
+    const sessionCookie = request.cookies.get('admin_session');
     
-    if (!user) {
-      return NextResponse.json(
-        { authenticated: false },
-        { status: 401 }
-      )
+    if (!sessionCookie?.value) {
+      return NextResponse.json({ authenticated: false });
     }
 
+    const userData = JSON.parse(sessionCookie.value);
+    
     return NextResponse.json({
       authenticated: true,
-      user: {
-        userId: user.userId,
-        username: user.username,
-        role: user.role
-      }
-    })
-
+      user: userData
+    });
   } catch (error) {
-    console.error('Error verificando autenticación:', error)
-    return NextResponse.json(
-      { error: 'Error interno del servidor' },
-      { status: 500 }
-    )
+    console.error('Verify error:', error);
+    return NextResponse.json({ authenticated: false });
   }
 }

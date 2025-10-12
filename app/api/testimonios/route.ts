@@ -1,98 +1,92 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
-import { Testimonio, TestimonioFormData } from '@/app/types'
+// app/api/testimonios/route.ts - VERSIÓN COMPLETA ACTUALIZADA
+import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabase';
 
-const TESTIMONIOS_FILE = path.join(process.cwd(), 'data', 'testimonios.json')
-
-// Función para asegurar que el directorio data existe
-async function ensureDataDirectory() {
-  const dataDir = path.join(process.cwd(), 'data')
-  try {
-    await fs.access(dataDir)
-  } catch {
-    await fs.mkdir(dataDir, { recursive: true })
-  }
-}
-
-// Función para leer testimonios
-async function leerTestimonios(): Promise<Testimonio[]> {
-  try {
-    await ensureDataDirectory()
-    const data = await fs.readFile(TESTIMONIOS_FILE, 'utf-8')
-    return JSON.parse(data)
-  } catch {
-    // Si el archivo no existe, devolver array vacío
-    return []
-  }
-}
-
-// Función para guardar testimonios
-async function guardarTestimonios(testimonios: Testimonio[]) {
-  await ensureDataDirectory()
-  await fs.writeFile(TESTIMONIOS_FILE, JSON.stringify(testimonios, null, 2))
-}
-
-// GET - Obtener testimonios (solo los aprobados y visibles para público)
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
-    const admin = searchParams.get('admin') === 'true'
+    const { searchParams } = new URL(request.url);
+    const admin = searchParams.get('admin');
     
-    const testimonios = await leerTestimonios()
-    
-    if (admin) {
-      // Para admin, devolver todos los testimonios
-      // Aquí deberías verificar autenticación en un caso real
-      return NextResponse.json(testimonios)
-    } else {
-      // Para público, solo testimonios aprobados y visibles
-      const testimoniosPublicos = testimonios.filter(t => t.aprobado && t.visible)
-      return NextResponse.json(testimoniosPublicos)
+    let query = supabase
+      .from('testimonios')
+      .select('*')
+      .order('fecha_creacion', { ascending: false });
+
+    if (!admin) {
+      query = query
+        .eq('aprobado', true)
+        .eq('visible', true);
     }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error;
+    }
+
+    // ✅ FORMATO CONSISTENTE - usar 'contenido' en todo el frontend
+    const testimoniosFormateados = data.map(item => ({
+      id: item.id,
+      nombre: item.nombre,
+      email: item.email,
+      contenido: item.contenido, // ← mantener 'contenido'
+      puntuacion: item.calificacion,
+      aprobado: item.aprobado,
+      visible: item.visible,
+      fecha: item.fecha_creacion ? item.fecha_creacion.split('T')[0] : new Date().toISOString().split('T')[0]
+    }));
+
+    return NextResponse.json(testimoniosFormateados);
   } catch (error) {
-    console.error('Error al obtener testimonios:', error)
-    return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
+    console.error('Error fetching testimonios:', error);
+    return NextResponse.json(
+      { error: 'Error al cargar testimonios' },
+      { status: 500 }
+    );
   }
 }
 
-// POST - Crear nuevo testimonio
 export async function POST(request: NextRequest) {
   try {
-    const body: TestimonioFormData = await request.json()
+    const testimonio = await request.json();
     
-    // Validación básica
-    if (!body.nombre || !body.email || !body.contenido || !body.calificacion) {
-      return NextResponse.json({ error: 'Todos los campos son requeridos' }, { status: 400 })
+    // ✅ FORMATO CONSISTENTE - el frontend envía 'contenido'
+    const { data, error } = await supabase
+      .from('testimonios')
+      .insert([{
+        nombre: testimonio.nombre,
+        email: testimonio.email,
+        contenido: testimonio.contenido, // ← el frontend usa 'contenido'
+        calificacion: testimonio.puntuacion,
+        aprobado: false,
+        visible: true
+      }])
+      .select();
+
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error;
     }
-    
-    if (body.calificacion < 1 || body.calificacion > 5) {
-      return NextResponse.json({ error: 'La calificación debe estar entre 1 y 5' }, { status: 400 })
-    }
-    
-    const testimonios = await leerTestimonios()
-    
-    const nuevoTestimonio: Testimonio = {
-      id: Date.now().toString(),
-      nombre: body.nombre.trim(),
-      email: body.email.trim().toLowerCase(),
-      contenido: body.contenido.trim(),
-      calificacion: body.calificacion,
-      fechaCreacion: new Date().toISOString(),
-      aprobado: false, // Por defecto no aprobado, requiere revisión de Inés
-      visible: true
-    }
-    
-    testimonios.push(nuevoTestimonio)
-    await guardarTestimonios(testimonios)
-    
-    return NextResponse.json({ 
-      message: 'Testimonio enviado correctamente. Será revisado antes de publicarse.',
-      testimonio: nuevoTestimonio 
-    }, { status: 201 })
-    
+
+    // ✅ DEVOLVER EN MISMO FORMATO
+    const testimonioFormateado = {
+      id: data[0].id,
+      nombre: data[0].nombre,
+      email: data[0].email,
+      contenido: data[0].contenido,
+      puntuacion: data[0].calificacion,
+      aprobado: data[0].aprobado,
+      visible: data[0].visible,
+      fecha: data[0].fecha_creacion ? data[0].fecha_creacion.split('T')[0] : new Date().toISOString().split('T')[0]
+    };
+
+    return NextResponse.json(testimonioFormateado);
   } catch (error) {
-    console.error('Error al crear testimonio:', error)
-    return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
+    console.error('Error creating testimonio:', error);
+    return NextResponse.json(
+      { error: 'Error al crear testimonio' },
+      { status: 500 }
+    );
   }
 }

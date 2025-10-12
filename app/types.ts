@@ -15,31 +15,7 @@ export interface Benefit {
   description: string
 }
 
-// Nuevos tipos para el sistema de testimonios
-export interface Testimonio {
-  id: string
-  nombre: string
-  email: string
-  contenido: string
-  calificacion: number // 1-5 estrellas
-  fechaCreacion: string
-  aprobado: boolean
-  visible: boolean
-}
-
-export interface TestimonioFormData {
-  nombre: string
-  email: string
-  contenido: string
-  calificacion: number
-}
-
-export interface AdminCredentials {
-  username: string
-  password: string
-}
-
-// Nuevos tipos para el sistema de testimonios
+// Tipos para el sistema de testimonios
 export interface Testimonio {
   id: string
   nombre: string

@@ -1,88 +1,70 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { promises as fs } from 'fs'
-import path from 'path'
-import { Testimonio } from '@/app/types'
+// app/api/testimonios/[id]/route.ts - CORREGIDA
+import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabase';
 
-const TESTIMONIOS_FILE = path.join(process.cwd(), 'data', 'testimonios.json')
-
-async function leerTestimonios(): Promise<Testimonio[]> {
-  try {
-    const data = await fs.readFile(TESTIMONIOS_FILE, 'utf-8')
-    return JSON.parse(data)
-  } catch {
-    return []
-  }
+// Define la interfaz para los cambios posibles
+interface CambiosTestimonio {
+  contenido?: string;
+  puntuacion?: number;
+  aprobado?: boolean;
+  visible?: boolean;
 }
 
-async function guardarTestimonios(testimonios: Testimonio[]) {
-  const dataDir = path.join(process.cwd(), 'data')
-  try {
-    await fs.access(dataDir)
-  } catch {
-    await fs.mkdir(dataDir, { recursive: true })
-  }
-  await fs.writeFile(TESTIMONIOS_FILE, JSON.stringify(testimonios, null, 2))
+// Define la interfaz para los cambios mapeados a la base de datos
+interface CambiosMapeados {
+  contenido?: string;
+  calificacion?: number;
+  aprobado?: boolean;
+  visible?: boolean;
+  fecha_actualizacion: string;
 }
 
-// PUT - Actualizar testimonio (para admin)
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = params
-    const body = await request.json()
-    
-    const testimonios = await leerTestimonios()
-    const index = testimonios.findIndex(t => t.id === id)
-    
-    if (index === -1) {
-      return NextResponse.json({ error: 'Testimonio no encontrado' }, { status: 404 })
-    }
-    
-    // Actualizar campos permitidos
-    testimonios[index] = {
-      ...testimonios[index],
-      ...body,
-      id, // Mantener el ID original
-      fechaCreacion: testimonios[index].fechaCreacion // Mantener fecha original
-    }
-    
-    await guardarTestimonios(testimonios)
-    
-    return NextResponse.json({ 
-      message: 'Testimonio actualizado correctamente',
-      testimonio: testimonios[index]
-    })
-    
-  } catch (error) {
-    console.error('Error al actualizar testimonio:', error)
-    return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
-  }
-}
+    const cambios: CambiosTestimonio = await request.json();
+    const id = params.id;
 
-// DELETE - Eliminar testimonio (para admin)
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const { id } = params
+    // ✅ MAPEO CONSISTENTE CON TIPOS
+    const cambiosMapeados: CambiosMapeados = {
+      fecha_actualizacion: new Date().toISOString()
+    };
     
-    const testimonios = await leerTestimonios()
-    const index = testimonios.findIndex(t => t.id === id)
-    
-    if (index === -1) {
-      return NextResponse.json({ error: 'Testimonio no encontrado' }, { status: 404 })
+    // Si el frontend envía 'contenido', se mantiene igual
+    if (cambios.contenido !== undefined) cambiosMapeados.contenido = cambios.contenido;
+    if (cambios.puntuacion !== undefined) cambiosMapeados.calificacion = cambios.puntuacion;
+    if (cambios.aprobado !== undefined) cambiosMapeados.aprobado = cambios.aprobado;
+    if (cambios.visible !== undefined) cambiosMapeados.visible = cambios.visible;
+
+    const { data, error } = await supabase
+      .from('testimonios')
+      .update(cambiosMapeados)
+      .eq('id', id)
+      .select();
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      return NextResponse.json({ error: 'Testimonio no encontrado' }, { status: 404 });
     }
-    
-    testimonios.splice(index, 1)
-    await guardarTestimonios(testimonios)
-    
-    return NextResponse.json({ message: 'Testimonio eliminado correctamente' })
-    
+
+    // ✅ FORMATO CONSISTENTE
+    const testimonioActualizado = {
+      id: data[0].id,
+      nombre: data[0].nombre,
+      email: data[0].email,
+      contenido: data[0].contenido,
+      puntuacion: data[0].calificacion,
+      aprobado: data[0].aprobado,
+      visible: data[0].visible,
+      fecha: data[0].fecha_creacion ? data[0].fecha_creacion.split('T')[0] : new Date().toISOString().split('T')[0]
+    };
+
+    return NextResponse.json(testimonioActualizado);
   } catch (error) {
-    console.error('Error al eliminar testimonio:', error)
-    return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
+    console.error('Error updating testimonio:', error);
+    return NextResponse.json({ error: 'Error al actualizar testimonio' }, { status: 500 });
   }
 }

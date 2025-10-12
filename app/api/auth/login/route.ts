@@ -1,60 +1,61 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { validateCredentials, createJWT } from '@/lib/auth'
-import { cookies } from 'next/headers'
+// app/api/auth/login/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabase';
+import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { username, password } = body
+    const { username, password } = await request.json();
 
-    // Validar que se proporcionen username y password
-    if (!username || !password) {
-      return NextResponse.json(
-        { error: 'Username y password son requeridos' },
-        { status: 400 }
-      )
-    }
+    // Buscar usuario en la base de datos
+    const { data: user, error } = await supabase
+      .from('usuarios_admin')
+      .select('*')
+      .eq('username', username)
+      .single();
 
-    // Validar credenciales
-    const user = await validateCredentials(username, password)
-    if (!user) {
+    if (error || !user) {
       return NextResponse.json(
-        { error: 'Credenciales inválidas' },
+        { error: 'Credenciales incorrectas' },
         { status: 401 }
-      )
+      );
     }
 
-    // Crear JWT token
-    const token = await createJWT({
-      userId: user.userId,
+    // Verificar contraseña
+    const isValid = await bcrypt.compare(password, user.password_hash);
+    if (!isValid) {
+      return NextResponse.json(
+        { error: 'Credenciales incorrectas' },
+        { status: 401 }
+      );
+    }
+
+    // Crear sesión
+    const userData = {
+      userId: user.id,
       username: user.username,
       role: user.role
-    })
+    };
 
-    // Configurar cookie con el token
-    const cookieStore = cookies()
-    cookieStore.set('auth-token', token, {
+    const response = NextResponse.json({
+      authenticated: true,
+      user: userData
+    });
+
+    // Cookie de sesión
+    response.cookies.set('admin_session', JSON.stringify(userData), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 24 * 60 * 60, // 24 horas
-      path: '/'
-    })
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 // 24 horas
+    });
 
-    return NextResponse.json({
-      success: true,
-      user: {
-        userId: user.userId,
-        username: user.username,
-        role: user.role
-      }
-    })
-
+    return response;
   } catch (error) {
-    console.error('Error en login:', error)
+    console.error('Login error:', error);
     return NextResponse.json(
-      { error: 'Error interno del servidor' },
+      { error: 'Error en el servidor' },
       { status: 500 }
-    )
+    );
   }
 }

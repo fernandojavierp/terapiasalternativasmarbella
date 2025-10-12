@@ -4,6 +4,7 @@ import Header from "@/components/Header"; // Componente del Header
 import Footer from "@/components/Footer"; // Componente del Footer
 import { ReactNode } from "react"; // Tipo para children
 import { Metadata } from "next"; // Tipo para metadatos
+import { Toaster } from 'react-hot-toast'; // Importar Toaster
 
 // Define las props del componente RootLayout
 interface RootLayoutProps {
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Header />
         <main>{children}</main>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

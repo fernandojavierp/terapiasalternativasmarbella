@@ -1,4 +1,7 @@
-[
+// scripts/migrate-testimonios.ts
+import { supabase } from '@/lib/supabase';
+
+const testimoniosJSON = [
   {
     "id": 1,
     "nombre": "Yolanda VD.",
@@ -149,4 +152,42 @@
     "aprobado": false,
     "visible": true
   }
-]
+
+  
+];
+
+async function migrateTestimonios() {
+  try {
+    console.log('Iniciando migración de testimonios...');
+    
+    for (const testimonio of testimoniosJSON) {
+      // Convertir la estructura del JSON a la estructura de Supabase
+      const testimonioSupabase = {
+        nombre: testimonio.nombre,
+        email: testimonio.email,
+        contenido: testimonio.testimonio, // Mapear testimonio -> contenido
+        calificacion: testimonio.puntuacion, // Mapear puntuacion -> calificacion
+        aprobado: testimonio.aprobado,
+        visible: testimonio.visible,
+        fecha_creacion: testimonio.fecha + 'T00:00:00Z' // Convertir fecha a timestamp
+      };
+
+      const { data, error } = await supabase
+        .from('testimonios')
+        .insert([testimonioSupabase])
+        .select();
+
+      if (error) {
+        console.error(`Error insertando testimonio de ${testimonio.nombre}:`, error);
+      } else {
+        console.log(`✅ ${testimonio.nombre} migrado`);
+      }
+    }
+    
+    console.log('Migración completada!');
+  } catch (error) {
+    console.error('Error en migración:', error);
+  }
+}
+
+migrateTestimonios();
