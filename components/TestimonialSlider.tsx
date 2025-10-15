@@ -84,9 +84,9 @@ export function TestimonialSlider() {
     try {
       const response = await fetch('/api/testimonios');
       if (response.ok) {
-        const data = await response.json();
+        const data = await response.json() as Testimonial[];
         // Mapear para asegurar que 'puntuacion' exista
-        const normalized = data.map((t: any) => ({
+        const normalized: Testimonial[] = data.map((t) => ({
           ...t,
           puntuacion: t.puntuacion ?? t.calificacion ?? 0
         }));
