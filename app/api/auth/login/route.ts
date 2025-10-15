@@ -1,6 +1,7 @@
 // app/api/auth/login/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabaseServer } from '@/lib/supabaseServer';
+import { createJWT } from '@/lib/auth';
 import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
@@ -8,7 +9,7 @@ export async function POST(request: NextRequest) {
     const { username, password } = await request.json();
 
     // Buscar usuario en la base de datos
-    const { data: user, error } = await supabase
+    const { data: user, error } = await supabaseServer
       .from('usuarios_admin')
       .select('*')
       .eq('username', username)
@@ -30,20 +31,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Crear sesión
-    const userData = {
-      userId: user.id,
-      username: user.username,
-      role: user.role
+    // Crear token JWT y establecer cookie segura
+    const payload = {
+      userId: String(user.id),
+      username: String(user.username),
+      role: String(user.role || 'admin')
     };
+
+    const token = await createJWT(payload);
 
     const response = NextResponse.json({
       authenticated: true,
-      user: userData
+      user: payload
     });
 
-    // Cookie de sesión
-    response.cookies.set('admin_session', JSON.stringify(userData), {
+    response.cookies.set('auth-token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

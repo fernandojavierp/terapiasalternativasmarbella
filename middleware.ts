@@ -2,10 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { verifyJWT } from '@/lib/auth'
 
 export async function middleware(request: NextRequest) {
-  // Solo aplicar middleware a rutas de admin, pero no a la página de login
+  // Proteger todas las rutas bajo /admin/* excepto la página pública de login
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    // Si ya está en la página de login, permitir acceso
-    if (request.nextUrl.pathname === '/admin/testimonios') {
+    if (request.nextUrl.pathname === '/admin/login') {
       return NextResponse.next()
     }
 
@@ -15,7 +14,7 @@ export async function middleware(request: NextRequest) {
 
       if (!token) {
         // Redirigir al login si no hay token
-        return NextResponse.redirect(new URL('/admin/testimonios', request.url))
+        return NextResponse.redirect(new URL('/admin/login', request.url))
       }
 
       // Verificar el token
@@ -23,7 +22,7 @@ export async function middleware(request: NextRequest) {
       
       if (!payload) {
         // Token inválido, eliminar cookie y redirigir
-        const response = NextResponse.redirect(new URL('/admin/testimonios', request.url))
+        const response = NextResponse.redirect(new URL('/admin/login', request.url))
         response.cookies.delete('auth-token')
         return response
       }
@@ -34,7 +33,7 @@ export async function middleware(request: NextRequest) {
     } catch (error) {
       console.error('Error en middleware de autenticación:', error)
       // En caso de error, eliminar cookie y redirigir
-      const response = NextResponse.redirect(new URL('/admin/testimonios', request.url))
+      const response = NextResponse.redirect(new URL('/admin/login', request.url))
       response.cookies.delete('auth-token')
       return response
     }

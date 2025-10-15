@@ -36,3 +36,22 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # terapiasalternativasmarbella
 Pagina web terapiasalternativasmarbella
+
+## Scripts
+
+Operaciones de mantenimiento y base de datos.
+
+- Configura variables de entorno con `.env` (mira `.env.example`).
+- No subas credenciales reales al repositorio.
+
+### Administración
+- `npm run admin:create` — genera SQL para crear usuario admin (lee `ADMIN_USERNAME`/`ADMIN_PASSWORD`).
+- `npm run admin:change-pwd` — genera SQL para actualizar contraseña del admin.
+
+### Base de datos
+- `npm run db:migrate:testimonios` — migra datos de testimonios al esquema actual.
+- `npm run db:rls` — recordatorio para aplicar políticas RLS desde `scripts/db/policies/supabase-rls.sql`.
+
+### Notas
+- Los scripts usan `tsx` para ejecutar TypeScript sin compilar.
+- Para ejecutar migraciones que requieren permisos elevados, usa `SUPABASE_SERVICE_ROLE_KEY`.

@@ -6,10 +6,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Testimonial {
-  id: number;
+  id: string | number;
   nombre: string;
   contenido: string;
-  puntuacion: number;
+  puntuacion?: number;
+  calificacion?: number;
   aprobado: boolean;
   visible: boolean;
 }
@@ -30,6 +31,7 @@ function TestimonialCard({
   const displayText = isExpanded 
     ? testimonial.contenido  
     : testimonial.contenido.slice(0, maxLength) + (shouldTruncate ? "..." : "");
+  const rating = (testimonial.puntuacion ?? testimonial.calificacion ?? 0);
 
   return (
     <div className="bg-card bg-gray-100 p-6 rounded-lg shadow-md h-full flex flex-col">
@@ -38,7 +40,7 @@ function TestimonialCard({
           <span
             key={i}
             className={`text-xl ${
-              i < testimonial.puntuacion ? 'text-yellow-400' : 'text-gray-300'
+              i < rating ? 'text-yellow-400' : 'text-gray-300'
             }`}
           >
             ⭐
@@ -70,7 +72,7 @@ export function TestimonialSlider() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [slidesToShow, setSlidesToShow] = useState(3);
   const [loading, setLoading] = useState(true);
-  const [expandedTestimonialId, setExpandedTestimonialId] = useState<number | null>(null);
+  const [expandedTestimonialId, setExpandedTestimonialId] = useState<string | number | null>(null);
   
   const autoPlayRef = useRef<NodeJS.Timeout>();
 
@@ -83,11 +85,12 @@ export function TestimonialSlider() {
       const response = await fetch('/api/testimonios');
       if (response.ok) {
         const data = await response.json();
-        console.log('🔍 Primer testimonio recibido:', data[0]);
-        console.log('📝 Tiene propiedad "testimonio"?', 'testimonio' in data[0]);
-        console.log('📝 Valor de "testimonio":', data[0]?.testimonio);
-        console.log('📝 Valor de "contenido":', data[0]?.contenido);
-        setTestimonials(data);
+        // Mapear para asegurar que 'puntuacion' exista
+        const normalized = data.map((t: any) => ({
+          ...t,
+          puntuacion: t.puntuacion ?? t.calificacion ?? 0
+        }));
+        setTestimonials(normalized);
       }
     } catch (error) {
       console.error('Error loading testimonials:', error);
@@ -97,7 +100,7 @@ export function TestimonialSlider() {
   };
 
   // Función para manejar el toggle de expansión
-  const handleToggleExpand = (testimonialId: number) => {
+  const handleToggleExpand = (testimonialId: string | number) => {
     if (expandedTestimonialId === testimonialId) {
       // Si ya está expandido, lo cerramos y reactivamos el auto-play
       setExpandedTestimonialId(null);
