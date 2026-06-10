@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import emailjs from '@emailjs/browser';
 import TestimonialSlider from "@/components/TestimonialSlider";
 import { GallerySlider } from "@/components/GallerySlider";
+import FAQSection from "@/components/FAQSection";
 
 export default function Home() {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
@@ -99,6 +100,25 @@ export default function Home() {
     setSubmitStatus(null);
 
     try {
+      // 1. Guardar consulta en base de datos de Supabase
+      const dbResponse = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message
+        })
+      });
+
+      if (!dbResponse.ok) {
+        console.warn('Advertencia: No se pudo guardar la consulta en la base de datos.');
+      }
+
+      // 2. Enviar email con EmailJS
       const response = await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
@@ -127,7 +147,7 @@ export default function Home() {
         success: false,
         message: "Hubo un error al enviar el mensaje. Por favor, intenta nuevamente."
       });
-      console.error('Error sending email:', error);
+      console.error('Error sending email or saving contact:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -368,35 +388,38 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="container mx-auto sm:px-6 text-center">
-        {/* About Section */}
-        <section id="sobre-nosotros" className="py-12 bg-background">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold mb-10 text-center">Sobre nosotros</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <p className="text-lg text-muted-foreground mb-4">
-                  En Terapias Alternativas Marbella, nos dedicamos a ayudar a las personas a encontrar
-                  equilibrio y bienestar a través de terapias holísticas y personalizadas.
-                </p>
-                <p className="text-lg text-muted-foreground">
-                  Con más de 30 años de experiencia, nuestra misión es guiarte en tu viaje hacia una vida
-                  más plena y saludable.
-                </p>
-              </div>
-              <div className="rounded-lg overflow-hidden">
-                <Image
-                  src="/sobre-nosotros.webp"
-                  alt="Sobre Nosotros"
-                  className="w-full h-64 object-cover"
-                  width={500}
-                  height={500}
-                />
-              </div>
+      {/* About Section */}
+      <section id="sobre-nosotros" className="py-16 bg-background">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="font-playfair text-4xl sm:text-5xl font-bold text-center mb-10">
+            Sobre nosotros
+          </h2>
+          <div className="flex flex-col items-center space-y-8">
+            <div className="rounded-lg overflow-hidden shadow-lg border border-border w-full max-w-xl">
+              <Image
+                src="/sobre-nosotros.webp"
+                alt="Sobre Nosotros"
+                className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+                width={600}
+                height={400}
+              />
+            </div>
+            <div className="text-center space-y-6 max-w-2xl">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                En Terapias Alternativas Marbella, nos dedicamos a ayudar a las personas a encontrar
+                equilibrio y bienestar a través de terapias holísticas y personalizadas.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Con más de 30 años de experiencia, nuestra misión es guiarte en tu viaje hacia una vida
+                más plena y saludable.
+              </p>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
 
       {/* Contact Section */}
       <section className="w-full bg-muted/50">

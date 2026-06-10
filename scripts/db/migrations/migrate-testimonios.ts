@@ -1,4 +1,7 @@
 // scripts/migrate-testimonios.ts
+import dotenv from 'dotenv'
+dotenv.config({ path: '.env.local' })
+dotenv.config()
 import { createClient } from '@supabase/supabase-js'
 
 // Crear cliente usando variables de entorno para uso fuera de Next.js
@@ -172,15 +175,32 @@ async function migrateTestimonios() {
     console.log('Iniciando migración de testimonios...');
     
     for (const testimonio of testimoniosJSON) {
-      // Convertir la estructura del JSON a la estructura de Supabase
+      // Evitar duplicados comprobando si ya existe un registro con el mismo nombre y email
+      const { data: existing, error: checkError } = await supabase
+        .from('testimonios')
+        .select('id')
+        .eq('nombre', testimonio.nombre)
+        .eq('email', testimonio.email)
+        .limit(1);
+
+      if (checkError) {
+        console.error(`Error verificando existencia para ${testimonio.nombre}:`, checkError);
+      }
+
+      if (existing && existing.length > 0) {
+        console.log(`ℹ️ ${testimonio.nombre} ya migrado previamente (saltando)`);
+        continue;
+      }
+
+      // Normalizar estructura del JSON (soporta formato original y formato nuevo)
       const testimonioSupabase = {
         nombre: testimonio.nombre,
         email: testimonio.email,
-        contenido: testimonio.testimonio, // Mapear testimonio -> contenido
-        calificacion: testimonio.puntuacion, // Mapear puntuacion -> calificacion
+        contenido: testimonio.contenido || testimonio.testimonio, // Mapear contenido o testimonio
+        calificacion: testimonio.calificacion ?? testimonio.puntuacion, // Mapear calificacion o puntuacion
         aprobado: testimonio.aprobado,
         visible: testimonio.visible,
-        fecha_creacion: testimonio.fecha + 'T00:00:00Z' // Convertir fecha a timestamp
+        fecha_creacion: testimonio.fechaCreacion || (testimonio.fecha ? testimonio.fecha + 'T00:00:00Z' : new Date().toISOString())
       };
 
       const { data, error } = await supabase
